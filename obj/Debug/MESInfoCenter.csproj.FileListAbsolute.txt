@@ -1,0 +1,10 @@
+C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCenter\bin\Debug\MESInfoCenter.exe.config
+C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCenter\bin\Debug\MESInfoCenter.exe
+C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCenter\bin\Debug\MESInfoCenter.pdb
+C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCenter\obj\Debug\MESInfoCenter.csproj.AssemblyReference.cache
+C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCenter\obj\Debug\MESInfoCenter.Form1.resources
+C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCenter\obj\Debug\MESInfoCenter.Properties.Resources.resources
+C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCenter\obj\Debug\MESInfoCenter.csproj.GenerateResource.cache
+C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCenter\obj\Debug\MESInfoCenter.csproj.CoreCompileInputs.cache
+C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCenter\obj\Debug\MESInfoCenter.exe
+C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCenter\obj\Debug\MESInfoCenter.pdb
