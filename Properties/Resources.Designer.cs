@@ -69,5 +69,15 @@ namespace MESInfoCenter.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Screenshot_2025_02_08_184652 {
+            get {
+                object obj = ResourceManager.GetObject("Screenshot 2025-02-08 184652", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
