@@ -29,7 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSaveForm = new System.Windows.Forms.Button();
+            this.lblGuidePath = new System.Windows.Forms.Label();
+            this.lblIMGPath = new System.Windows.Forms.Label();
+            this.btnGuideUploadForm = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnSubmitForm = new System.Windows.Forms.Button();
             this.btnCancelForm = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.lblPathRequired = new System.Windows.Forms.Label();
@@ -46,10 +50,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnGuideUploadForm = new System.Windows.Forms.Button();
-            this.lblIMGPath = new System.Windows.Forms.Label();
-            this.lblGuidePath = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +60,7 @@
             this.panel1.Controls.Add(this.lblIMGPath);
             this.panel1.Controls.Add(this.btnGuideUploadForm);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.btnSaveForm);
+            this.panel1.Controls.Add(this.btnSubmitForm);
             this.panel1.Controls.Add(this.btnCancelForm);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.lblPathRequired);
@@ -77,23 +77,72 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(834, 638);
+            this.panel1.Size = new System.Drawing.Size(829, 644);
             this.panel1.TabIndex = 0;
             // 
-            // btnSaveForm
+            // lblGuidePath
             // 
-            this.btnSaveForm.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnSaveForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveForm.ForeColor = System.Drawing.Color.White;
-            this.btnSaveForm.Location = new System.Drawing.Point(436, 591);
-            this.btnSaveForm.Name = "btnSaveForm";
-            this.btnSaveForm.Size = new System.Drawing.Size(240, 34);
-            this.btnSaveForm.TabIndex = 33;
-            this.btnSaveForm.Text = "Guardar";
-            this.btnSaveForm.UseVisualStyleBackColor = false;
+            this.lblGuidePath.AutoSize = true;
+            this.lblGuidePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGuidePath.ForeColor = System.Drawing.Color.Aqua;
+            this.lblGuidePath.Location = new System.Drawing.Point(289, 362);
+            this.lblGuidePath.Name = "lblGuidePath";
+            this.lblGuidePath.Size = new System.Drawing.Size(112, 13);
+            this.lblGuidePath.TabIndex = 37;
+            this.lblGuidePath.Text = "[RUTA DE ARCHIVO]";
+            // 
+            // lblIMGPath
+            // 
+            this.lblIMGPath.AutoSize = true;
+            this.lblIMGPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIMGPath.ForeColor = System.Drawing.Color.Aqua;
+            this.lblIMGPath.Location = new System.Drawing.Point(289, 271);
+            this.lblIMGPath.Name = "lblIMGPath";
+            this.lblIMGPath.Size = new System.Drawing.Size(112, 13);
+            this.lblIMGPath.TabIndex = 36;
+            this.lblIMGPath.Text = "[RUTA DE ARCHIVO]";
+            // 
+            // btnGuideUploadForm
+            // 
+            this.btnGuideUploadForm.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnGuideUploadForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuideUploadForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuideUploadForm.ForeColor = System.Drawing.Color.White;
+            this.btnGuideUploadForm.Location = new System.Drawing.Point(333, 330);
+            this.btnGuideUploadForm.Name = "btnGuideUploadForm";
+            this.btnGuideUploadForm.Size = new System.Drawing.Size(135, 29);
+            this.btnGuideUploadForm.TabIndex = 35;
+            this.btnGuideUploadForm.Text = "Cargar guia";
+            this.btnGuideUploadForm.UseVisualStyleBackColor = false;
+            this.btnGuideUploadForm.Click += new System.EventHandler(this.btnGuideUploadForm_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(348, 303);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(100, 24);
+            this.label6.TabIndex = 34;
+            this.label6.Text = "Subir guia ";
+            // 
+            // btnSubmitForm
+            // 
+            this.btnSubmitForm.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnSubmitForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSubmitForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubmitForm.ForeColor = System.Drawing.Color.White;
+            this.btnSubmitForm.Location = new System.Drawing.Point(436, 591);
+            this.btnSubmitForm.Name = "btnSubmitForm";
+            this.btnSubmitForm.Size = new System.Drawing.Size(240, 34);
+            this.btnSubmitForm.TabIndex = 33;
+            this.btnSubmitForm.Text = "Guardar";
+            this.btnSubmitForm.UseVisualStyleBackColor = false;
+            this.btnSubmitForm.Click += new System.EventHandler(this.btnSubmitForm_Click);
             // 
             // btnCancelForm
             // 
@@ -266,61 +315,14 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Nombre de la aplicación";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(348, 303);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 24);
-            this.label6.TabIndex = 34;
-            this.label6.Text = "Subir guia ";
-            // 
-            // btnGuideUploadForm
-            // 
-            this.btnGuideUploadForm.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnGuideUploadForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuideUploadForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuideUploadForm.ForeColor = System.Drawing.Color.White;
-            this.btnGuideUploadForm.Location = new System.Drawing.Point(333, 330);
-            this.btnGuideUploadForm.Name = "btnGuideUploadForm";
-            this.btnGuideUploadForm.Size = new System.Drawing.Size(135, 29);
-            this.btnGuideUploadForm.TabIndex = 35;
-            this.btnGuideUploadForm.Text = "Cargar guia";
-            this.btnGuideUploadForm.UseVisualStyleBackColor = false;
-            this.btnGuideUploadForm.Click += new System.EventHandler(this.btnGuideUploadForm_Click);
-            // 
-            // lblIMGPath
-            // 
-            this.lblIMGPath.AutoSize = true;
-            this.lblIMGPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIMGPath.ForeColor = System.Drawing.Color.Aqua;
-            this.lblIMGPath.Location = new System.Drawing.Point(289, 271);
-            this.lblIMGPath.Name = "lblIMGPath";
-            this.lblIMGPath.Size = new System.Drawing.Size(112, 13);
-            this.lblIMGPath.TabIndex = 36;
-            this.lblIMGPath.Text = "[RUTA DE ARCHIVO]";
-            // 
-            // lblGuidePath
-            // 
-            this.lblGuidePath.AutoSize = true;
-            this.lblGuidePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGuidePath.ForeColor = System.Drawing.Color.Aqua;
-            this.lblGuidePath.Location = new System.Drawing.Point(289, 362);
-            this.lblGuidePath.Name = "lblGuidePath";
-            this.lblGuidePath.Size = new System.Drawing.Size(112, 13);
-            this.lblGuidePath.TabIndex = 37;
-            this.lblGuidePath.Text = "[RUTA DE ARCHIVO]";
-            // 
             // appBasicInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
-            this.ClientSize = new System.Drawing.Size(859, 662);
+            this.ClientSize = new System.Drawing.Size(829, 644);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "appBasicInfoForm";
             this.Text = "Form2";
             this.panel1.ResumeLayout(false);
@@ -332,7 +334,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnSaveForm;
+        private System.Windows.Forms.Button btnSubmitForm;
         private System.Windows.Forms.Button btnCancelForm;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblPathRequired;

@@ -12,6 +12,8 @@ namespace MESInfoCenter
 {
     public partial class appBasicInfoForm : Form
     {
+        public delegate void AppFormSubmitHandler(List<string> data);
+        public event AppFormSubmitHandler onSubmit;
         public appBasicInfoForm()
         {
             InitializeComponent();
@@ -38,7 +40,7 @@ namespace MESInfoCenter
         private void btnGuideUploadForm_Click(object sender, EventArgs e)
         {
             OpenFileDialog choofdlog = new OpenFileDialog();
-            choofdlog.Filter = "Archivos de texto (*.txt)|*.txt|Archivos de Excel (*.xls;*.xlsx)|*.xls;*.xlsx|Documentos de Word (*.doc;*.docx)|*.doc;*.docx";
+            choofdlog.Filter = "Documento de Word (*.doc;*.docx)|*.doc;*.docx|Archivo de Excel (*.xls;*.xlsx)|*.xls;*.xlsx|Archivo de texto (*.txt)|*.txt";
             choofdlog.FilterIndex = 1;
 
             if (choofdlog.ShowDialog() == DialogResult.OK)
@@ -46,6 +48,25 @@ namespace MESInfoCenter
                 string sFileName = choofdlog.FileName;
                 lblGuidePath.Text = sFileName;
             }
+        }
+
+        private void btnSubmitForm_Click(object sender, EventArgs e)
+        {
+           
+            List<string> list = new List<string>();
+            list.Add(tbAppNameForm.Text);
+            list.Add(tbAppPathForm.Text);
+            list.Add(tbAppRepoForm.Text);
+            list.Add(lblIMGPath.Text);
+            list.Add(lblGuidePath.Text);
+            list.Add(rtbAppDesForm.Text);
+            
+            onSubmit?.Invoke(list);
+            
+            this.Close();
+
+
+            
         }
     }
 }
