@@ -1,0 +1,67 @@
+# 🔹 Archivos de Visual Studio
+.vs/
+*.user
+*.suo
+*.cache
+*.csproj.user
+*.dbmdl
+*.jfm
+
+# 🔹 Archivos de Compilación
+bin/
+obj/
+out/
+*.exe
+*.dll
+*.pdb
+*.log
+*.cache
+*.ilk
+*.idb
+*.tlog
+*.lastbuildstate
+*.Build.CppClean.log
+*.VC.db
+
+# 🔹 Configuraciones de usuario
+*.userprefs
+*.localhistory
+
+# 🔹 Dependencias y Paquetes
+packages/
+*.nupkg
+project.lock.json
+project.assets.json
+.nuget/
+logs/
+test-results/
+
+# 🔹 Archivos de Publicación y Distribución
+publish/
+app.publish/
+*.Publish.xml
+
+# 🔹 Archivos de configuración privados
+appsettings.Development.json
+config.json
+secrets.json
+*.key
+.env
+.env.*
+
+# 🔹 Archivos de Respaldo o Temporales
+*.bak
+*.tmp
+*.old
+*.orig
+*.swp
+*.sln.ide
+
+# 🔹 GitHub / JetBrains / Rider / ReSharper / VS Code
+.idea/
+*.iml
+*.ipr
+*.iws
+*.dotCover
+.vscode/
+DBConnection.cs
