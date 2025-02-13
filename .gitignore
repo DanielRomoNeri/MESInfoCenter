@@ -64,4 +64,3 @@ secrets.json
 *.iws
 *.dotCover
 .vscode/
-DBConnection.cs
