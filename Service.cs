@@ -17,7 +17,7 @@ namespace MESInfoCenter
         public string appGuidePath { get; set; }
         public string appDes { get; set; }
 
-        public void addAppData(List<string> data)
+        public void addApp(List<string> data)
         {
             this.appName = data[0];
             this.appPath = data[1];
@@ -27,6 +27,39 @@ namespace MESInfoCenter
             this.appDes = data[5];
         }
 
+        public void updateApp(int ID)
+        {
+
+        }
+
+        public void deleteApp(int ID) 
+        {
+
+        }
+
+        public void getAppList()
+        {
+
+        }
+
+        public void getAppByID(int ID)
+        {
+
+        }
+        public void addTroubleShooting()
+        {
+
+        }
+
+        public void getTroubleShootingList()
+        {
+
+        }
+
+        public void getTroubleShootingByID(int ID)
+        {
+
+        }
         //public List<string> getAppData()
         //{
 

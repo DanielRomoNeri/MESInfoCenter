@@ -24,6 +24,7 @@ namespace MESInfoCenter
         {
             FlowDirection = FlowDirection.LeftToRight,
             Dock = DockStyle.Fill,
+            Margin = new Padding(0, 50, 0, 0),
 
         };
 
@@ -32,18 +33,18 @@ namespace MESInfoCenter
         {
             Text = "Copiar Ruta",
             ForeColor = Color.White,
-            BackColor = Color.Indigo,
+            BackColor = Color.DodgerBlue,
             Width = 200,
             Height = 54,
             FlatStyle = FlatStyle.Flat,
             Margin = new Padding(250, 0, 0, 0),
         };
 
-        Button btnCopyAppRepoPath = new Button
+        Button btnCopyRepoPath = new Button
         {
             Text = "Copiar Repositorio",
             ForeColor = Color.White,
-            BackColor = Color.Indigo,
+            BackColor = Color.DodgerBlue,
             Width = 200,
             Height = 54,
             FlatStyle = FlatStyle.Flat,
@@ -54,7 +55,7 @@ namespace MESInfoCenter
         {
             Text = "Descargar Guía",
             ForeColor = Color.White,
-            BackColor = Color.Indigo,
+            BackColor = Color.DodgerBlue,
             Width = 200,
             Height = 54,
             FlatStyle = FlatStyle.Flat,
@@ -76,74 +77,56 @@ namespace MESInfoCenter
             Margin = new Padding(200, 0, 0, 0),
         };
 
-        TextBox tbAppPath = new TextBox
-        {
-
-            Multiline = true,
-            BackColor = Color.LightSlateGray,
-            ForeColor = Color.Black,
-            Margin = new Padding(0, 0, 0, 0),
-            Width = 800,
-            Height = 40,
-            Font = new Font("Arial", 11),
-            Cursor = Cursors.Default
-        };
-
-        TextBox tbRepoPath = new TextBox
-        {
-
-            Multiline = true,
-            BackColor = Color.LightSlateGray,
-            ForeColor = Color.Black,
-            Margin = new Padding(0, 0, 0, 0),
-            Width = 800,
-            Height = 40,
-            Font = new Font("Arial", 11),
-            Cursor = Cursors.Default
-
-        };
-
         Label lblAppPath = new Label
         {
             Text = "Ruta: ",
-            ForeColor = Color.White,
-            Font = new Font("Arial", 12),
-            Dock = DockStyle.Right,
+            AutoSize = true,
+            ForeColor = Color.Black,
+            Font = new Font("Arial", 11),
+            Dock = DockStyle.Fill,
+            Margin = new Padding(200, 0, 0, 0)
+
         };
 
-        Label lblappRepoPath = new Label
+        Label lblRepoPath = new Label
         {
             Text = "Repositorio: ",
-            ForeColor = Color.White,
-            Font = new Font("Arial", 12),
-            Dock = DockStyle.Right,
+            AutoSize = true,
+            ForeColor = Color.Black,
+            Font = new Font("Arial", 11),
+            Dock = DockStyle.Fill,
+            Margin = new Padding(200, 0, 0, 50)
+,
         };
 
-        RichTextBox rtb = new RichTextBox
+        RichTextBox rtbDescription = new RichTextBox
         {
-            BackColor = Color.LightSlateGray,
-            ForeColor = Color.White,
+            BackColor = ColorTranslator.FromHtml("#F2F2F2"),
+            ForeColor = Color.Black,
             ScrollBars = RichTextBoxScrollBars.None,
             Margin = new Padding(200, 0, 0, 0),
             Width = 1000,
             BorderStyle = BorderStyle.None,
             Multiline = true,
             Cursor = Cursors.Default,
-            Font = new Font("Arial", 17),
+            Font = new Font("Arial", 14),
 
         };
 
         Panel panelTroubleShooting = new Panel
         {
-            BackColor = Color.Gray,
-            Margin = new Padding(200, 0, 0, 200),
+            BackColor = Color.BlanchedAlmond,
+            Margin = new Padding(200, 0, 0, 100),
+            Padding = new Padding(10, 10, 0, 0),
             Dock = DockStyle.Fill,
+            Height = 670,
         };
 
         FlowLayoutPanel flowTroubleShooting = new FlowLayoutPanel
         {
             FlowDirection = FlowDirection.LeftToRight,
             Dock = DockStyle.Fill,
+          
         };
 
         FlowLayoutPanel flowTroubleShootingButtons = new FlowLayoutPanel
@@ -151,12 +134,30 @@ namespace MESInfoCenter
             AutoScroll = true,
             FlowDirection = FlowDirection.TopDown,
             WrapContents = false,
+            BackColor = Color.Cornsilk,
+            Height = 550,
+            Width = 340,
         };
-
-        TextBox tbTSSolution = new TextBox
+            
+        RichTextBox tbTSSolution = new RichTextBox
         {
             Multiline = true,
             Dock = DockStyle.Fill,
+            BackColor = Color.White,
+            Font = new Font("Arial", 13),
+            Width = 600,
+        };
+
+        Button btnaddSolution = new Button
+        {
+            Text = "Agregar nueva solución a problema",
+            ForeColor = Color.White,
+            BackColor = Color.DodgerBlue,
+            Width = 300,
+            Height = 54,
+            Dock = DockStyle.Bottom,
+            FlatStyle = FlatStyle.Flat,
+            Margin = new Padding(0, 70, 0, 0),
         };
     }
 }

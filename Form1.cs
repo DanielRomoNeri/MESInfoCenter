@@ -13,7 +13,7 @@ namespace MESInfoCenter
 {
     public partial class Form1 : Form
     {
-           
+
         public Form1()
         {
             InitializeComponent();
@@ -22,8 +22,8 @@ namespace MESInfoCenter
         private void Form1_Load(object sender, EventArgs e)
         {
             // form2.Click += (snd, evet) => cerrarForm();
-            
-           
+
+
 
             //int buttonWidth;
             //if (list.Count < 13)
@@ -62,17 +62,17 @@ namespace MESInfoCenter
 
             //    flowAppsList.Controls.Add(btn);
             //    flowContainerControls.Controls.Add(label);
-                
+
 
             //    btn.Click += (s, ev) => btnAction(item);
             //}
-            
+
 
         }
 
         private void cerrarForm()
         {
-            
+
         }
 
         private void appBasicInfoForm_OnSubmit(List<string> data)
@@ -84,12 +84,18 @@ namespace MESInfoCenter
             {
                 Text = data[0],
                 ForeColor = Color.White,
-                BackColor = Color.Indigo,
-                Width = 250,
+                BackColor = Color.DodgerBlue,
+                //Dock = DockStyle.Fill,
+                Width = 280,
                 Height = 54,
                 FlatStyle = FlatStyle.Flat,
                 Margin = new Padding(0, 0, 0, 0),
 
+            };
+
+            Panel panelButtonContainer = new Panel
+            {
+                Dock = DockStyle.Fill,
             };
 
             btn.FlatAppearance.BorderSize = 0;
@@ -103,9 +109,9 @@ namespace MESInfoCenter
         private int getRichTextBoxHeight(RichTextBox rtb)
         {
             int emptyLines = 0;
-            foreach(string line in rtb.Lines)
+            foreach (string line in rtb.Lines)
             {
-                if(line == "")
+                if (line == "")
                 {
                     emptyLines++;
                 }
@@ -133,34 +139,30 @@ namespace MESInfoCenter
 
         private void btnAction(string texto)
         {
-            
-            lblTitleApp.Text = texto;
-            
 
-           
-            
-            
+            lblTitleMESApp.Text = texto;
+
         }
 
         public void showContent(List<string> data)
         {
 
-            string appName = data[0]; 
-            string appPath = data[1]; 
-            string appRepoPath = data[2]; 
-            string appIMGPath = data[3]; 
-            string appGuidePath = data[4]; 
-            string appDes = data[5]; 
-            int marginLeft; 
+            string appName = data[0];
+            string appPath = data[1];
+            string appRepoPath = data[2];
+            string appIMGPath = data[3];
+            string appGuidePath = data[4];
+            string appDes = data[5];
+            int marginLeft;
             int imageWidth;
             int imageHeight;
 
-           //Todos los controles usados aquí están en Controls.Designer.cs
+            //Todos los controles usados aquí están en Controls.Designer.cs
 
             Image image = Image.FromFile(appIMGPath);
-            
 
-            
+
+
             if (image.Width > 900)
             {
                 imageWidth = 900;
@@ -170,7 +172,7 @@ namespace MESInfoCenter
                 imageWidth = image.Width;
             }
 
-            if(image.Height > 500)
+            if (image.Height > 500)
             {
                 imageHeight = 500;
             }
@@ -185,24 +187,33 @@ namespace MESInfoCenter
             pictureBox.Size = new System.Drawing.Size(imageWidth, imageHeight);
             pictureBox.Margin = new Padding(marginLeft, 0, 0, 0);
 
-            tbAppPath.Text = appPath;
-            tbRepoPath.Text = appRepoPath;
+            lblAppPath.Text += appPath;
+            lblRepoPath.Text += appRepoPath;
+
+            btnCopyAppPath.Click += (e, s) => copyAppPath(appPath);
+            btnCopyRepoPath.Click += (e, s) => copyRepoPath(appRepoPath);
+            
 
 
             //saveImage(pictureBox);
             //saveGuideFile(appGuidePath);
-            rtb.Clear();
+            rtbDescription.Clear();
 
-            addCenterText(rtb, "Descripción");
-            rtb.AppendText(appDes);
-            addCenterText(rtb, "\n\nSolución de problemas");
+            addCenterText(rtbDescription, "Descripción");
+            rtbDescription.AppendText("\n\n");
+            // Restablece alineación para siguientes textos
+            rtbDescription.SelectionAlignment = HorizontalAlignment.Left;
+            rtbDescription.AppendText(appDes);
+            rtbDescription.AppendText("\n\n\n");
+            addCenterText(rtbDescription, "Solución de problemas");
 
-            rtb.Height = getRichTextBoxHeight(rtb);
-            rtb.MouseWheel += RichTextBox_MouseWheel;
+            rtbDescription.Height = getRichTextBoxHeight(rtbDescription);
 
-            List<string> lines = new List<string> { "Boton1", "Boton2", "Boton3", "Boton4", "Boton5", "Boton6", "Boton7", "Boton8", };
+            rtbDescription.MouseWheel += RichTextBox_MouseWheel;
+
+            List<string> lines = new List<string> { "Boton1" };//, "Boton2", "Boton3", "Boton4", "Boton5", "Boton6", "Boton7", "Boton8", };
             int panelHeight = lines.Count * 30;
-            foreach (string line in lines) 
+            foreach (string line in lines)
             {
                 Button btnTroubleShooting = new Button
                 {
@@ -216,33 +227,45 @@ namespace MESInfoCenter
 
             tbTSSolution.Text = "Hola, la solucion es... blablablabvla";
 
-            panelTroubleShooting.Height= 500;
-            flowTroubleShootingButtons.Height = 500;
-            flowTroubleShootingButtons.Width = 340;
-            tbTSSolution.Width = 600;
+
             flowContentButtons.Controls.Add(btnCopyAppPath);
-            flowContentButtons.Controls.Add(btnCopyAppRepoPath);
+            flowContentButtons.Controls.Add(btnCopyRepoPath);
             flowContentButtons.Controls.Add(btnDownloadGuide);
 
-            flowContentPath1.Controls.Add(lblAppPath);
-            flowContentPath1.Controls.Add(tbAppPath);
+            
 
-            flowContentPath2.Controls.Add(lblappRepoPath);
-            flowContentPath2.Controls.Add(tbRepoPath);
 
             panelTroubleShooting.Controls.Add(flowTroubleShooting);
+            panelTroubleShooting.Controls.Add(btnaddSolution);
             flowTroubleShooting.Controls.Add(flowTroubleShootingButtons);
             flowTroubleShooting.Controls.Add(tbTSSolution);
 
             flowContainerControls.Controls.Add(pictureBox);
             flowContainerControls.Controls.Add(flowContentButtons);
-            flowContainerControls.Controls.Add(flowContentPath1);
-            flowContainerControls.Controls.Add(flowContentPath2);
-            flowContainerControls.Controls.Add(rtb);
+            flowContainerControls.Controls.Add(lblAppPath);
+            flowContainerControls.Controls.Add(lblRepoPath);
+            flowContainerControls.Controls.Add(rtbDescription);
             flowContainerControls.Controls.Add(panelTroubleShooting);
-
             
 
+
+
+
+        }
+
+        private void copyRepoPath(string path)
+        {
+            Clipboard.SetText(path);
+            lblRepoPath.BackColor = Color.Cyan;
+            lblAppPath.BackColor = ColorTranslator.FromHtml("#F2F2F2");
+        }
+
+        private void copyAppPath(string path)
+        {
+            Clipboard.SetText(path);
+
+            lblAppPath.BackColor = Color.Cyan;
+            lblRepoPath.BackColor = ColorTranslator.FromHtml("#F2F2F2");
 
         }
 
@@ -264,24 +287,24 @@ namespace MESInfoCenter
         private int getMarginLeft(int width)
         {
             int marginLeft;
-            marginLeft = (1400 - width)/2;
+            marginLeft = (1400 - width) / 2;
             return marginLeft;
         }
 
-        private void addCenterText(RichTextBox rtb, string texto)
+        private void addCenterText(RichTextBox rtb, string text)
         {
             rtb.SelectionStart = rtb.TextLength;
             rtb.SelectionLength = 0;
 
             // Asegura que solo esta línea sea centrada
             rtb.SelectionAlignment = HorizontalAlignment.Center;
+            rtb.SelectionFont = new Font(rtb.Font.FontFamily, 21);
 
             //rtb.SelectionColor = Color.Indigo;
 
-            rtb.AppendText(texto + "\n\n");
+            rtb.AppendText(text);
 
-            // Restablece alineación para siguientes textos
-            rtb.SelectionAlignment = HorizontalAlignment.Left;
+            
         }
         private void btnAppRegister_Click(object sender, EventArgs e)
         {
@@ -291,6 +314,8 @@ namespace MESInfoCenter
             infoForm.onSubmit += appBasicInfoForm_OnSubmit;
             infoForm.ShowDialog();
         }
+
+        
     }
 
 

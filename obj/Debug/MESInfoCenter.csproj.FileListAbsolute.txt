@@ -9,3 +9,4 @@ C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCente
 C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCenter\obj\Debug\MESInfoCenter.exe
 C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCenter\obj\Debug\MESInfoCenter.pdb
 C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCenter\obj\Debug\MESInfoCenter.appBasicInfoForm.resources
+C:\Users\danier94\OneDrive - kochind.com\Desktop\Windows Forms Apps\MESInfoCenter\obj\Debug\MESInfoCenter.TroubleShootingForm.resources
