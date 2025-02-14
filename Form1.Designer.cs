@@ -35,26 +35,28 @@ namespace MESInfoCenter
             this.flowAppsList = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAppRegister = new System.Windows.Forms.Button();
             this.sideBarHeaderPanel = new System.Windows.Forms.Panel();
+            this.molexLogo = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.headerSearchPanel = new System.Windows.Forms.Panel();
+            this.pbLoginIcon = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblUserName = new System.Windows.Forms.Label();
             this.lblTitleMESApp = new System.Windows.Forms.Label();
             this.containerPanel = new System.Windows.Forms.Panel();
             this.flowContainerControls = new System.Windows.Forms.FlowLayoutPanel();
             this.containerHeaderPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblTitleApp = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.molexLogo = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.sidePanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.sideBarHeaderPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.molexLogo)).BeginInit();
             this.headerSearchPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoginIcon)).BeginInit();
+            this.panel2.SuspendLayout();
             this.containerPanel.SuspendLayout();
             this.containerHeaderPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.molexLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // sidePanel
@@ -104,6 +106,7 @@ namespace MESInfoCenter
             this.btnAppRegister.TabIndex = 1;
             this.btnAppRegister.Text = "Registrar Aplicación";
             this.btnAppRegister.UseVisualStyleBackColor = false;
+            this.btnAppRegister.Visible = false;
             this.btnAppRegister.Click += new System.EventHandler(this.btnAppRegister_Click);
             // 
             // sideBarHeaderPanel
@@ -117,6 +120,17 @@ namespace MESInfoCenter
             this.sideBarHeaderPanel.Size = new System.Drawing.Size(230, 125);
             this.sideBarHeaderPanel.TabIndex = 3;
             // 
+            // molexLogo
+            // 
+            this.molexLogo.Image = global::MESInfoCenter.Properties.Resources.molexLogoTranparente;
+            this.molexLogo.Location = new System.Drawing.Point(10, 17);
+            this.molexLogo.Margin = new System.Windows.Forms.Padding(2);
+            this.molexLogo.Name = "molexLogo";
+            this.molexLogo.Size = new System.Drawing.Size(204, 36);
+            this.molexLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.molexLogo.TabIndex = 1;
+            this.molexLogo.TabStop = false;
+            // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -129,8 +143,8 @@ namespace MESInfoCenter
             // headerSearchPanel
             // 
             this.headerSearchPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(31)))), ((int)(((byte)(64)))));
-            this.headerSearchPanel.Controls.Add(this.label1);
-            this.headerSearchPanel.Controls.Add(this.pictureBox1);
+            this.headerSearchPanel.Controls.Add(this.pbLoginIcon);
+            this.headerSearchPanel.Controls.Add(this.panel2);
             this.headerSearchPanel.Controls.Add(this.lblTitleMESApp);
             this.headerSearchPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerSearchPanel.Location = new System.Drawing.Point(230, 0);
@@ -138,6 +152,41 @@ namespace MESInfoCenter
             this.headerSearchPanel.Name = "headerSearchPanel";
             this.headerSearchPanel.Size = new System.Drawing.Size(1198, 63);
             this.headerSearchPanel.TabIndex = 1;
+            // 
+            // pbLoginIcon
+            // 
+            this.pbLoginIcon.Image = global::MESInfoCenter.Properties.Resources.userIcon;
+            this.pbLoginIcon.Location = new System.Drawing.Point(1140, 12);
+            this.pbLoginIcon.Name = "pbLoginIcon";
+            this.pbLoginIcon.Size = new System.Drawing.Size(46, 36);
+            this.pbLoginIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLoginIcon.TabIndex = 1;
+            this.pbLoginIcon.TabStop = false;
+            this.pbLoginIcon.Click += new System.EventHandler(this.pbLoginIcon_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblUserName);
+            this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel2.Location = new System.Drawing.Point(874, 21);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(260, 27);
+            this.panel2.TabIndex = 3;
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.BackColor = System.Drawing.Color.Transparent;
+            this.lblUserName.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.ForeColor = System.Drawing.Color.White;
+            this.lblUserName.Location = new System.Drawing.Point(154, 0);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(106, 17);
+            this.lblUserName.TabIndex = 2;
+            this.lblUserName.Text = "Iniciar Sesión";
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblUserName.Click += new System.EventHandler(this.pbLoginIcon_Click);
             // 
             // lblTitleMESApp
             // 
@@ -213,39 +262,6 @@ namespace MESInfoCenter
             this.lblTitleApp.Text = "[Titulo de app seleccionada]";
             this.lblTitleApp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::MESInfoCenter.Properties.Resources.userIcon;
-            this.pictureBox1.Location = new System.Drawing.Point(1153, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(33, 27);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // molexLogo
-            // 
-            this.molexLogo.Image = global::MESInfoCenter.Properties.Resources.molexLogoTranparente;
-            this.molexLogo.Location = new System.Drawing.Point(10, 17);
-            this.molexLogo.Margin = new System.Windows.Forms.Padding(2);
-            this.molexLogo.Name = "molexLogo";
-            this.molexLogo.Size = new System.Drawing.Size(204, 36);
-            this.molexLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.molexLogo.TabIndex = 1;
-            this.molexLogo.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(1054, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "NombreUsuario";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -264,14 +280,16 @@ namespace MESInfoCenter
             this.panel1.ResumeLayout(false);
             this.sideBarHeaderPanel.ResumeLayout(false);
             this.sideBarHeaderPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.molexLogo)).EndInit();
             this.headerSearchPanel.ResumeLayout(false);
             this.headerSearchPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoginIcon)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.containerPanel.ResumeLayout(false);
             this.containerHeaderPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.molexLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -292,8 +310,9 @@ namespace MESInfoCenter
         private System.Windows.Forms.FlowLayoutPanel flowContainerControls;
         private System.Windows.Forms.Button btnAppRegister;
         private System.Windows.Forms.Label lblTitleApp;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pbLoginIcon;
+        private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

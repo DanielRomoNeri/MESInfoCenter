@@ -26,26 +26,40 @@ namespace MESInfoCenter
 
         private void btnIMGUploadForm_Click(object sender, EventArgs e)
         {
-            OpenFileDialog choofdlog = new OpenFileDialog();
-            choofdlog.Filter = "Imágenes JPG (*.jpg)|*.jpg;*.jpeg";
-            choofdlog.FilterIndex = 1;
+            OpenFileDialog fd = new OpenFileDialog();
+            fd.Filter = "Imágenes JPG (*.jpg)|*.jpg;*.jpeg";
+            fd.FilterIndex = 1;
 
-            if (choofdlog.ShowDialog() == DialogResult.OK)
+            if (fd.ShowDialog() == DialogResult.OK)
             {
-                string sFileName = choofdlog.FileName;
+                string sFileName = fd.FileName;
                 lblIMGPath.Text = sFileName;        
             }
         }
 
+        private void btnIMGUploadForm2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fd = new OpenFileDialog();
+            fd.Filter = "Imágenes JPG (*.jpg)|*.jpg;*.jpeg";
+            fd.FilterIndex = 1;
+
+            if (fd.ShowDialog() == DialogResult.OK)
+            {
+                string sFileName = fd.FileName;
+                lblIMGPath2.Text = sFileName;
+            }
+
+        }
+
         private void btnGuideUploadForm_Click(object sender, EventArgs e)
         {
-            OpenFileDialog choofdlog = new OpenFileDialog();
-            choofdlog.Filter = "Documento de Word (*.doc;*.docx)|*.doc;*.docx|Archivo de Excel (*.xls;*.xlsx)|*.xls;*.xlsx|Archivo de texto (*.txt)|*.txt";
-            choofdlog.FilterIndex = 1;
+            OpenFileDialog fd = new OpenFileDialog();
+            fd.Filter = "Documento de Word (*.doc;*.docx)|*.doc;*.docx|Archivo de Excel (*.xls;*.xlsx)|*.xls;*.xlsx|Archivo de texto (*.txt)|*.txt";
+            fd.FilterIndex = 1;
 
-            if (choofdlog.ShowDialog() == DialogResult.OK)
+            if (fd.ShowDialog() == DialogResult.OK)
             {
-                string sFileName = choofdlog.FileName;
+                string sFileName = fd.FileName;
                 lblGuidePath.Text = sFileName;
             }
         }
@@ -68,5 +82,7 @@ namespace MESInfoCenter
 
             
         }
+
+        
     }
 }

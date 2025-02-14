@@ -8,11 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MESInfoCenter.Models;
 
 namespace MESInfoCenter
 {
     public partial class Form1 : Form
     {
+        List<Apps> apps = new List<Apps>();
+        List<TroubleShooting> troubleShooting = new List<TroubleShooting>();
+
+        bool isValidUser = false;
+        //string userName;
 
         public Form1()
         {
@@ -67,6 +73,21 @@ namespace MESInfoCenter
             //    btn.Click += (s, ev) => btnAction(item);
             //}
 
+
+        }
+
+        private void LoginForm_OnLogin(string userName)
+        {
+            lblUserName.Text = userName;
+            this.isValidUser = true;
+            unHideContent();
+        }
+
+        private void unHideContent()
+        {
+
+            btnAddSolution.Visible = true;
+            btnAppRegister.Visible = true;
 
         }
 
@@ -212,7 +233,7 @@ namespace MESInfoCenter
             rtbDescription.MouseWheel += RichTextBox_MouseWheel;
 
             List<string> lines = new List<string> { "Boton1" };//, "Boton2", "Boton3", "Boton4", "Boton5", "Boton6", "Boton7", "Boton8", };
-            int panelHeight = lines.Count * 30;
+            //int panelHeight = lines.Count * 30;
             foreach (string line in lines)
             {
                 Button btnTroubleShooting = new Button
@@ -236,7 +257,7 @@ namespace MESInfoCenter
 
 
             panelTroubleShooting.Controls.Add(flowTroubleShooting);
-            panelTroubleShooting.Controls.Add(btnaddSolution);
+            panelTroubleShooting.Controls.Add(btnAddSolution);
             flowTroubleShooting.Controls.Add(flowTroubleShootingButtons);
             flowTroubleShooting.Controls.Add(tbTSSolution);
 
@@ -315,7 +336,23 @@ namespace MESInfoCenter
             infoForm.ShowDialog();
         }
 
-        
+        private void pbLoginIcon_Click(object sender, EventArgs e)
+        {
+            if (isValidUser)
+            {
+                return;
+            }
+            else
+            {
+                LoginForm loginForm = new LoginForm();
+                loginForm.StartPosition = FormStartPosition.Manual;
+                loginForm.Location = new System.Drawing.Point(this.Location.X + 700, this.Location.Y + 350);
+                loginForm.onLogin += LoginForm_OnLogin;
+                loginForm.ShowDialog();
+
+            }
+            
+        }
     }
 
 

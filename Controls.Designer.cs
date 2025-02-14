@@ -148,9 +148,10 @@ namespace MESInfoCenter
             Width = 600,
         };
 
-        Button btnaddSolution = new Button
+        Button btnAddSolution = new Button
         {
             Text = "Agregar nueva solución a problema",
+            Visible = false,
             ForeColor = Color.White,
             BackColor = Color.DodgerBlue,
             Width = 300,

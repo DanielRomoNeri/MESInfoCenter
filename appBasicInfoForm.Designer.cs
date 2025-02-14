@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblIMGPath2 = new System.Windows.Forms.Label();
+            this.btnIMGUploadForm2 = new System.Windows.Forms.Button();
+            this.lblimage2 = new System.Windows.Forms.Label();
             this.lblGuidePath = new System.Windows.Forms.Label();
             this.lblIMGPath = new System.Windows.Forms.Label();
             this.btnGuideUploadForm = new System.Windows.Forms.Button();
@@ -56,6 +59,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Teal;
+            this.panel1.Controls.Add(this.lblIMGPath2);
+            this.panel1.Controls.Add(this.btnIMGUploadForm2);
+            this.panel1.Controls.Add(this.lblimage2);
             this.panel1.Controls.Add(this.lblGuidePath);
             this.panel1.Controls.Add(this.lblIMGPath);
             this.panel1.Controls.Add(this.btnGuideUploadForm);
@@ -80,15 +86,51 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(829, 644);
+            this.panel1.Size = new System.Drawing.Size(829, 685);
             this.panel1.TabIndex = 0;
+            // 
+            // lblIMGPath2
+            // 
+            this.lblIMGPath2.AutoSize = true;
+            this.lblIMGPath2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIMGPath2.ForeColor = System.Drawing.Color.Aqua;
+            this.lblIMGPath2.Location = new System.Drawing.Point(283, 354);
+            this.lblIMGPath2.Name = "lblIMGPath2";
+            this.lblIMGPath2.Size = new System.Drawing.Size(112, 13);
+            this.lblIMGPath2.TabIndex = 40;
+            this.lblIMGPath2.Text = "[RUTA DE ARCHIVO]";
+            // 
+            // btnIMGUploadForm2
+            // 
+            this.btnIMGUploadForm2.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnIMGUploadForm2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIMGUploadForm2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIMGUploadForm2.ForeColor = System.Drawing.Color.White;
+            this.btnIMGUploadForm2.Location = new System.Drawing.Point(327, 322);
+            this.btnIMGUploadForm2.Name = "btnIMGUploadForm2";
+            this.btnIMGUploadForm2.Size = new System.Drawing.Size(135, 29);
+            this.btnIMGUploadForm2.TabIndex = 39;
+            this.btnIMGUploadForm2.Text = "Cargar imagen";
+            this.btnIMGUploadForm2.UseVisualStyleBackColor = false;
+            this.btnIMGUploadForm2.Click += new System.EventHandler(this.btnIMGUploadForm2_Click);
+            // 
+            // lblimage2
+            // 
+            this.lblimage2.AutoSize = true;
+            this.lblimage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblimage2.ForeColor = System.Drawing.Color.White;
+            this.lblimage2.Location = new System.Drawing.Point(282, 295);
+            this.lblimage2.Name = "lblimage2";
+            this.lblimage2.Size = new System.Drawing.Size(247, 24);
+            this.lblimage2.TabIndex = 38;
+            this.lblimage2.Text = "Subir otra imagen (opcional)";
             // 
             // lblGuidePath
             // 
             this.lblGuidePath.AutoSize = true;
             this.lblGuidePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGuidePath.ForeColor = System.Drawing.Color.Aqua;
-            this.lblGuidePath.Location = new System.Drawing.Point(289, 362);
+            this.lblGuidePath.Location = new System.Drawing.Point(289, 451);
             this.lblGuidePath.Name = "lblGuidePath";
             this.lblGuidePath.Size = new System.Drawing.Size(112, 13);
             this.lblGuidePath.TabIndex = 37;
@@ -99,7 +141,7 @@
             this.lblIMGPath.AutoSize = true;
             this.lblIMGPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIMGPath.ForeColor = System.Drawing.Color.Aqua;
-            this.lblIMGPath.Location = new System.Drawing.Point(289, 271);
+            this.lblIMGPath.Location = new System.Drawing.Point(289, 263);
             this.lblIMGPath.Name = "lblIMGPath";
             this.lblIMGPath.Size = new System.Drawing.Size(112, 13);
             this.lblIMGPath.TabIndex = 36;
@@ -111,7 +153,7 @@
             this.btnGuideUploadForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuideUploadForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuideUploadForm.ForeColor = System.Drawing.Color.White;
-            this.btnGuideUploadForm.Location = new System.Drawing.Point(333, 330);
+            this.btnGuideUploadForm.Location = new System.Drawing.Point(327, 419);
             this.btnGuideUploadForm.Name = "btnGuideUploadForm";
             this.btnGuideUploadForm.Size = new System.Drawing.Size(135, 29);
             this.btnGuideUploadForm.TabIndex = 35;
@@ -124,7 +166,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(348, 303);
+            this.label6.Location = new System.Drawing.Point(348, 392);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 24);
             this.label6.TabIndex = 34;
@@ -136,7 +178,7 @@
             this.btnSubmitForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSubmitForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmitForm.ForeColor = System.Drawing.Color.White;
-            this.btnSubmitForm.Location = new System.Drawing.Point(436, 591);
+            this.btnSubmitForm.Location = new System.Drawing.Point(430, 639);
             this.btnSubmitForm.Name = "btnSubmitForm";
             this.btnSubmitForm.Size = new System.Drawing.Size(240, 34);
             this.btnSubmitForm.TabIndex = 33;
@@ -150,7 +192,7 @@
             this.btnCancelForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelForm.ForeColor = System.Drawing.Color.White;
-            this.btnCancelForm.Location = new System.Drawing.Point(132, 591);
+            this.btnCancelForm.Location = new System.Drawing.Point(126, 639);
             this.btnCancelForm.Name = "btnCancelForm";
             this.btnCancelForm.Size = new System.Drawing.Size(240, 34);
             this.btnCancelForm.TabIndex = 32;
@@ -174,7 +216,7 @@
             this.lblPathRequired.AutoSize = true;
             this.lblPathRequired.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPathRequired.ForeColor = System.Drawing.Color.White;
-            this.lblPathRequired.Location = new System.Drawing.Point(571, 70);
+            this.lblPathRequired.Location = new System.Drawing.Point(571, 61);
             this.lblPathRequired.Name = "lblPathRequired";
             this.lblPathRequired.Size = new System.Drawing.Size(17, 24);
             this.lblPathRequired.TabIndex = 30;
@@ -185,7 +227,7 @@
             this.lblDesRequired.AutoSize = true;
             this.lblDesRequired.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDesRequired.ForeColor = System.Drawing.Color.White;
-            this.lblDesRequired.Location = new System.Drawing.Point(445, 404);
+            this.lblDesRequired.Location = new System.Drawing.Point(431, 486);
             this.lblDesRequired.Name = "lblDesRequired";
             this.lblDesRequired.Size = new System.Drawing.Size(17, 24);
             this.lblDesRequired.TabIndex = 29;
@@ -196,7 +238,7 @@
             this.lblIMGRequired.AutoSize = true;
             this.lblIMGRequired.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIMGRequired.ForeColor = System.Drawing.Color.White;
-            this.lblIMGRequired.Location = new System.Drawing.Point(493, 207);
+            this.lblIMGRequired.Location = new System.Drawing.Point(519, 204);
             this.lblIMGRequired.Name = "lblIMGRequired";
             this.lblIMGRequired.Size = new System.Drawing.Size(17, 24);
             this.lblIMGRequired.TabIndex = 28;
@@ -216,9 +258,9 @@
             // rtbAppDesForm
             // 
             this.rtbAppDesForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbAppDesForm.Location = new System.Drawing.Point(18, 440);
+            this.rtbAppDesForm.Location = new System.Drawing.Point(12, 513);
             this.rtbAppDesForm.Name = "rtbAppDesForm";
-            this.rtbAppDesForm.Size = new System.Drawing.Size(787, 134);
+            this.rtbAppDesForm.Size = new System.Drawing.Size(787, 109);
             this.rtbAppDesForm.TabIndex = 26;
             this.rtbAppDesForm.Text = "";
             // 
@@ -228,7 +270,7 @@
             this.btnIMGUploadForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIMGUploadForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIMGUploadForm.ForeColor = System.Drawing.Color.White;
-            this.btnIMGUploadForm.Location = new System.Drawing.Point(333, 234);
+            this.btnIMGUploadForm.Location = new System.Drawing.Point(327, 231);
             this.btnIMGUploadForm.Name = "btnIMGUploadForm";
             this.btnIMGUploadForm.Size = new System.Drawing.Size(135, 29);
             this.btnIMGUploadForm.TabIndex = 25;
@@ -239,7 +281,7 @@
             // tbAppPathForm
             // 
             this.tbAppPathForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbAppPathForm.Location = new System.Drawing.Point(187, 97);
+            this.tbAppPathForm.Location = new System.Drawing.Point(187, 99);
             this.tbAppPathForm.Name = "tbAppPathForm";
             this.tbAppPathForm.Size = new System.Drawing.Size(413, 27);
             this.tbAppPathForm.TabIndex = 24;
@@ -247,9 +289,9 @@
             // tbAppRepoForm
             // 
             this.tbAppRepoForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbAppRepoForm.Location = new System.Drawing.Point(254, 164);
+            this.tbAppRepoForm.Location = new System.Drawing.Point(187, 165);
             this.tbAppRepoForm.Name = "tbAppRepoForm";
-            this.tbAppRepoForm.Size = new System.Drawing.Size(282, 27);
+            this.tbAppRepoForm.Size = new System.Drawing.Size(413, 27);
             this.tbAppRepoForm.TabIndex = 23;
             // 
             // tbAppNameForm
@@ -265,18 +307,18 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(290, 207);
+            this.label5.Location = new System.Drawing.Point(288, 204);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(206, 24);
+            this.label5.Size = new System.Drawing.Size(232, 24);
             this.label5.TabIndex = 21;
-            this.label5.Text = "Subir foto de aplicación";
+            this.label5.Text = "Subir imagen de la interfaz";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(329, 404);
+            this.label4.Location = new System.Drawing.Point(323, 486);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(110, 24);
             this.label4.TabIndex = 20;
@@ -287,18 +329,18 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(343, 137);
+            this.label3.Location = new System.Drawing.Point(323, 138);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 24);
+            this.label3.Size = new System.Drawing.Size(194, 24);
             this.label3.TabIndex = 19;
-            this.label3.Text = "Repositorio";
+            this.label3.Text = "Repositorio (opcional)";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(213, 70);
+            this.label2.Location = new System.Drawing.Point(213, 72);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(352, 24);
             this.label2.TabIndex = 18;
@@ -320,7 +362,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
-            this.ClientSize = new System.Drawing.Size(829, 644);
+            this.ClientSize = new System.Drawing.Size(829, 685);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "appBasicInfoForm";
@@ -355,5 +397,8 @@
         private System.Windows.Forms.Button btnGuideUploadForm;
         private System.Windows.Forms.Label lblGuidePath;
         private System.Windows.Forms.Label lblIMGPath;
+        private System.Windows.Forms.Label lblIMGPath2;
+        private System.Windows.Forms.Button btnIMGUploadForm2;
+        private System.Windows.Forms.Label lblimage2;
     }
 }
