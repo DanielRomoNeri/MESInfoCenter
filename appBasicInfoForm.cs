@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MESInfoCenter.Models;
 
 namespace MESInfoCenter
 {
     public partial class appBasicInfoForm : Form
     {
-        public delegate void AppFormSubmitHandler(List<string> data);
+        public delegate void AppFormSubmitHandler();
         public event AppFormSubmitHandler onSubmit;
         public appBasicInfoForm()
         {
@@ -66,18 +67,81 @@ namespace MESInfoCenter
 
         private void btnSubmitForm_Click(object sender, EventArgs e)
         {
-           
-            List<string> list = new List<string>();
-            list.Add(tbAppNameForm.Text);
-            list.Add(tbAppPathForm.Text);
-            list.Add(tbAppRepoForm.Text);
-            list.Add(lblIMGPath.Text);
-            list.Add(lblGuidePath.Text);
-            list.Add(rtbAppDesForm.Text);
+            bool isDataValid = true;
+
+            string appName = tbAppNameForm.Text.Trim();
+            string lastVersion = tbLastVersion.Text.Trim();
+            string appPath = tbAppPathForm.Text.Trim();
+            string repoPath = tbAppRepoForm.Text.Trim();
+            string localImagePath = lblIMGPath.Text.Trim();
+            string localImage2Path = lblIMGPath2.Text.Trim();
+            string localGuidePath = lblGuidePath.Text.Trim();
+            string appDescription = rtbAppDesForm.Text.Trim();
+            string imagePath = "";
+            string image2Path = "";
+            string guidePath = "";
+            int userID = User.userID;
+
+
+
+
+            if (string.IsNullOrEmpty(appName))
+            {
+                lblNameRequired.ForeColor = Color.Crimson;
+                isDataValid = false;
+            }
+            if (string.IsNullOrEmpty(lastVersion))
+            {
+                lblRequiredVersion.ForeColor = Color.Crimson;
+                isDataValid = false;
+            }
+            if (string.IsNullOrEmpty(appPath))
+            {
+                lblPathRequired.ForeColor = Color.Crimson;
+                isDataValid = false;
+            }
+            if (string.IsNullOrEmpty(localImagePath))
+            {
+                lblPathRequired.ForeColor = Color.Crimson;
+                isDataValid = false;
+            }
+            if (string.IsNullOrEmpty(appDescription))
+            {
+                lblDesRequired.ForeColor = Color.Crimson;
+                isDataValid = false;
+            }
+
+            if (!string.IsNullOrEmpty(localImage2Path))
+            {
+                image2Path = Service.saveImage(localImage2Path, appName);
+            }
             
-            onSubmit?.Invoke(list);
+            if (!string.IsNullOrEmpty(localGuidePath))
+            {
+                guidePath = Service.saveImage(localGuidePath, appName);
+            }
+            if (isDataValid) 
+            {
+                
+
+                imagePath = Service.saveImage(localImagePath, appName);
+                
+                
+                bool isProcessOK = Service.addApp(appName, appPath, guidePath, imagePath, image2Path, repoPath, appDescription, userID, lastVersion);
+                if (isProcessOK)
+                {
+                    MessageBox.Show("Se agregó la información con éxito");
+                    onSubmit?.Invoke();
+                    this.Close();
+                }
+                
+            }
+
             
-            this.Close();
+
+            //
+            
+            
 
 
             

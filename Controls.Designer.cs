@@ -139,7 +139,7 @@ namespace MESInfoCenter
             Width = 340,
         };
             
-        RichTextBox tbTSSolution = new RichTextBox
+        RichTextBox rtbTSSolution = new RichTextBox
         {
             Multiline = true,
             Dock = DockStyle.Fill,
@@ -159,6 +159,7 @@ namespace MESInfoCenter
             Dock = DockStyle.Bottom,
             FlatStyle = FlatStyle.Flat,
             Margin = new Padding(0, 70, 0, 0),
+            Font = new Font("Arial", 13)
         };
     }
 }

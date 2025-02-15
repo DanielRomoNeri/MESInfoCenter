@@ -38,9 +38,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnSubmitForm = new System.Windows.Forms.Button();
             this.btnCancelForm = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblRequiredName = new System.Windows.Forms.Label();
+            this.lblRequiredDes = new System.Windows.Forms.Label();
+            this.lblRequiredSolution = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -148,38 +148,38 @@
             this.btnCancelForm.Text = "Cancelar";
             this.btnCancelForm.UseVisualStyleBackColor = false;
             // 
-            // label5
+            // lblRequiredName
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(366, 23);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(17, 24);
-            this.label5.TabIndex = 36;
-            this.label5.Text = "*";
+            this.lblRequiredName.AutoSize = true;
+            this.lblRequiredName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequiredName.ForeColor = System.Drawing.Color.White;
+            this.lblRequiredName.Location = new System.Drawing.Point(366, 23);
+            this.lblRequiredName.Name = "lblRequiredName";
+            this.lblRequiredName.Size = new System.Drawing.Size(17, 24);
+            this.lblRequiredName.TabIndex = 36;
+            this.lblRequiredName.Text = "*";
             // 
-            // label6
+            // lblRequiredDes
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(393, 205);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(17, 24);
-            this.label6.TabIndex = 37;
-            this.label6.Text = "*";
+            this.lblRequiredDes.AutoSize = true;
+            this.lblRequiredDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequiredDes.ForeColor = System.Drawing.Color.White;
+            this.lblRequiredDes.Location = new System.Drawing.Point(393, 205);
+            this.lblRequiredDes.Name = "lblRequiredDes";
+            this.lblRequiredDes.Size = new System.Drawing.Size(17, 24);
+            this.lblRequiredDes.TabIndex = 37;
+            this.lblRequiredDes.Text = "*";
             // 
-            // label7
+            // lblRequiredSolution
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(325, 361);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(17, 24);
-            this.label7.TabIndex = 38;
-            this.label7.Text = "*";
+            this.lblRequiredSolution.AutoSize = true;
+            this.lblRequiredSolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequiredSolution.ForeColor = System.Drawing.Color.White;
+            this.lblRequiredSolution.Location = new System.Drawing.Point(325, 361);
+            this.lblRequiredSolution.Name = "lblRequiredSolution";
+            this.lblRequiredSolution.Size = new System.Drawing.Size(17, 24);
+            this.lblRequiredSolution.TabIndex = 38;
+            this.lblRequiredSolution.Text = "*";
             // 
             // label10
             // 
@@ -199,9 +199,9 @@
             this.BackColor = System.Drawing.Color.Teal;
             this.ClientSize = new System.Drawing.Size(587, 584);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblRequiredSolution);
+            this.Controls.Add(this.lblRequiredDes);
+            this.Controls.Add(this.lblRequiredName);
             this.Controls.Add(this.btnSubmitForm);
             this.Controls.Add(this.btnCancelForm);
             this.Controls.Add(this.tbProblemSolution);
@@ -232,9 +232,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSubmitForm;
         private System.Windows.Forms.Button btnCancelForm;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblRequiredName;
+        private System.Windows.Forms.Label lblRequiredDes;
+        private System.Windows.Forms.Label lblRequiredSolution;
         private System.Windows.Forms.Label label10;
     }
 }

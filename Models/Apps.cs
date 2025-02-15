@@ -16,6 +16,7 @@ namespace MESInfoCenter
         public string image2Path { get; set; }
         public string repoPath { get; set; }
         public string appDescription { get; set; }
+        public string lastVersion { get; set; }
 
 
     }

@@ -13,7 +13,7 @@ namespace MESInfoCenter
     public partial class LoginForm : Form
     {
 
-        public delegate void LoginFormHandler(string userName);
+        public delegate void LoginFormHandler();
         public event LoginFormHandler onLogin;
         public LoginForm()
         {
@@ -38,7 +38,7 @@ namespace MESInfoCenter
             {
                 if(Service.validateUser(userName, password))
                 {
-                    onLogin?.Invoke(userName);
+                    onLogin?.Invoke();
                     this.Close();
                     
                 }

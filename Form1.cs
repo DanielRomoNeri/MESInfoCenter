@@ -9,13 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MESInfoCenter.Models;
+using static System.Windows.Forms.LinkLabel;
 
 namespace MESInfoCenter
 {
     public partial class Form1 : Form
     {
-        List<Apps> apps = new List<Apps>();
-        List<TroubleShooting> troubleShooting = new List<TroubleShooting>();
+        List<Apps> appsList = new List<Apps>();
+        
 
         bool isValidUser = false;
         //string userName;
@@ -27,58 +28,12 @@ namespace MESInfoCenter
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // form2.Click += (snd, evet) => cerrarForm();
-
-
-
-            //int buttonWidth;
-            //if (list.Count < 13)
-            //{
-            //    buttonWidth = 278;
-            //}
-            //else
-            //{
-            //    buttonWidth = 257;
-            //}
-            //PictureBox pictureBox = new PictureBox();
-            //pictureBox.Image = global::MESInfoCenter.Properties.Resources.Screenshot_2025_02_08_184652;
-            //pictureBox.Size = new System.Drawing.Size(500, 500);
-            //pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            //flowContainerControls.Controls.Add(pictureBox);
-            //foreach (var item in list) 
-            //{
-            //    Label label = new Label();
-
-            //    label.Text = item;
-            //    label.Width = 100;
-            //    label.Height = 100;
-            //    label.Font = new Font(label.Font.FontFamily, 14);
-
-            //    Button btn = new Button();
-            //    btn.Text = item;
-            //    btn.ForeColor = Color.White;
-            //    btn.BackColor = Color.Indigo;
-            //    btn.Width = buttonWidth;
-            //    btn.Height = 54;
-            //    btn.FlatStyle = FlatStyle.Flat;
-            //    btn.FlatAppearance.BorderSize = 0;
-            //    btn.Margin = new Padding(0, 0, 0, 0);
-            //    btn.Font = new Font(btn.Font.FontFamily, 14);
-
-
-            //    flowAppsList.Controls.Add(btn);
-            //    flowContainerControls.Controls.Add(label);
-
-
-            //    btn.Click += (s, ev) => btnAction(item);
-            //}
-
-
+           
         }
 
-        private void LoginForm_OnLogin(string userName)
+        private void LoginForm_OnLogin()
         {
-            lblUserName.Text = userName;
+            lblUserName.Text = User.userName;
             this.isValidUser = true;
             unHideContent();
         }
@@ -96,37 +51,57 @@ namespace MESInfoCenter
 
         }
 
-        private void appBasicInfoForm_OnSubmit(List<string> data)
+        private void appBasicInfoForm_OnSubmit()
         {
+            int lastID;
 
-
-
-            Button btn = new Button
-            {
-                Text = data[0],
-                ForeColor = Color.White,
-                BackColor = Color.DodgerBlue,
-                //Dock = DockStyle.Fill,
-                Width = 280,
-                Height = 54,
-                FlatStyle = FlatStyle.Flat,
-                Margin = new Padding(0, 0, 0, 0),
-
-            };
-
-            Panel panelButtonContainer = new Panel
-            {
-                Dock = DockStyle.Fill,
-            };
-
-            btn.FlatAppearance.BorderSize = 0;
-            btn.Font = new Font(btn.Font.FontFamily, 14, btn.Font.Style);
-            btn.Click += (s, ev) => btnAction(data[0]);
-            flowAppsList.Controls.Add(btn);
-            showContent(data);
+            
+            updateAppsList();
+            //se filtra de la lista el ultimo ID de la tabla apps
+            lastID = appsList.Max(u => u.appID);
+            //se muestran los datos de la ultima aplicacion registrada
+            showContent(lastID);
+            
 
         }
 
+        //Se actualiza lista de aplicaciones para generar de nuevo los botones
+        public void updateAppsList()
+        {
+            int buttonWidth;
+            
+            appsList.Clear();
+            flowAppsList.Controls.Clear();
+
+            appsList = Service.getAppList();
+            appsList.Sort();
+            buttonWidth = appsList.Count < 13 ? 280 : 257;
+   
+            foreach (Apps app in appsList) 
+            {
+                
+                Button btn = new Button
+                {
+                    Text = app.appName,
+                    ForeColor = Color.White,
+                    BackColor = Color.DodgerBlue,
+                    //Dock = DockStyle.Fill,
+                    Width = buttonWidth,
+                    Height = 54,
+                    FlatStyle = FlatStyle.Flat,
+                    Margin = new Padding(0, 0, 0, 0),
+                    
+
+                };
+
+                btn.Click += (s, e) => showContent(app.appID);
+                btn.FlatAppearance.BorderSize = 0;
+                btn.Font = new Font(btn.Font.FontFamily, 14, btn.Font.Style);
+  
+                flowAppsList.Controls.Add(btn);
+                //showContent(data);
+            }
+        }
         private int getRichTextBoxHeight(RichTextBox rtb)
         {
             int emptyLines = 0;
@@ -158,61 +133,43 @@ namespace MESInfoCenter
             }
         }
 
-        private void btnAction(string texto)
+
+        public void showContent(int ID)
         {
+            Apps app = new Apps();
+            List<TroubleShooting> troubleShootingList = new List<TroubleShooting>();
 
-            lblTitleMESApp.Text = texto;
-
-        }
-
-        public void showContent(List<string> data)
-        {
-
-            string appName = data[0];
-            string appPath = data[1];
-            string appRepoPath = data[2];
-            string appIMGPath = data[3];
-            string appGuidePath = data[4];
-            string appDes = data[5];
-            int marginLeft;
-            int imageWidth;
+            int imageWidth; 
             int imageHeight;
+            int marginLeft;
+            //Se elimina todo el contenido antes de generar más
+            flowContainerControls.Controls.Clear();
+
+            app = appsList.FirstOrDefault(c => c.appID == ID);
+
+            lblTitleApp.Text = app.appName;
 
             //Todos los controles usados aquí están en Controls.Designer.cs
 
-            Image image = Image.FromFile(appIMGPath);
+            Image image = Image.FromFile(app.appPath);
 
+            //Condiciones ternarias para ajustar el ancho y alto en caso de que se pase
+            imageWidth = image.Width > 900 ? 900 : image.Width;
+            imageHeight = image.Height > 500 ? 500 : image.Height;
 
-
-            if (image.Width > 900)
-            {
-                imageWidth = 900;
-            }
-            else
-            {
-                imageWidth = image.Width;
-            }
-
-            if (image.Height > 500)
-            {
-                imageHeight = 500;
-            }
-            else
-            {
-                imageHeight = image.Height;
-            }
-
+          
+            //Dependiendo del ancho hago un margen para que la imagen se vea centrada
             marginLeft = getMarginLeft(imageWidth);
 
             pictureBox.Image = image;
             pictureBox.Size = new System.Drawing.Size(imageWidth, imageHeight);
             pictureBox.Margin = new Padding(marginLeft, 0, 0, 0);
 
-            lblAppPath.Text += appPath;
-            lblRepoPath.Text += appRepoPath;
+            lblAppPath.Text += app.appPath;
+            lblRepoPath.Text += app.repoPath;
 
-            btnCopyAppPath.Click += (e, s) => copyAppPath(appPath);
-            btnCopyRepoPath.Click += (e, s) => copyRepoPath(appRepoPath);
+            btnCopyAppPath.Click += (e, s) => copyAppPath(app.appPath);
+            btnCopyRepoPath.Click += (e, s) => copyRepoPath(app.repoPath);
             
 
 
@@ -220,33 +177,25 @@ namespace MESInfoCenter
             //saveGuideFile(appGuidePath);
             rtbDescription.Clear();
 
-            addCenterText(rtbDescription, "Descripción");
+            addCenterText(rtbDescription, "Descripción", 21);
+            //Se generan dos saltos de linea después del titulo Descripción
             rtbDescription.AppendText("\n\n");
             // Restablece alineación para siguientes textos
             rtbDescription.SelectionAlignment = HorizontalAlignment.Left;
-            rtbDescription.AppendText(appDes);
+            rtbDescription.AppendText(app.appDescription);
             rtbDescription.AppendText("\n\n\n");
-            addCenterText(rtbDescription, "Solución de problemas");
+            //Titulo que debe aparecer justamente arriba de el campo de solución de problemas
+            addCenterText(rtbDescription, "Solución de problemas", 21);
 
             rtbDescription.Height = getRichTextBoxHeight(rtbDescription);
 
+            //La rueda del ratón dispara un evento para mover la página si el cursor está dentro del RichTextBox
             rtbDescription.MouseWheel += RichTextBox_MouseWheel;
 
-            List<string> lines = new List<string> { "Boton1" };//, "Boton2", "Boton3", "Boton4", "Boton5", "Boton6", "Boton7", "Boton8", };
-            //int panelHeight = lines.Count * 30;
-            foreach (string line in lines)
-            {
-                Button btnTroubleShooting = new Button
-                {
-                    Text = line,
-                    Width = 300,
-                    Height = 80,
+            troubleShootingList = Service.getTroubleShootingList(app.appID);
+            genTroubleShootingButtons(troubleShootingList);
 
-                };
-                flowTroubleShootingButtons.Controls.Add(btnTroubleShooting);
-            }
-
-            tbTSSolution.Text = "Hola, la solucion es... blablablabvla";
+            btnAddSolution.Click += (e, s) => btnTroubleShootingRegister_Click(app.appID);
 
 
             flowContentButtons.Controls.Add(btnCopyAppPath);
@@ -259,7 +208,7 @@ namespace MESInfoCenter
             panelTroubleShooting.Controls.Add(flowTroubleShooting);
             panelTroubleShooting.Controls.Add(btnAddSolution);
             flowTroubleShooting.Controls.Add(flowTroubleShootingButtons);
-            flowTroubleShooting.Controls.Add(tbTSSolution);
+            flowTroubleShooting.Controls.Add(rtbTSSolution);
 
             flowContainerControls.Controls.Add(pictureBox);
             flowContainerControls.Controls.Add(flowContentButtons);
@@ -290,21 +239,53 @@ namespace MESInfoCenter
 
         }
 
-        private void saveGuideFile(string path)
+        public void genTroubleShootingRTBContent(TroubleShooting troubleShooting)
         {
-            string destinoCarpeta = @"C:\Users\danier94\OneDrive - kochind.com\Desktop\RecursosAplicacionesMolex\"; // Carpeta de destino
-            string fileExtension = Path.GetExtension(path);
-            string fileName = "guia123" + fileExtension;
-            string destinoArchivo = Path.Combine(destinoCarpeta, fileName);
-            File.Copy(path, destinoArchivo, true);
+            rtbTSSolution.Clear();
+
+            addCenterText(rtbTSSolution, "Nombre del problema", 18);
+            rtbTSSolution.AppendText("\n");
+            rtbTSSolution.AppendText(troubleShooting.tsTitle);
+
+            if (!string.IsNullOrEmpty(troubleShooting.tsErrorTag))
+            {
+                addCenterText(rtbTSSolution, "Error mostrado", 18);
+                rtbTSSolution.AppendText("\n");
+                rtbTSSolution.AppendText(troubleShooting.tsErrorTag);
+            }
+            
+
+            addCenterText(rtbTSSolution, "Problema", 18);
+            rtbTSSolution.AppendText("\n");
+            rtbTSSolution.AppendText(troubleShooting.tsDescription);
+            addCenterText(rtbTSSolution, "Solución", 18);
+            rtbTSSolution.AppendText("\n");
+            rtbTSSolution.AppendText(troubleShooting.tsSolution);
+
+
         }
 
-        private void saveImage(PictureBox image)
+        public void genTroubleShootingButtons(List<TroubleShooting> troubleShootingList)
         {
-            string ruta = $@"C:\Users\danier94\OneDrive - kochind.com\Desktop\RecursosAplicacionesMolex\nombre.jpg"; // Ruta donde se guardará la imagen
-            image.Image.Save(ruta, System.Drawing.Imaging.ImageFormat.Jpeg);
-            MessageBox.Show("Imagen guardada en: " + ruta);
+            flowTroubleShootingButtons.Controls.Clear();
+            if (troubleShootingList.Count != 0)
+            {
+                foreach (TroubleShooting troubleShooting in troubleShootingList)
+                {
+                    Button btnTroubleShooting = new Button
+                    {
+                        Text = troubleShooting.tsTitle,
+                        Width = 300,
+                        Height = 80,
+
+                    };
+                    btnTroubleShooting.Click += (e, s) => genTroubleShootingRTBContent(troubleShooting);
+                    flowTroubleShootingButtons.Controls.Add(btnTroubleShooting);
+                }
+            }
         }
+
+        
         private int getMarginLeft(int width)
         {
             int marginLeft;
@@ -312,20 +293,19 @@ namespace MESInfoCenter
             return marginLeft;
         }
 
-        private void addCenterText(RichTextBox rtb, string text)
+        private void addCenterText(RichTextBox rtb, string text, int fontSize)
         {
             rtb.SelectionStart = rtb.TextLength;
             rtb.SelectionLength = 0;
 
             // Asegura que solo esta línea sea centrada
             rtb.SelectionAlignment = HorizontalAlignment.Center;
-            rtb.SelectionFont = new Font(rtb.Font.FontFamily, 21);
+            rtb.SelectionFont = new Font(rtb.Font.FontFamily, fontSize);
 
             //rtb.SelectionColor = Color.Indigo;
 
             rtb.AppendText(text);
 
-            
         }
         private void btnAppRegister_Click(object sender, EventArgs e)
         {
@@ -336,14 +316,24 @@ namespace MESInfoCenter
             infoForm.ShowDialog();
         }
 
+        private void btnTroubleShootingRegister_Click(int ID)
+        {
+            TroubleShootingForm troubleShootingForm = new TroubleShootingForm(ID);
+            troubleShootingForm.StartPosition = FormStartPosition.Manual;
+            troubleShootingForm.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 100);
+            troubleShootingForm.onSubmit += genTroubleShootingButtons;
+            troubleShootingForm.ShowDialog();
+        }
         private void pbLoginIcon_Click(object sender, EventArgs e)
         {
+            //Si ya hay un usuario registrado ya no muestra la ventana de login
             if (isValidUser)
             {
                 return;
             }
             else
             {
+
                 LoginForm loginForm = new LoginForm();
                 loginForm.StartPosition = FormStartPosition.Manual;
                 loginForm.Location = new System.Drawing.Point(this.Location.X + 700, this.Location.Y + 350);

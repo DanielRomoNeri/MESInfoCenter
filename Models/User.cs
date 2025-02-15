@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MESInfoCenter.Models
 {
-    internal class User
+    public class User
     {
-        public int userID { get; set; }
-        public string userName { get; set; }
-        public string role { get; set; }
+        public static int userID { get; set; }
+        public static string userName { get; set; }
+        public static string role { get; set; }
     }
 }
