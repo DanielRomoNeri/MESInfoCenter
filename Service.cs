@@ -101,14 +101,15 @@ namespace MESInfoCenter
                             apps.Add(new Apps
                             {
                                 appID = reader.GetInt32("appID"),
-                                appAuthorName = reader.GetString("appAuthorName"),
                                 appName = reader.GetString("appName"),
+                                appAuthorName = reader.GetString("appAuthorName"),
                                 appPath = reader.GetString("appPath"),
                                 guidePath = reader.GetString("guidePath"),
                                 imagePath = reader.GetString("imagePath"),
                                 image2Path = reader.GetString("image2Path"),
                                 repoPath = reader.GetString("repoPath"),
                                 appDescription = reader.GetString("appDescription"),
+                                lastVersion = reader.GetString("lastVersion")
 
                             });
                         }
