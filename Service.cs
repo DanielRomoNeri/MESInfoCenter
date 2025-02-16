@@ -19,7 +19,7 @@ namespace MESInfoCenter
 
     
 
-        public static bool addApp(string appName, string appPath, string guidePath, string imagePath, string image2Path, string repoPath, string appDescription, int createdBy, string lastVersion)
+        public static bool addApp(string appName, string appAuthorName, string appPath, string guidePath, string imagePath, string image2Path, string repoPath, string appDescription, int createdBy, string lastVersion)
         {
             try
             {
@@ -27,11 +27,12 @@ namespace MESInfoCenter
                 {
                     conn.Open();
                     string query =
-                        "INSERT INTO apps (appName, appPath, guidePath, imagePath, image2Path, repoPath, appDescription, createdBy, updatedBy, lastVersion) " +
-                        "VALUES (@appName, @appPath, @guidePath, @imagePath, @image2Path, @repoPath, @appDescription, @createdBy, @updatedBy, @lastVersion)";
+                        "INSERT INTO apps (appName, appAuthorName, appPath, guidePath, imagePath, image2Path, repoPath, appDescription, createdBy, updatedBy, lastVersion) " +
+                        "VALUES (@appName, @appAuthorName, @appPath, @guidePath, @imagePath, @image2Path, @repoPath, @appDescription, @createdBy, @updatedBy, @lastVersion)";
                     using (var cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@appName", appName);
+                        cmd.Parameters.AddWithValue("@appAuthorName", appAuthorName);
                         cmd.Parameters.AddWithValue("@appPath", appPath);
                         cmd.Parameters.AddWithValue("@guidePath", guidePath);
                         cmd.Parameters.AddWithValue("@imagePath", imagePath);
@@ -55,6 +56,24 @@ namespace MESInfoCenter
             }
         }
 
+        public static bool isNameRepeated(string appName)
+        {
+            using (var conn = DBConnection.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT appName FROM mesinfocenter.apps WHERE appName = @appName";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@appName", appName);
+                    var result = cmd.ExecuteScalar();
+                    return result != null;
+                }
+           
+                
+                
+            }
+        }
+
         public static void updateApp(int ID)
         {
 
@@ -73,7 +92,7 @@ namespace MESInfoCenter
                 using (var conn = DBConnection.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT appID, appName, appPath, guidePath, imagePath, image2Path, repoPath, appDescription FROM apps";
+                    string query = "SELECT appID, appName, appAuthorName, appPath, guidePath, imagePath, image2Path, repoPath, appDescription FROM mesinfocenter.apps";
                     using (var cmd = new MySqlCommand(query, conn))
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -82,6 +101,7 @@ namespace MESInfoCenter
                             apps.Add(new Apps
                             {
                                 appID = reader.GetInt32("appID"),
+                                appAuthorName = reader.GetString("appAuthorName"),
                                 appName = reader.GetString("appName"),
                                 appPath = reader.GetString("appPath"),
                                 guidePath = reader.GetString("guidePath"),
@@ -132,6 +152,7 @@ namespace MESInfoCenter
             }
             catch (Exception)
             {
+                
                 return false;
             }
         }
@@ -203,28 +224,26 @@ namespace MESInfoCenter
 
         }
 
-        public static string saveGuide(string originPath, string appName)
+        public static string saveGuide(string originPath, string folderName)
         {
-            appName = appName.Replace(" ", "_").Replace("-", "_").Replace(".", "_");
-            string folder = $@"\\gumfp01\group\programs\LABVIEW\MES (RUNCARD)\A. Production Apps\MESInfoCenter\AppsResources\app_{appName}\guia"; // Ruta donde se guardará la guia
+            string folder = $@"\\gumfp01\group\programs\LABVIEW\MES (RUNCARD)\A. Production Apps\MESInfoCenter\AppsResources\app_{folderName}\guia"; // Ruta donde se guardará la imagen
             string fileExtension = Path.GetExtension(originPath);
-            string fileName = $@"\{appName}_guia{fileExtension}";
+            string fileName = $"guia{fileExtension}";
             if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
             }
             string newPath = Path.Combine(folder, fileName);
             File.Copy(originPath, newPath, true);
-            MessageBox.Show("Guia guardada");
+            MessageBox.Show("Guía guardada");
             return newPath;
         }
 
-        public static string saveImage(string originPath, string appName)
+        public static string saveImage(string originPath, string folderName)
         {
-            appName = appName.Replace(" ", "_").Replace("-", "_").Replace(".", "_");
-            string folder = $@"\\gumfp01\group\programs\LABVIEW\MES (RUNCARD)\A. Production Apps\MESInfoCenter\AppsResources\app_{appName}\imagenes"; // Ruta donde se guardará la imagen
+            string folder = $@"\\gumfp01\group\programs\LABVIEW\MES (RUNCARD)\A. Production Apps\MESInfoCenter\AppsResources\app_{folderName}\imagenes"; // Ruta donde se guardará la imagen
             string fileExtension = Path.GetExtension(originPath);
-            string fileName = $@"\image1{fileExtension}";
+            string fileName = $"image1{fileExtension}";
             if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
@@ -235,19 +254,18 @@ namespace MESInfoCenter
             return newPath;
         }
 
-        public static string saveImage2(string originPath, string appName)
+        public static string saveImage2(string originPath, string folderName)
         {
-            appName = appName.Replace(" ", "_").Replace("-", "_").Replace(".", "_");
-            string folder = $@"\\gumfp01\group\programs\LABVIEW\MES (RUNCARD)\A. Production Apps\MESInfoCenter\AppsResources\app_{appName}\imagenes"; // Ruta donde se guardará la imagen
+            string folder = $@"\\gumfp01\group\programs\LABVIEW\MES (RUNCARD)\A. Production Apps\MESInfoCenter\AppsResources\app_{folderName}\imagenes"; // Ruta donde se guardará la imagen
             string fileExtension = Path.GetExtension(originPath);
-            string fileName = $@"\image2{fileExtension}";
+            string fileName = $"image2{fileExtension}";
             if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
             }
             string newPath = Path.Combine(folder, fileName);
             File.Copy(originPath, newPath, true);
-            MessageBox.Show("Imagen guardada");
+            MessageBox.Show("Imagen2 guardada");
             return newPath;
         }
 

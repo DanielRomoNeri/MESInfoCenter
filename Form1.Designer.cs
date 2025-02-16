@@ -269,7 +269,6 @@ namespace MESInfoCenter
             this.lblTitleApp.Name = "lblTitleApp";
             this.lblTitleApp.Size = new System.Drawing.Size(1489, 71);
             this.lblTitleApp.TabIndex = 1;
-            this.lblTitleApp.Text = "[Titulo de app seleccionada]";
             this.lblTitleApp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1

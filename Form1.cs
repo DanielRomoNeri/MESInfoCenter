@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -10,16 +11,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MESInfoCenter.Models;
 using static System.Windows.Forms.LinkLabel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace MESInfoCenter
 {
     public partial class Form1 : Form
     {
         List<Apps> appsList = new List<Apps>();
-        
 
+        int scrollPositionTEMP = 0;
         bool isValidUser = false;
-        //string userName;
 
         public Form1()
         {
@@ -28,7 +29,13 @@ namespace MESInfoCenter
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+            btnOpenPathFolder.Click += openAppPathFolder;
+            btnCopyRepoPath.Click += copyRepoPath;
+            btnOpenGuideFolder.Click += openGuideFolder;
+            btnAddSolution.Click += btnTroubleShootingRegister_Click;
+            rtbDescription.MouseWheel += RichTextBox_MouseWheel;
+            rtbTSSolution.MouseWheel += RichTextBoxSolution_MouseWheel;
+            updateAppsList();
         }
 
         private void LoginForm_OnLogin()
@@ -74,7 +81,15 @@ namespace MESInfoCenter
             flowAppsList.Controls.Clear();
 
             appsList = Service.getAppList();
-            appsList.Sort();
+            if(appsList == null)
+            {
+                MessageBox.Show("No se pudo acceder o no se encontró ningúna aplicación registrada en la base de datos");
+                return;
+            }
+
+
+            appsList.Sort((a1, a2) => a1.appName.CompareTo(a2.appName));
+
             buttonWidth = appsList.Count < 13 ? 280 : 257;
    
             foreach (Apps app in appsList) 
@@ -133,6 +148,44 @@ namespace MESInfoCenter
             }
         }
 
+        private void RichTextBoxSolution_MouseWheel(object sender, MouseEventArgs e)
+        {
+
+            bool vScrollVisible = rtbTSSolution.GetPositionFromCharIndex(rtbTSSolution.TextLength - 1).Y > rtbTSSolution.Height;
+
+            // Verificar si el RichTextBox tiene scrollbar visible
+         
+
+            if (vScrollVisible)
+            {
+                // Obtener la posición actual del scroll
+
+                int maxScroll = rtbTSSolution.ClientSize.Height - rtbTSSolution.GetPositionFromCharIndex(rtbTSSolution.TextLength - 1).Y;
+               
+
+                //Se valida si se ha repetido dos veces la misma posición
+                //Si se repite significa que está en el tope del scroll, por lo que deja mover el scroll padre
+                if(maxScroll != scrollPositionTEMP)
+                {
+                    scrollPositionTEMP = maxScroll;
+                }
+                else
+                {
+                    flowContainerControls.AutoScrollPosition = new Point(
+                    flowContainerControls.AutoScrollPosition.X,
+                    -flowContainerControls.AutoScrollPosition.Y - e.Delta // Mueve en función de la rueda del mouse
+                );
+                }
+            }
+            else
+            {
+                // Si no hay scrollbar en el RichTextBox, scrollear el padre directamente
+                flowContainerControls.AutoScrollPosition = new Point(
+                    flowContainerControls.AutoScrollPosition.X,
+                    -flowContainerControls.AutoScrollPosition.Y - e.Delta
+                    );// Mueve en función de la rueda del mouse
+            }
+        }
 
         public void showContent(int ID)
         {
@@ -143,15 +196,15 @@ namespace MESInfoCenter
             int imageHeight;
             int marginLeft;
             //Se elimina todo el contenido antes de generar más
-            flowContainerControls.Controls.Clear();
-
+            clearFlowPanels();
+            
             app = appsList.FirstOrDefault(c => c.appID == ID);
 
             lblTitleApp.Text = app.appName;
 
             //Todos los controles usados aquí están en Controls.Designer.cs
 
-            Image image = Image.FromFile(app.appPath);
+            Image image = Image.FromFile(app.imagePath);
 
             //Condiciones ternarias para ajustar el ancho y alto en caso de que se pase
             imageWidth = image.Width > 900 ? 900 : image.Width;
@@ -165,16 +218,15 @@ namespace MESInfoCenter
             pictureBox.Size = new System.Drawing.Size(imageWidth, imageHeight);
             pictureBox.Margin = new Padding(marginLeft, 0, 0, 0);
 
-            lblAppPath.Text += app.appPath;
-            lblRepoPath.Text += app.repoPath;
+            lblAuthorName.Text = $"Desarrollador: {app.appAuthorName}";
+            lblLastVersion.Text = $"Última versión: {app.lastVersion}";
+            lblAppPath.Text = $"Ruta: {app.appPath}";
+            lblRepoPath.Text = $"Repositorio: {app.repoPath}";
 
-            btnCopyAppPath.Click += (e, s) => copyAppPath(app.appPath);
-            btnCopyRepoPath.Click += (e, s) => copyRepoPath(app.repoPath);
-            
+            btnOpenPathFolder.Tag = app.appPath;
+            btnCopyRepoPath.Tag = app.repoPath;
+            btnOpenGuideFolder.Tag = app.guidePath;
 
-
-            //saveImage(pictureBox);
-            //saveGuideFile(appGuidePath);
             rtbDescription.Clear();
 
             addCenterText(rtbDescription, "Descripción", 21);
@@ -189,18 +241,23 @@ namespace MESInfoCenter
 
             rtbDescription.Height = getRichTextBoxHeight(rtbDescription);
 
-            //La rueda del ratón dispara un evento para mover la página si el cursor está dentro del RichTextBox
-            rtbDescription.MouseWheel += RichTextBox_MouseWheel;
+            
 
             troubleShootingList = Service.getTroubleShootingList(app.appID);
             genTroubleShootingButtons(troubleShootingList);
 
-            btnAddSolution.Click += (e, s) => btnTroubleShootingRegister_Click(app.appID);
+            btnAddSolution.Tag = app.appID;
+            
 
-
-            flowContentButtons.Controls.Add(btnCopyAppPath);
-            flowContentButtons.Controls.Add(btnCopyRepoPath);
-            flowContentButtons.Controls.Add(btnDownloadGuide);
+            flowContentButtons.Controls.Add(btnOpenPathFolder);
+            if (!string.IsNullOrEmpty(app.repoPath))
+            {
+                flowContentButtons.Controls.Add(btnCopyRepoPath); 
+            }
+            if (!string.IsNullOrEmpty(app.guidePath))
+            {
+                flowContentButtons.Controls.Add(btnOpenGuideFolder); 
+            }
 
             
 
@@ -209,57 +266,118 @@ namespace MESInfoCenter
             panelTroubleShooting.Controls.Add(btnAddSolution);
             flowTroubleShooting.Controls.Add(flowTroubleShootingButtons);
             flowTroubleShooting.Controls.Add(rtbTSSolution);
+            flowBottomButtonsContainer.Controls.Add(btnDeleteApp);
+            flowBottomButtonsContainer.Controls.Add(btnUpdateApp);
 
             flowContainerControls.Controls.Add(pictureBox);
             flowContainerControls.Controls.Add(flowContentButtons);
             flowContainerControls.Controls.Add(lblAppPath);
-            flowContainerControls.Controls.Add(lblRepoPath);
+
+            if (!string.IsNullOrEmpty(app.repoPath))
+            {
+                flowContainerControls.Controls.Add(lblRepoPath); 
+            }
+            if (!string.IsNullOrEmpty(app.appAuthorName))
+            {
+                flowContainerControls.Controls.Add(lblAuthorName);
+            }
+  
+            flowContainerControls.Controls.Add(lblLastVersion);
             flowContainerControls.Controls.Add(rtbDescription);
             flowContainerControls.Controls.Add(panelTroubleShooting);
-            
-
-
-
-
+            flowContainerControls.Controls.Add(flowBottomButtonsContainer);
         }
 
-        private void copyRepoPath(string path)
+        private void clearFlowPanels()
         {
-            Clipboard.SetText(path);
-            lblRepoPath.BackColor = Color.Cyan;
-            lblAppPath.BackColor = ColorTranslator.FromHtml("#F2F2F2");
+            flowContainerControls.Controls.Clear();
+            flowContentButtons.Controls.Clear();
+            flowTroubleShootingButtons.Controls.Clear();
+            flowTroubleShooting.Controls.Clear();
         }
 
-        private void copyAppPath(string path)
+        private void openAppPathFolder(object sender, EventArgs e)
         {
-            Clipboard.SetText(path);
 
-            lblAppPath.BackColor = Color.Cyan;
-            lblRepoPath.BackColor = ColorTranslator.FromHtml("#F2F2F2");
+            if (sender is Button btn && btn.Tag is string appPath)
+            {
+                string appFolder = Path.GetDirectoryName(appPath);
+                if (!string.IsNullOrEmpty(appFolder))
+                {
+                    // Abrir appFolder en el explorador de archivos
+                    Process.Start("explorer.exe", appFolder);
+                }
+                else
+                {
+                    Console.WriteLine("No se pudo obtener la carpeta. En caso de que se haya borrado, suba la guía de nuevo");
+                }
+            }
+            //if (sender is Button btn && btn.Tag is string path)
+            //{
+            //    Clipboard.SetText(path);
+            //    lblAppPath.BackColor = Color.Cyan;
+            //    lblRepoPath.BackColor = ColorTranslator.FromHtml("#F2F2F2"); 
+            //}
+        }
+
+        private void copyRepoPath(object sender, EventArgs e)
+        {
+
+
+            if (sender is Button btn && btn.Tag is string path)
+            {
+                Clipboard.SetText(path);
+                lblRepoPath.BackColor = Color.Cyan;
+                lblAppPath.BackColor = ColorTranslator.FromHtml("#F2F2F2");
+            }
 
         }
+        private void openGuideFolder(object sender, EventArgs e)
+        {
+
+            if (sender is Button btn && btn.Tag is string guidePath)
+            {
+                string guideFolder = Path.GetDirectoryName(guidePath);
+                if (!string.IsNullOrEmpty(guideFolder))
+                {
+                    // Abrir la guideFolder en el explorador de archivos
+                    Process.Start("explorer.exe", guideFolder);
+                }
+                else
+                {
+                    Console.WriteLine("No se pudo obtener la carpeta. En caso de que se haya borrado, suba la guía de nuevo");
+                } 
+            }
+        }
+
+        
+
+        
 
         public void genTroubleShootingRTBContent(TroubleShooting troubleShooting)
         {
             rtbTSSolution.Clear();
 
-            addCenterText(rtbTSSolution, "Nombre del problema", 18);
-            rtbTSSolution.AppendText("\n");
+            addCenterText(rtbTSSolution, "Tema", 18);
+            rtbTSSolution.AppendText("\n\n");
             rtbTSSolution.AppendText(troubleShooting.tsTitle);
+            rtbTSSolution.AppendText("\n\n\n");
 
             if (!string.IsNullOrEmpty(troubleShooting.tsErrorTag))
             {
                 addCenterText(rtbTSSolution, "Error mostrado", 18);
-                rtbTSSolution.AppendText("\n");
+                rtbTSSolution.AppendText("\n\n");
                 rtbTSSolution.AppendText(troubleShooting.tsErrorTag);
+                rtbTSSolution.AppendText("\n\n\n");
             }
             
 
             addCenterText(rtbTSSolution, "Problema", 18);
-            rtbTSSolution.AppendText("\n");
+            rtbTSSolution.AppendText("\n\n");
             rtbTSSolution.AppendText(troubleShooting.tsDescription);
+            rtbTSSolution.AppendText("\n\n\n");
             addCenterText(rtbTSSolution, "Solución", 18);
-            rtbTSSolution.AppendText("\n");
+            rtbTSSolution.AppendText("\n\n");
             rtbTSSolution.AppendText(troubleShooting.tsSolution);
 
 
@@ -316,13 +434,16 @@ namespace MESInfoCenter
             infoForm.ShowDialog();
         }
 
-        private void btnTroubleShootingRegister_Click(int ID)
+        private void btnTroubleShootingRegister_Click(object sender, EventArgs e)
         {
-            TroubleShootingForm troubleShootingForm = new TroubleShootingForm(ID);
-            troubleShootingForm.StartPosition = FormStartPosition.Manual;
-            troubleShootingForm.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 100);
-            troubleShootingForm.onSubmit += genTroubleShootingButtons;
-            troubleShootingForm.ShowDialog();
+            if (sender is Button btn && btn.Tag is int ID)
+            {
+                TroubleShootingForm troubleShootingForm = new TroubleShootingForm(ID);
+                troubleShootingForm.StartPosition = FormStartPosition.Manual;
+                troubleShootingForm.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 100);
+                troubleShootingForm.onSubmit += genTroubleShootingButtons;
+                troubleShootingForm.ShowDialog(); 
+            }
         }
         private void pbLoginIcon_Click(object sender, EventArgs e)
         {

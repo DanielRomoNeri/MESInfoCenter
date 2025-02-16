@@ -22,7 +22,9 @@ namespace MESInfoCenter
             this.appID = appID;
         }
 
-        private void btnSubmitForm_Click(object sender, EventArgs e)
+
+
+        private void btnSubmitForm_Click_1(object sender, EventArgs e)
         {
             List<TroubleShooting> troubleShootingList = new List<TroubleShooting>();
             bool isDataValid = true;
@@ -49,11 +51,12 @@ namespace MESInfoCenter
             if (isDataValid)
             {
                 bool isProcessOK = Service.addTroubleShooting(this.appID, tsTitle, tsErrorTag, tsDescription, tsSolution);
-                if (isProcessOK) 
+                if (isProcessOK)
                 {
-                    MessageBox.Show("Se agregó correctamente la solución");
+                    MessageBox.Show("Se agregó correctamente el problema");
                     troubleShootingList = Service.getTroubleShootingList(this.appID);
                     onSubmit?.Invoke(troubleShootingList);
+                    this.Close();
 
                 }
 
@@ -64,7 +67,7 @@ namespace MESInfoCenter
 
         private void btnCancelForm_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }

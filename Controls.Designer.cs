@@ -29,15 +29,16 @@ namespace MESInfoCenter
         };
 
 
-        Button btnCopyAppPath = new Button
+        Button btnOpenPathFolder = new Button
         {
-            Text = "Copiar Ruta",
+            Text = "Abrir Carpeta\n de la Ruta",
             ForeColor = Color.White,
             BackColor = Color.DodgerBlue,
             Width = 200,
-            Height = 54,
+            Height = 60,
             FlatStyle = FlatStyle.Flat,
             Margin = new Padding(250, 0, 0, 0),
+            Font = new Font("Arial",10)
         };
 
         Button btnCopyRepoPath = new Button
@@ -46,20 +47,22 @@ namespace MESInfoCenter
             ForeColor = Color.White,
             BackColor = Color.DodgerBlue,
             Width = 200,
-            Height = 54,
+            Height = 60,
             FlatStyle = FlatStyle.Flat,
             Margin = new Padding(140, 0, 0, 0),
+            Font = new Font("Arial", 10)
         };
 
-        Button btnDownloadGuide = new Button
+        Button btnOpenGuideFolder = new Button
         {
-            Text = "Descargar Guía",
+            Text = "Abrir Carpeta\n de la Guía",
             ForeColor = Color.White,
             BackColor = Color.DodgerBlue,
             Width = 200,
-            Height = 54,
+            Height = 60,
             FlatStyle = FlatStyle.Flat,
             Margin = new Padding(140, 0, 0, 0),
+            Font = new Font("Arial", 10)
         };
 
 
@@ -77,9 +80,27 @@ namespace MESInfoCenter
             Margin = new Padding(200, 0, 0, 0),
         };
 
+        Label lblAuthorName = new Label
+        {
+            AutoSize = true,
+            ForeColor = Color.Black,
+            Font = new Font("Arial", 11),
+            Dock = DockStyle.Fill,
+            Margin = new Padding(200, 0, 0, 0)
+
+        };
+        Label lblLastVersion = new Label
+        {
+            AutoSize = true,
+            ForeColor = Color.Black,
+            Font = new Font("Arial", 11),
+            Dock = DockStyle.Fill,
+            Margin = new Padding(200, 0, 0, 0)
+
+        };
+
         Label lblAppPath = new Label
         {
-            Text = "Ruta: ",
             AutoSize = true,
             ForeColor = Color.Black,
             Font = new Font("Arial", 11),
@@ -90,7 +111,6 @@ namespace MESInfoCenter
 
         Label lblRepoPath = new Label
         {
-            Text = "Repositorio: ",
             AutoSize = true,
             ForeColor = Color.Black,
             Font = new Font("Arial", 11),
@@ -159,6 +179,42 @@ namespace MESInfoCenter
             Dock = DockStyle.Bottom,
             FlatStyle = FlatStyle.Flat,
             Margin = new Padding(0, 70, 0, 0),
+            Font = new Font("Arial", 13)
+        };
+
+        FlowLayoutPanel flowBottomButtonsContainer = new FlowLayoutPanel
+        {
+            FlowDirection = FlowDirection.LeftToRight,
+            Dock = DockStyle.Fill,
+            Margin = new Padding(0, 50, 0, 0),
+
+        };
+
+        Button btnDeleteApp = new Button
+        {
+            Text = "Eliminar aplicación",
+            Visible = false,
+            ForeColor = Color.White,
+            BackColor = Color.Crimson,
+            Width = 300,
+            Height = 54,
+            //Dock = DockStyle.Bottom,
+            FlatStyle = FlatStyle.Flat,
+            Margin = new Padding(250, 70, 0, 0),
+            Font = new Font("Arial", 13)
+        };
+
+        Button btnUpdateApp = new Button
+        {
+            Text = "Modifar",
+            Visible = false,
+            ForeColor = Color.White,
+            BackColor = Color.Green,
+            Width = 300,
+            Height = 54,
+            //Dock = DockStyle.Bottom,
+            FlatStyle = FlatStyle.Flat,
+            Margin = new Padding(250, 70, 0, 0),
             Font = new Font("Arial", 13)
         };
     }

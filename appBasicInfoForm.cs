@@ -70,6 +70,8 @@ namespace MESInfoCenter
             bool isDataValid = true;
 
             string appName = tbAppNameForm.Text.Trim();
+            string friendlyFolderName = appName.Replace(" ", "_").Replace("-", "_").Replace(".", "_");
+            string appAuthorName = tbAuthorName.Text.Trim();
             string lastVersion = tbLastVersion.Text.Trim();
             string appPath = tbAppPathForm.Text.Trim();
             string repoPath = tbAppRepoForm.Text.Trim();
@@ -102,7 +104,7 @@ namespace MESInfoCenter
             }
             if (string.IsNullOrEmpty(localImagePath))
             {
-                lblPathRequired.ForeColor = Color.Crimson;
+                lblIMGRequired.ForeColor = Color.Crimson;
                 isDataValid = false;
             }
             if (string.IsNullOrEmpty(appDescription))
@@ -111,29 +113,53 @@ namespace MESInfoCenter
                 isDataValid = false;
             }
 
-            if (!string.IsNullOrEmpty(localImage2Path))
-            {
-                image2Path = Service.saveImage(localImage2Path, appName);
-            }
-            
-            if (!string.IsNullOrEmpty(localGuidePath))
-            {
-                guidePath = Service.saveImage(localGuidePath, appName);
-            }
             if (isDataValid) 
             {
-                
-
-                imagePath = Service.saveImage(localImagePath, appName);
-                
-                
-                bool isProcessOK = Service.addApp(appName, appPath, guidePath, imagePath, image2Path, repoPath, appDescription, userID, lastVersion);
-                if (isProcessOK)
+                try
                 {
-                    MessageBox.Show("Se agregó la información con éxito");
-                    onSubmit?.Invoke();
-                    this.Close();
+
+                    if (Service.isNameRepeated(appName))
+                    {
+                        MessageBox.Show($"El nombre '{appName}' ya está registrado en la aplicación");
+                        return;
+                    }
+                    else
+                    {
+
+                        try
+                        {
+                            imagePath = Service.saveImage(localImagePath, friendlyFolderName);
+                            image2Path = string.IsNullOrEmpty(image2Path) ? image2Path : Service.saveImage2(localImage2Path, friendlyFolderName);
+                            guidePath = string.IsNullOrEmpty(guidePath) ? guidePath : Service.saveGuide(localGuidePath, friendlyFolderName);
+                        }
+                        catch (Exception exc)
+                        {
+
+                            MessageBox.Show($"Ocurrió un error al tratar de guardar uno o más de los archivos\n {exc}");
+                            return;
+                        }
+
+
+                        bool isProcessOK = Service.addApp(appName, appAuthorName, appPath, guidePath, imagePath, image2Path, repoPath, appDescription, userID, lastVersion);
+                        if (isProcessOK)
+                        {
+                            MessageBox.Show("Se agregó la información con éxito");
+                            onSubmit?.Invoke();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ocurrió un error al querer guardar la información en la base de datos");
+                        }
+                    }
                 }
+                catch (Exception exc)
+                {
+
+                    MessageBox.Show(exc.ToString());
+                }
+                
+                
                 
             }
 
@@ -147,6 +173,14 @@ namespace MESInfoCenter
             
         }
 
-        
+        private void lblimage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

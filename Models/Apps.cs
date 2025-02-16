@@ -10,6 +10,7 @@ namespace MESInfoCenter
     {
         public int appID { get; set; }
         public string appName { get; set; }
+        public string appAuthorName { get; set; }
         public string appPath { get; set; }
         public string guidePath { get; set; }
         public string imagePath { get; set; }
@@ -17,6 +18,7 @@ namespace MESInfoCenter
         public string repoPath { get; set; }
         public string appDescription { get; set; }
         public string lastVersion { get; set; }
+        
 
 
     }

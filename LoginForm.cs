@@ -56,5 +56,14 @@ namespace MESInfoCenter
 
            
         }
+
+        private void tbPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnLogin_Click(sender, e);
+            }
+                
+        }
     }
 }

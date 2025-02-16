@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tbAuthorName = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblRequiredVersion = new System.Windows.Forms.Label();
+            this.tbLastVersion = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.lblIMGPath2 = new System.Windows.Forms.Label();
             this.btnIMGUploadForm2 = new System.Windows.Forms.Button();
             this.lblimage2 = new System.Windows.Forms.Label();
@@ -53,15 +58,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblRequiredVersion = new System.Windows.Forms.Label();
-            this.tbLastVersion = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Teal;
+            this.panel1.Controls.Add(this.tbAuthorName);
+            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.lblRequiredVersion);
             this.panel1.Controls.Add(this.tbLastVersion);
             this.panel1.Controls.Add(this.label8);
@@ -91,22 +95,75 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1105, 843);
             this.panel1.TabIndex = 0;
+            // 
+            // tbAuthorName
+            // 
+            this.tbAuthorName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbAuthorName.Location = new System.Drawing.Point(395, 42);
+            this.tbAuthorName.Margin = new System.Windows.Forms.Padding(4);
+            this.tbAuthorName.Name = "tbAuthorName";
+            this.tbAuthorName.Size = new System.Drawing.Size(307, 32);
+            this.tbAuthorName.TabIndex = 45;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(373, 9);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(357, 29);
+            this.label9.TabIndex = 44;
+            this.label9.Text = "¿Quién lo desarrolló? (opcional)";
+            // 
+            // lblRequiredVersion
+            // 
+            this.lblRequiredVersion.AutoSize = true;
+            this.lblRequiredVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequiredVersion.ForeColor = System.Drawing.Color.White;
+            this.lblRequiredVersion.Location = new System.Drawing.Point(912, 9);
+            this.lblRequiredVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRequiredVersion.Name = "lblRequiredVersion";
+            this.lblRequiredVersion.Size = new System.Drawing.Size(23, 29);
+            this.lblRequiredVersion.TabIndex = 43;
+            this.lblRequiredVersion.Text = "*";
+            // 
+            // tbLastVersion
+            // 
+            this.tbLastVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbLastVersion.Location = new System.Drawing.Point(769, 42);
+            this.tbLastVersion.Margin = new System.Windows.Forms.Padding(4);
+            this.tbLastVersion.Name = "tbLastVersion";
+            this.tbLastVersion.Size = new System.Drawing.Size(136, 32);
+            this.tbLastVersion.TabIndex = 42;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(751, 9);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(165, 29);
+            this.label8.TabIndex = 41;
+            this.label8.Text = "Última versión";
             // 
             // lblIMGPath2
             // 
             this.lblIMGPath2.AutoSize = true;
             this.lblIMGPath2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIMGPath2.ForeColor = System.Drawing.Color.Aqua;
-            this.lblIMGPath2.Location = new System.Drawing.Point(375, 445);
+            this.lblIMGPath2.Location = new System.Drawing.Point(392, 418);
             this.lblIMGPath2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIMGPath2.Name = "lblIMGPath2";
-            this.lblIMGPath2.Size = new System.Drawing.Size(142, 17);
+            this.lblIMGPath2.Size = new System.Drawing.Size(0, 17);
             this.lblIMGPath2.TabIndex = 40;
-            this.lblIMGPath2.Text = "[RUTA DE ARCHIVO]";
             // 
             // btnIMGUploadForm2
             // 
@@ -114,8 +171,8 @@
             this.btnIMGUploadForm2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIMGUploadForm2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIMGUploadForm2.ForeColor = System.Drawing.Color.White;
-            this.btnIMGUploadForm2.Location = new System.Drawing.Point(434, 405);
-            this.btnIMGUploadForm2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIMGUploadForm2.Location = new System.Drawing.Point(448, 378);
+            this.btnIMGUploadForm2.Margin = new System.Windows.Forms.Padding(4);
             this.btnIMGUploadForm2.Name = "btnIMGUploadForm2";
             this.btnIMGUploadForm2.Size = new System.Drawing.Size(180, 36);
             this.btnIMGUploadForm2.TabIndex = 39;
@@ -128,36 +185,35 @@
             this.lblimage2.AutoSize = true;
             this.lblimage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblimage2.ForeColor = System.Drawing.Color.White;
-            this.lblimage2.Location = new System.Drawing.Point(374, 372);
+            this.lblimage2.Location = new System.Drawing.Point(388, 345);
             this.lblimage2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblimage2.Name = "lblimage2";
             this.lblimage2.Size = new System.Drawing.Size(317, 29);
             this.lblimage2.TabIndex = 38;
             this.lblimage2.Text = "Subir otra imagen (opcional)";
+            this.lblimage2.Click += new System.EventHandler(this.lblimage2_Click);
             // 
             // lblGuidePath
             // 
             this.lblGuidePath.AutoSize = true;
             this.lblGuidePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGuidePath.ForeColor = System.Drawing.Color.Aqua;
-            this.lblGuidePath.Location = new System.Drawing.Point(385, 555);
+            this.lblGuidePath.Location = new System.Drawing.Point(392, 531);
             this.lblGuidePath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGuidePath.Name = "lblGuidePath";
-            this.lblGuidePath.Size = new System.Drawing.Size(142, 17);
+            this.lblGuidePath.Size = new System.Drawing.Size(0, 17);
             this.lblGuidePath.TabIndex = 37;
-            this.lblGuidePath.Text = "[RUTA DE ARCHIVO]";
             // 
             // lblIMGPath
             // 
             this.lblIMGPath.AutoSize = true;
             this.lblIMGPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIMGPath.ForeColor = System.Drawing.Color.Aqua;
-            this.lblIMGPath.Location = new System.Drawing.Point(384, 330);
+            this.lblIMGPath.Location = new System.Drawing.Point(392, 293);
             this.lblIMGPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIMGPath.Name = "lblIMGPath";
-            this.lblIMGPath.Size = new System.Drawing.Size(142, 17);
+            this.lblIMGPath.Size = new System.Drawing.Size(0, 17);
             this.lblIMGPath.TabIndex = 36;
-            this.lblIMGPath.Text = "[RUTA DE ARCHIVO]";
             // 
             // btnGuideUploadForm
             // 
@@ -165,8 +221,8 @@
             this.btnGuideUploadForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuideUploadForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuideUploadForm.ForeColor = System.Drawing.Color.White;
-            this.btnGuideUploadForm.Location = new System.Drawing.Point(436, 516);
-            this.btnGuideUploadForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuideUploadForm.Location = new System.Drawing.Point(450, 491);
+            this.btnGuideUploadForm.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuideUploadForm.Name = "btnGuideUploadForm";
             this.btnGuideUploadForm.Size = new System.Drawing.Size(180, 36);
             this.btnGuideUploadForm.TabIndex = 35;
@@ -179,12 +235,13 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(464, 482);
+            this.label6.Location = new System.Drawing.Point(443, 458);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(128, 29);
+            this.label6.Size = new System.Drawing.Size(236, 29);
             this.label6.TabIndex = 34;
-            this.label6.Text = "Subir guia ";
+            this.label6.Text = "Subir guia (opcional)";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // btnSubmitForm
             // 
@@ -193,7 +250,7 @@
             this.btnSubmitForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmitForm.ForeColor = System.Drawing.Color.White;
             this.btnSubmitForm.Location = new System.Drawing.Point(573, 786);
-            this.btnSubmitForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSubmitForm.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmitForm.Name = "btnSubmitForm";
             this.btnSubmitForm.Size = new System.Drawing.Size(320, 42);
             this.btnSubmitForm.TabIndex = 33;
@@ -208,7 +265,7 @@
             this.btnCancelForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelForm.ForeColor = System.Drawing.Color.White;
             this.btnCancelForm.Location = new System.Drawing.Point(168, 786);
-            this.btnCancelForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelForm.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelForm.Name = "btnCancelForm";
             this.btnCancelForm.Size = new System.Drawing.Size(320, 42);
             this.btnCancelForm.TabIndex = 32;
@@ -233,7 +290,7 @@
             this.lblPathRequired.AutoSize = true;
             this.lblPathRequired.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPathRequired.ForeColor = System.Drawing.Color.White;
-            this.lblPathRequired.Location = new System.Drawing.Point(515, 172);
+            this.lblPathRequired.Location = new System.Drawing.Point(484, 101);
             this.lblPathRequired.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPathRequired.Name = "lblPathRequired";
             this.lblPathRequired.Size = new System.Drawing.Size(23, 29);
@@ -257,7 +314,7 @@
             this.lblIMGRequired.AutoSize = true;
             this.lblIMGRequired.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIMGRequired.ForeColor = System.Drawing.Color.White;
-            this.lblIMGRequired.Location = new System.Drawing.Point(679, 257);
+            this.lblIMGRequired.Location = new System.Drawing.Point(695, 219);
             this.lblIMGRequired.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIMGRequired.Name = "lblIMGRequired";
             this.lblIMGRequired.Size = new System.Drawing.Size(23, 29);
@@ -269,7 +326,7 @@
             this.lblNameRequired.AutoSize = true;
             this.lblNameRequired.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNameRequired.ForeColor = System.Drawing.Color.White;
-            this.lblNameRequired.Location = new System.Drawing.Point(658, 6);
+            this.lblNameRequired.Location = new System.Drawing.Point(311, 9);
             this.lblNameRequired.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNameRequired.Name = "lblNameRequired";
             this.lblNameRequired.Size = new System.Drawing.Size(23, 29);
@@ -280,7 +337,7 @@
             // 
             this.rtbAppDesForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbAppDesForm.Location = new System.Drawing.Point(16, 631);
-            this.rtbAppDesForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rtbAppDesForm.Margin = new System.Windows.Forms.Padding(4);
             this.rtbAppDesForm.Name = "rtbAppDesForm";
             this.rtbAppDesForm.Size = new System.Drawing.Size(1048, 133);
             this.rtbAppDesForm.TabIndex = 26;
@@ -292,8 +349,8 @@
             this.btnIMGUploadForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIMGUploadForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIMGUploadForm.ForeColor = System.Drawing.Color.White;
-            this.btnIMGUploadForm.Location = new System.Drawing.Point(435, 290);
-            this.btnIMGUploadForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIMGUploadForm.Location = new System.Drawing.Point(450, 252);
+            this.btnIMGUploadForm.Margin = new System.Windows.Forms.Padding(4);
             this.btnIMGUploadForm.Name = "btnIMGUploadForm";
             this.btnIMGUploadForm.Size = new System.Drawing.Size(180, 36);
             this.btnIMGUploadForm.TabIndex = 25;
@@ -304,28 +361,28 @@
             // tbAppPathForm
             // 
             this.tbAppPathForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbAppPathForm.Location = new System.Drawing.Point(114, 205);
-            this.tbAppPathForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbAppPathForm.Location = new System.Drawing.Point(46, 134);
+            this.tbAppPathForm.Margin = new System.Windows.Forms.Padding(4);
             this.tbAppPathForm.Name = "tbAppPathForm";
-            this.tbAppPathForm.Size = new System.Drawing.Size(384, 32);
+            this.tbAppPathForm.Size = new System.Drawing.Size(474, 32);
             this.tbAppPathForm.TabIndex = 24;
             // 
             // tbAppRepoForm
             // 
             this.tbAppRepoForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbAppRepoForm.Location = new System.Drawing.Point(595, 205);
-            this.tbAppRepoForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbAppRepoForm.Location = new System.Drawing.Point(588, 134);
+            this.tbAppRepoForm.Margin = new System.Windows.Forms.Padding(4);
             this.tbAppRepoForm.Name = "tbAppRepoForm";
-            this.tbAppRepoForm.Size = new System.Drawing.Size(384, 32);
+            this.tbAppRepoForm.Size = new System.Drawing.Size(476, 32);
             this.tbAppRepoForm.TabIndex = 23;
             // 
             // tbAppNameForm
             // 
             this.tbAppNameForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbAppNameForm.Location = new System.Drawing.Point(339, 39);
-            this.tbAppNameForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbAppNameForm.Location = new System.Drawing.Point(25, 42);
+            this.tbAppNameForm.Margin = new System.Windows.Forms.Padding(4);
             this.tbAppNameForm.Name = "tbAppNameForm";
-            this.tbAppNameForm.Size = new System.Drawing.Size(375, 32);
+            this.tbAppNameForm.Size = new System.Drawing.Size(322, 32);
             this.tbAppNameForm.TabIndex = 22;
             // 
             // label5
@@ -333,7 +390,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(383, 257);
+            this.label5.Location = new System.Drawing.Point(390, 219);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(298, 29);
@@ -357,7 +414,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(661, 172);
+            this.label3.Location = new System.Drawing.Point(694, 101);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(252, 29);
@@ -369,7 +426,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(71, 172);
+            this.label2.Location = new System.Drawing.Point(41, 101);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(448, 29);
@@ -381,45 +438,12 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(384, 6);
+            this.label1.Location = new System.Drawing.Point(41, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(275, 29);
             this.label1.TabIndex = 17;
             this.label1.Text = "Nombre de la aplicación";
-            // 
-            // lblRequiredVersion
-            // 
-            this.lblRequiredVersion.AutoSize = true;
-            this.lblRequiredVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequiredVersion.ForeColor = System.Drawing.Color.White;
-            this.lblRequiredVersion.Location = new System.Drawing.Point(612, 89);
-            this.lblRequiredVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblRequiredVersion.Name = "lblRequiredVersion";
-            this.lblRequiredVersion.Size = new System.Drawing.Size(23, 29);
-            this.lblRequiredVersion.TabIndex = 43;
-            this.lblRequiredVersion.Text = "*";
-            // 
-            // tbLastVersion
-            // 
-            this.tbLastVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbLastVersion.Location = new System.Drawing.Point(436, 122);
-            this.tbLastVersion.Margin = new System.Windows.Forms.Padding(4);
-            this.tbLastVersion.Name = "tbLastVersion";
-            this.tbLastVersion.Size = new System.Drawing.Size(189, 32);
-            this.tbLastVersion.TabIndex = 42;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(449, 89);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(165, 29);
-            this.label8.TabIndex = 41;
-            this.label8.Text = "Última versión";
             // 
             // appBasicInfoForm
             // 
@@ -429,7 +453,7 @@
             this.ClientSize = new System.Drawing.Size(1105, 843);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "appBasicInfoForm";
             this.Text = "Form2";
             this.panel1.ResumeLayout(false);
@@ -468,5 +492,7 @@
         private System.Windows.Forms.Label lblRequiredVersion;
         private System.Windows.Forms.TextBox tbLastVersion;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tbAuthorName;
+        private System.Windows.Forms.Label label9;
     }
 }
