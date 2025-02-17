@@ -92,7 +92,7 @@ namespace MESInfoCenter
                 using (var conn = DBConnection.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT appID, appName, appAuthorName, appPath, guidePath, imagePath, image2Path, repoPath, appDescription FROM mesinfocenter.apps";
+                    string query = "SELECT appID, appName, appAuthorName, appPath, guidePath, imagePath, image2Path, repoPath, appDescription, lastVersion FROM mesinfocenter.apps";
                     using (var cmd = new MySqlCommand(query, conn))
                     using (var reader = cmd.ExecuteReader())
                     {
