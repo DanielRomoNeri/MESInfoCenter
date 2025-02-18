@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MESInfoCenter.Models;
 
@@ -13,11 +7,46 @@ namespace MESInfoCenter
 {
     public partial class appBasicInfoForm : Form
     {
-        public delegate void AppFormSubmitHandler();
+        
+        public delegate void AppFormSubmitHandler(int appID);
         public event AppFormSubmitHandler onSubmit;
+        bool isUpdate = false;
+        int appID = -1;
+
+        string _imagePath;
+        string _image2Path;
+        string _guidePath;
         public appBasicInfoForm()
         {
             InitializeComponent();
+        }
+        public appBasicInfoForm(Apps app)
+        {
+            InitializeComponent();
+            setInfo(app);
+        }
+
+        private void setInfo(Apps app)
+        {
+            tbAppNameForm.Text = app.appName;
+            tbAuthorName.Text = app.appAuthorName;
+            tbLastVersion.Text = app.lastVersion;
+            tbAppPathForm.Text = app.appPath;
+            tbAppRepoForm.Text = app.repoPath;
+            lblIMGPath.Text = app.imagePath;
+            lblIMGPath2.Text = app.image2Path;
+            lblGuidePath.Text = app.guidePath;
+            rtbAppDesForm.Text = app.appDescription;
+
+            this._imagePath = app.imagePath;
+            this._image2Path = app.image2Path;
+            this._guidePath = app.guidePath;
+
+            this.appID = app.appID;
+            this.isUpdate = true;
+            
+
+
         }
 
         private void btnCancelForm_Click(object sender, EventArgs e)
@@ -28,7 +57,7 @@ namespace MESInfoCenter
         private void btnIMGUploadForm_Click(object sender, EventArgs e)
         {
             OpenFileDialog fd = new OpenFileDialog();
-            fd.Filter = "Imágenes JPG (*.jpg)|*.jpg;*.jpeg";
+            fd.Filter = "Imágenes JPG o PNG (*.jpg;*.png)|*.jpg;*.jpeg;*.png";
             fd.FilterIndex = 1;
 
             if (fd.ShowDialog() == DialogResult.OK)
@@ -41,7 +70,7 @@ namespace MESInfoCenter
         private void btnIMGUploadForm2_Click(object sender, EventArgs e)
         {
             OpenFileDialog fd = new OpenFileDialog();
-            fd.Filter = "Imágenes JPG (*.jpg)|*.jpg;*.jpeg";
+            fd.Filter = "Imágenes JPG o PNG (*.jpg;*.png)|*.jpg;*.jpeg;*.png";
             fd.FilterIndex = 1;
 
             if (fd.ShowDialog() == DialogResult.OK)
@@ -79,12 +108,12 @@ namespace MESInfoCenter
             string localImage2Path = lblIMGPath2.Text.Trim();
             string localGuidePath = lblGuidePath.Text.Trim();
             string appDescription = rtbAppDesForm.Text.Trim();
+
+            int userID = User.userID;
+
             string imagePath = "";
             string image2Path = "";
             string guidePath = "";
-            int userID = User.userID;
-
-
 
 
             if (string.IsNullOrEmpty(appName))
@@ -118,7 +147,7 @@ namespace MESInfoCenter
                 try
                 {
 
-                    if (Service.isNameRepeated(appName))
+                    if (Service.isNameRepeated(appName) && isUpdate == false)
                     {
                         MessageBox.Show($"El nombre '{appName}' ya está registrado en la aplicación");
                         return;
@@ -128,9 +157,33 @@ namespace MESInfoCenter
 
                         try
                         {
-                            imagePath = Service.saveImage(localImagePath, friendlyFolderName);
-                            image2Path = string.IsNullOrEmpty(image2Path) ? image2Path : Service.saveImage2(localImage2Path, friendlyFolderName);
-                            guidePath = string.IsNullOrEmpty(guidePath) ? guidePath : Service.saveGuide(localGuidePath, friendlyFolderName);
+                            //los tres if siguientes validan si al modificar el formulario hubo un cambio en las rutas
+                            //para guardas las nuevas imagenes
+                            if (_imagePath != localImagePath)
+                            {
+                                imagePath = Service.saveImage(localImagePath, friendlyFolderName);
+                            }
+                            else
+                            {
+                                imagePath = localImagePath;
+                            }
+                            if (_image2Path != localImage2Path)
+                            {
+                                image2Path = string.IsNullOrEmpty(localImage2Path) ? image2Path : Service.saveImage2(localImage2Path, friendlyFolderName);
+                            }
+                            else
+                            {
+                                image2Path = localImage2Path;
+                            }
+                            if (_guidePath != localGuidePath)
+                            {
+                                guidePath = string.IsNullOrEmpty(localGuidePath) ? guidePath : Service.saveGuide(localGuidePath, friendlyFolderName);
+                            }
+                            else
+                            {
+                                guidePath = localGuidePath;
+                            }
+
                         }
                         catch (Exception exc)
                         {
@@ -140,11 +193,26 @@ namespace MESInfoCenter
                         }
 
 
-                        bool isProcessOK = Service.addApp(appName, appAuthorName, appPath, guidePath, imagePath, image2Path, repoPath, appDescription, userID, lastVersion);
+                        bool isProcessOK;
+
+                        if (isUpdate == false)
+                        {
+                            isProcessOK = Service.addApp(
+                                appName, appAuthorName, appPath, guidePath, imagePath,
+                                image2Path, repoPath, appDescription, userID, lastVersion);
+
+                        }
+                        else
+                        {
+                            isProcessOK = Service.updateApp(
+                                this.appID, appName, appAuthorName, appPath, guidePath, imagePath,
+                                image2Path, repoPath, appDescription, userID, lastVersion);
+                        }
+
                         if (isProcessOK)
                         {
                             MessageBox.Show("Se agregó la información con éxito");
-                            onSubmit?.Invoke();
+                            onSubmit?.Invoke(appID);
                             this.Close();
                         }
                         else

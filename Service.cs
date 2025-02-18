@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySqlConnector;
 using MESInfoCenter.Models;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Xml.Linq;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.IO;
 
 namespace MESInfoCenter
 {
-    
+
     internal class Service
     {
 
@@ -87,10 +81,10 @@ namespace MESInfoCenter
                 {
                     conn.Open();
                     string query =
-                        "UPDATE apps SET appName = @appName, appAuthorName = @appAuthorName, appPath = @appPath, " +
+                        "UPDATE mesinfocenter.apps SET appName = @appName, appAuthorName = @appAuthorName, appPath = @appPath, " +
                         "guidePath = @guidePath, imagePath = @imagePath, image2Path = @image2Path, repoPath = @repoPath, " +
                         "appDescription = @appDescription, updatedBy = @updatedBy, lastVersion = @lastVersion " +
-                        "WHERE id = @appID"; // Asegúrate de que 'id' es la clave primaria o identificador único.
+                        "WHERE appID = @appID"; // Asegúrate de que 'id' es la clave primaria o identificador único.
 
                     using (var cmd = new MySqlCommand(query, conn))
                     {
@@ -104,21 +98,41 @@ namespace MESInfoCenter
                         cmd.Parameters.AddWithValue("@appDescription", appDescription);
                         cmd.Parameters.AddWithValue("@updatedBy", updatedBy);
                         cmd.Parameters.AddWithValue("@lastVersion", lastVersion);
-                        cmd.Parameters.AddWithValue("@appId", appID); 
+                        cmd.Parameters.AddWithValue("@appID", appID); 
 
                         return cmd.ExecuteNonQuery() > 0;
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 return false;
             }
         }
 
-        public static void deleteApp(int ID) 
+        public static bool deleteApp(int appID) 
         {
+            try
+            {
+                using (var conn = DBConnection.GetConnection())
+                {
+                    conn.Open();
+                    string query = "DELETE FROM mesinfocenter.apps WHERE appID = @appID"; 
 
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@appID", appID); 
+
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return false;
+            }
         }
 
         public static List<Apps> getAppList()

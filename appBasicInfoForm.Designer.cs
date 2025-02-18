@@ -162,9 +162,8 @@
             this.lblIMGPath2.Location = new System.Drawing.Point(536, 426);
             this.lblIMGPath2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIMGPath2.Name = "lblIMGPath2";
-            this.lblIMGPath2.Size = new System.Drawing.Size(84, 17);
+            this.lblIMGPath2.Size = new System.Drawing.Size(0, 17);
             this.lblIMGPath2.TabIndex = 40;
-            this.lblIMGPath2.Text = "lblIMGPath2";
             // 
             // btnIMGUploadForm2
             // 
@@ -201,9 +200,8 @@
             this.lblGuidePath.Location = new System.Drawing.Point(536, 489);
             this.lblGuidePath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGuidePath.Name = "lblGuidePath";
-            this.lblGuidePath.Size = new System.Drawing.Size(89, 17);
+            this.lblGuidePath.Size = new System.Drawing.Size(0, 17);
             this.lblGuidePath.TabIndex = 37;
-            this.lblGuidePath.Text = "lblGuidePath";
             // 
             // lblIMGPath
             // 
@@ -213,9 +211,8 @@
             this.lblIMGPath.Location = new System.Drawing.Point(536, 358);
             this.lblIMGPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIMGPath.Name = "lblIMGPath";
-            this.lblIMGPath.Size = new System.Drawing.Size(76, 17);
+            this.lblIMGPath.Size = new System.Drawing.Size(0, 17);
             this.lblIMGPath.TabIndex = 36;
-            this.lblIMGPath.Text = "lblIMGPath";
             // 
             // btnGuideUploadForm
             // 

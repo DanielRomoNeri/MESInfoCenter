@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace MESInfoCenter
 {
     partial class Form1
 
     {
+        Panel panelPictureBoxBorder = new Panel
+        {
+            BackColor = Color.Black
+        };
+
         PictureBox pictureBox = new PictureBox
         {
 
             SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage,
+            Dock = DockStyle.Fill,
+            //Margin = new Padding(0, 0, 0, 0)
 
         };
 
@@ -95,7 +96,7 @@ namespace MESInfoCenter
             ForeColor = Color.Black,
             Font = new Font("Arial", 11),
             Dock = DockStyle.Fill,
-            Margin = new Padding(200, 0, 0, 0)
+            Margin = new Padding(200, 0, 0, 30)
 
         };
 
@@ -200,13 +201,13 @@ namespace MESInfoCenter
             Height = 54,
             //Dock = DockStyle.Bottom,
             FlatStyle = FlatStyle.Flat,
-            Margin = new Padding(250, 70, 0, 0),
+            Margin = new Padding(250, 0, 0, 0),
             Font = new Font("Arial", 13)
         };
 
         Button btnUpdateApp = new Button
         {
-            Text = "Modifar",
+            Text = "Modificar",
             Visible = false,
             ForeColor = Color.White,
             BackColor = Color.Green,
@@ -214,7 +215,7 @@ namespace MESInfoCenter
             Height = 54,
             //Dock = DockStyle.Bottom,
             FlatStyle = FlatStyle.Flat,
-            Margin = new Padding(250, 70, 0, 0),
+            Margin = new Padding(250, 0, 0, 0),
             Font = new Font("Arial", 13)
         };
     }

@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace MESInfoCenter
+﻿namespace MESInfoCenter
 {
     partial class Form1
     {
@@ -30,6 +28,7 @@ namespace MESInfoCenter
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.sidePanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flowAppsList = new System.Windows.Forms.FlowLayoutPanel();
@@ -281,6 +280,7 @@ namespace MESInfoCenter
             this.Controls.Add(this.containerPanel);
             this.Controls.Add(this.headerSearchPanel);
             this.Controls.Add(this.sidePanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "MES Info Center";
