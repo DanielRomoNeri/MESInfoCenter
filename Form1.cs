@@ -117,27 +117,27 @@ namespace MESInfoCenter
         {
             int buttonWidth;
             
-            appsList.Clear();
-            flowAppsList.Controls.Clear();
+            //appsList.Clear();
+            //flowAppsList.Controls.Clear();
 
-            appsList = Service.getAppList();
-            if(appsList == null)
-            {
-                MessageBox.Show("No se pudo acceder o no se encontró ningúna aplicación registrada en la base de datos");
-                return;
-            }
+            //appsList = Service.getAppList();
+            //if(appsList == null)
+            //{
+            //    MessageBox.Show("No se pudo acceder o no se encontró ningúna aplicación registrada en la base de datos");
+            //    return;
+            //}
 
             //Se filtra la lista por orden alfabético 
-            appsList.Sort((a1, a2) => a1.appName.CompareTo(a2.appName));
+            //appsList.Sort((a1, a2) => a1.appName.CompareTo(a2.appName));
 
             buttonWidth = appsList.Count < 13 ? 280 : 257;
-   
-            foreach (Apps app in appsList) 
+            List<string> apps = new List<string> { "Hola", "Adios","Esto", "Es", "Una", "Prueba","123", "Para", "Validar","Estadio", "Perro", "Gato", "Más aplicaciones" };
+            foreach (string item in apps)//(Apps app in appsList) 
             {
                 
                 Button btn = new Button
                 {
-                    Text = app.appName,
+                    Text = item,//app.appName,
                     ForeColor = Color.White,
                     BackColor = Color.DodgerBlue,
                     //Dock = DockStyle.Fill,
@@ -148,8 +148,8 @@ namespace MESInfoCenter
                     
 
                 };
-
-                btn.Click += (s, e) => showContent(app.appID);
+                btn.Tag = btn;
+                //btn.Click += (s, e) => showContent(app.appID);
                 btn.FlatAppearance.BorderSize = 0;
                 btn.Font = new Font(btn.Font.FontFamily, 14, btn.Font.Style);
   
@@ -176,7 +176,7 @@ namespace MESInfoCenter
 
             lblTitleApp.Text = app.appName;
 
-            //Todos los controles usados aquí están en Controls.Designer.cs
+            ////////////////////////////////////Todos los controles usados aquí están en Controls.Designer.cs
 
             //Se carga la imagen de la ruta que está en la base de datos
             Image image = Image.FromFile(app.imagePath);
@@ -500,7 +500,7 @@ namespace MESInfoCenter
             if (sender is Button btn && btn.Tag is Apps app)
             {
                 DialogResult dialogResult = MessageBox.Show(
-                $"¿Estás totalmente seguro de eliminar {app.appName}? Se eliminará de la base de datos el contenido \n" +
+                $"¿Estás totalmente seguro de eliminar {app.appName}? Se eliminará de la base de datos el contenido " +
                 $"junto con sus problemas y soluciones", "", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes) 
                 {
@@ -572,6 +572,29 @@ namespace MESInfoCenter
                     -flowContainerControls.AutoScrollPosition.Y - e.Delta
                     );// Mueve en función de la rueda del mouse
             }
+        }
+
+        private void tbSearchApps_TextChanged(object sender, EventArgs e)
+        {
+            string filter = tbSearchApps.Text.ToLower();
+            foreach (Button btn in flowAppsList.Controls)
+            {
+                if(filter == "")
+                {
+                    btn.Visible = true;
+                }
+                else if (btn.Text.ToLower().Contains(filter))
+                {
+                    btn.Visible = true;
+                }
+                else
+                {
+                    btn.Visible = false;
+                }
+                
+            }
+
+            
         }
     }
 
