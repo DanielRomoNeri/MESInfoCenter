@@ -19,7 +19,10 @@ namespace MESInfoCenter
 
     
 
-        public static bool addApp(string appName, string appAuthorName, string appPath, string guidePath, string imagePath, string image2Path, string repoPath, string appDescription, int createdBy, string lastVersion)
+        public static bool addApp(
+            string appName, string appAuthorName, string appPath, string guidePath,
+            string imagePath, string image2Path, string repoPath, string appDescription,
+            int createdBy, string lastVersion)
         {
             try
             {
@@ -74,9 +77,43 @@ namespace MESInfoCenter
             }
         }
 
-        public static void updateApp(int ID)
+        public static bool updateApp(int appID, string appName, string appAuthorName, string appPath, string guidePath,
+            string imagePath, string image2Path, string repoPath, string appDescription,
+            int updatedBy, string lastVersion)
         {
+            try
+            {
+                using (var conn = DBConnection.GetConnection())
+                {
+                    conn.Open();
+                    string query =
+                        "UPDATE apps SET appName = @appName, appAuthorName = @appAuthorName, appPath = @appPath, " +
+                        "guidePath = @guidePath, imagePath = @imagePath, image2Path = @image2Path, repoPath = @repoPath, " +
+                        "appDescription = @appDescription, updatedBy = @updatedBy, lastVersion = @lastVersion " +
+                        "WHERE id = @appID"; // Asegúrate de que 'id' es la clave primaria o identificador único.
 
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@appName", appName);
+                        cmd.Parameters.AddWithValue("@appAuthorName", appAuthorName);
+                        cmd.Parameters.AddWithValue("@appPath", appPath);
+                        cmd.Parameters.AddWithValue("@guidePath", guidePath);
+                        cmd.Parameters.AddWithValue("@imagePath", imagePath);
+                        cmd.Parameters.AddWithValue("@image2Path", image2Path);
+                        cmd.Parameters.AddWithValue("@repoPath", repoPath);
+                        cmd.Parameters.AddWithValue("@appDescription", appDescription);
+                        cmd.Parameters.AddWithValue("@updatedBy", updatedBy);
+                        cmd.Parameters.AddWithValue("@lastVersion", lastVersion);
+                        cmd.Parameters.AddWithValue("@appId", appID); 
+
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public static void deleteApp(int ID) 
