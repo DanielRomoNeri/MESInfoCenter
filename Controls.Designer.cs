@@ -61,6 +61,7 @@ namespace MESInfoCenter
         Button btnCopyRepoPath = new Button
         {
             Text = "Copiar Repositorio",
+            Visible = false,
             ForeColor = Color.White,
             BackColor = Color.DodgerBlue,
             Width = 200,
@@ -129,6 +130,7 @@ namespace MESInfoCenter
         Label lblRepoPath = new Label
         {
             AutoSize = true,
+            Visible = false,
             ForeColor = Color.Black,
             Font = new Font("Arial", 11),
             Dock = DockStyle.Fill,

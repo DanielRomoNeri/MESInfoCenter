@@ -84,7 +84,7 @@ namespace MESInfoCenter
                         "UPDATE mesinfocenter.apps SET appName = @appName, appAuthorName = @appAuthorName, appPath = @appPath, " +
                         "guidePath = @guidePath, imagePath = @imagePath, image2Path = @image2Path, repoPath = @repoPath, " +
                         "appDescription = @appDescription, updatedBy = @updatedBy, lastVersion = @lastVersion " +
-                        "WHERE appID = @appID"; // Asegúrate de que 'id' es la clave primaria o identificador único.
+                        "WHERE appID = @appID";
 
                     using (var cmd = new MySqlCommand(query, conn))
                     {

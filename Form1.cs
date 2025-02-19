@@ -70,6 +70,8 @@ namespace MESInfoCenter
 
             btnAddSolution.Visible = true;
             btnAppRegister.Visible = true;
+            btnCopyRepoPath.Visible = true;
+            lblRepoPath.Visible = true;
             btnUpdateApp.Visible = true;
             btnDeleteApp.Visible = true;
 
