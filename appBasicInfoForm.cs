@@ -7,7 +7,7 @@ namespace MESInfoCenter
 {
     public partial class appBasicInfoForm : Form
     {
-        
+        private Form1 _form;
         public delegate void AppFormSubmitHandler(int appID);
         public event AppFormSubmitHandler onSubmit;
         bool isUpdate = false;
@@ -20,8 +20,9 @@ namespace MESInfoCenter
         {
             InitializeComponent();
         }
-        public appBasicInfoForm(Apps app)
+        public appBasicInfoForm(Apps app, Form1 form)
         {
+            this._form = form;
             InitializeComponent();
             setInfo(app);
         }
@@ -161,6 +162,11 @@ namespace MESInfoCenter
                             //para guardas las nuevas imagenes
                             if (_imagePath != localImagePath)
                             {
+                                if(_form != null)
+                                {
+                                    _form.releaseImage();
+                                }
+                                
                                 imagePath = Service.saveImage(localImagePath, friendlyFolderName);
                             }
                             else
@@ -169,6 +175,10 @@ namespace MESInfoCenter
                             }
                             if (_image2Path != localImage2Path)
                             {
+                                if (_form != null)
+                                {
+                                    _form.releaseImage2();
+                                }
                                 image2Path = string.IsNullOrEmpty(localImage2Path) ? image2Path : Service.saveImage2(localImage2Path, friendlyFolderName);
                             }
                             else
@@ -231,16 +241,34 @@ namespace MESInfoCenter
                 
             }
 
-            
-
-            //
-            
-            
-
-
-            
+          
         }
 
+        private void tbAppNameForm_TextChanged(object sender, EventArgs e)
+        {
+            //int maxLimit = 20 - tbAppNameForm.Text.Length;
 
+
+            //lblNameRequired.Text = $"* ({maxLimit})";
+            //if (maxLimit > 0)
+            //{
+            //    maxLimit = 0;
+            //    lblNameRequired.ForeColor = Color.Crimson;
+            //}
+            //else
+            //{
+            //    lblNameRequired.ForeColor = Color.White;
+            //}
+        }
+
+        private void lblIMGPath2_Click(object sender, EventArgs e)
+        {
+            lblIMGPath2.Text = "";
+        }
+
+        private void lblGuidePath_Click(object sender, EventArgs e)
+        {
+            lblGuidePath.Text = "";
+        }
     }
 }

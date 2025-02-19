@@ -60,19 +60,20 @@
             // 
             this.tbProblemNameForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbProblemNameForm.Location = new System.Drawing.Point(112, 62);
-            this.tbProblemNameForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbProblemNameForm.Margin = new System.Windows.Forms.Padding(4);
             this.tbProblemNameForm.Name = "tbProblemNameForm";
             this.tbProblemNameForm.Size = new System.Drawing.Size(524, 32);
-            this.tbProblemNameForm.TabIndex = 23;
+            this.tbProblemNameForm.TabIndex = 1;
+            this.tbProblemNameForm.TextChanged += new System.EventHandler(this.tbProblemNameForm_TextChanged);
             // 
             // tbTagError
             // 
             this.tbTagError.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbTagError.Location = new System.Drawing.Point(148, 172);
-            this.tbTagError.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTagError.Margin = new System.Windows.Forms.Padding(4);
             this.tbTagError.Name = "tbTagError";
             this.tbTagError.Size = new System.Drawing.Size(445, 32);
-            this.tbTagError.TabIndex = 25;
+            this.tbTagError.TabIndex = 2;
             // 
             // label1
             // 
@@ -90,11 +91,11 @@
             // 
             this.tbProblemDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbProblemDescription.Location = new System.Drawing.Point(49, 286);
-            this.tbProblemDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbProblemDescription.Margin = new System.Windows.Forms.Padding(4);
             this.tbProblemDescription.Multiline = true;
             this.tbProblemDescription.Name = "tbProblemDescription";
             this.tbProblemDescription.Size = new System.Drawing.Size(668, 126);
-            this.tbProblemDescription.TabIndex = 27;
+            this.tbProblemDescription.TabIndex = 3;
             // 
             // label3
             // 
@@ -112,11 +113,11 @@
             // 
             this.tbProblemSolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbProblemSolution.Location = new System.Drawing.Point(49, 478);
-            this.tbProblemSolution.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbProblemSolution.Margin = new System.Windows.Forms.Padding(4);
             this.tbProblemSolution.Multiline = true;
             this.tbProblemSolution.Name = "tbProblemSolution";
             this.tbProblemSolution.Size = new System.Drawing.Size(668, 134);
-            this.tbProblemSolution.TabIndex = 29;
+            this.tbProblemSolution.TabIndex = 4;
             // 
             // label4
             // 
@@ -137,10 +138,10 @@
             this.btnSubmitForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmitForm.ForeColor = System.Drawing.Color.White;
             this.btnSubmitForm.Location = new System.Drawing.Point(421, 644);
-            this.btnSubmitForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSubmitForm.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmitForm.Name = "btnSubmitForm";
             this.btnSubmitForm.Size = new System.Drawing.Size(320, 42);
-            this.btnSubmitForm.TabIndex = 35;
+            this.btnSubmitForm.TabIndex = 6;
             this.btnSubmitForm.Text = "Guardar";
             this.btnSubmitForm.UseVisualStyleBackColor = false;
             this.btnSubmitForm.Click += new System.EventHandler(this.btnSubmitForm_Click_1);
@@ -152,10 +153,10 @@
             this.btnCancelForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelForm.ForeColor = System.Drawing.Color.White;
             this.btnCancelForm.Location = new System.Drawing.Point(16, 644);
-            this.btnCancelForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelForm.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelForm.Name = "btnCancelForm";
             this.btnCancelForm.Size = new System.Drawing.Size(320, 42);
-            this.btnCancelForm.TabIndex = 34;
+            this.btnCancelForm.TabIndex = 5;
             this.btnCancelForm.Text = "Cancelar";
             this.btnCancelForm.UseVisualStyleBackColor = false;
             this.btnCancelForm.Click += new System.EventHandler(this.btnCancelForm_Click);
@@ -165,12 +166,12 @@
             this.lblRequiredName.AutoSize = true;
             this.lblRequiredName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRequiredName.ForeColor = System.Drawing.Color.White;
-            this.lblRequiredName.Location = new System.Drawing.Point(488, 28);
+            this.lblRequiredName.Location = new System.Drawing.Point(644, 48);
             this.lblRequiredName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRequiredName.Name = "lblRequiredName";
-            this.lblRequiredName.Size = new System.Drawing.Size(23, 29);
+            this.lblRequiredName.Size = new System.Drawing.Size(71, 29);
             this.lblRequiredName.TabIndex = 36;
-            this.lblRequiredName.Text = "*";
+            this.lblRequiredName.Text = "* (50)";
             // 
             // lblRequiredDes
             // 
@@ -229,7 +230,7 @@
             this.Controls.Add(this.tbProblemNameForm);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TroubleShootingForm";
             this.Text = "Trouble Shooting Form";
             this.ResumeLayout(false);

@@ -43,6 +43,7 @@ namespace MESInfoCenter
             lblVersion.BringToFront();
         }
 
+        //Se suscriben controles a eventos
         private void eventSubscriber()
         {
             btnOpenPathFolder.Click += openAppPathFolder;
@@ -56,7 +57,7 @@ namespace MESInfoCenter
         }
 
         
-
+        //Después de validar al usuario se setean algunas variables y se muestra contenido
         private void LoginForm_OnLogin()
         {
             lblUserName.Text = User.userName;
@@ -116,30 +117,31 @@ namespace MESInfoCenter
         public void updateAppsList()
         {
             int buttonWidth;
+
+            appsList.Clear();
+            flowAppsList.Controls.Clear();
+
+            appsList = Service.getAppList();
+            if (appsList == null)
+            {
+                MessageBox.Show("No se pudo acceder o no se encontró ningúna aplicación registrada en la base de datos");
+                return;
+            }
+
+            //Se filtra la lista por orden alfabético
+            appsList.Sort((a1, a2) => a1.appName.CompareTo(a2.appName));
+
+            buttonWidth = appsList.Count < 13 ? 283 : 250;
             
-            //appsList.Clear();
-            //flowAppsList.Controls.Clear();
 
-            //appsList = Service.getAppList();
-            //if(appsList == null)
-            //{
-            //    MessageBox.Show("No se pudo acceder o no se encontró ningúna aplicación registrada en la base de datos");
-            //    return;
-            //}
-
-            //Se filtra la lista por orden alfabético 
-            //appsList.Sort((a1, a2) => a1.appName.CompareTo(a2.appName));
-
-            buttonWidth = appsList.Count < 13 ? 280 : 257;
-            List<string> apps = new List<string> { "Hola", "Adios","Esto", "Es", "Una", "Prueba","123", "Para", "Validar","Estadio", "Perro", "Gato", "Más aplicaciones" };
-            foreach (string item in apps)//(Apps app in appsList) 
+            foreach(Apps app in appsList) 
             {
                 
                 Button btn = new Button
                 {
-                    Text = item,//app.appName,
+                    Text = app.appName,
                     ForeColor = Color.White,
-                    BackColor = Color.DodgerBlue,
+                    BackColor = Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(90)))), ((int)(((byte)(149))))),
                     //Dock = DockStyle.Fill,
                     Width = buttonWidth,
                     Height = 54,
@@ -149,7 +151,7 @@ namespace MESInfoCenter
 
                 };
                 btn.Tag = btn;
-                //btn.Click += (s, e) => showContent(app.appID);
+                btn.Click += (s, e) => showContent(app.appID);
                 btn.FlatAppearance.BorderSize = 0;
                 btn.Font = new Font(btn.Font.FontFamily, 14, btn.Font.Style);
   
@@ -180,17 +182,17 @@ namespace MESInfoCenter
 
             //Se carga la imagen de la ruta que está en la base de datos
             Image image = Image.FromFile(app.imagePath);
-
+            
             //Condiciones ternarias para ajustar el ancho y alto en caso de que se pase
             imageWidth = image.Width > 900 ? 900 : image.Width;
             imageHeight = image.Height > 500 ? 500 : image.Height;
 
           
             marginLeft = getMarginLeft(imageWidth);
-            imageBorder(imageWidth, imageHeight, marginLeft);
+            imageBorder(imageWidth, imageHeight, marginLeft, panelPictureBoxBorder);
 
             pictureBox.Image = image;
-            pictureBox.Size = new System.Drawing.Size(imageWidth, imageHeight);
+            pictureBox.Size = new Size(imageWidth, imageHeight);
           
 
             
@@ -200,12 +202,16 @@ namespace MESInfoCenter
             lblAppPath.Text = $"Ruta: {app.appPath}";
             lblRepoPath.Text = $"Repositorio: {app.repoPath}";
 
+            //Se agregan valores a etiquetas de los botones para usarlas en los eventos
             btnOpenPathFolder.Tag = app.appPath;
             btnCopyRepoPath.Tag = app.repoPath;
             btnOpenGuideFolder.Tag = app.guidePath;
+            btnAddSolution.Tag = app.appID;
+            btnUpdateApp.Tag = app;
+            btnDeleteApp.Tag = app;
 
+            
             rtbDescription.Clear();
-
             addCenterText(rtbDescription, "Descripción", 21);
             //Se generan dos saltos de linea después del titulo Descripción
             rtbDescription.AppendText("\n\n");
@@ -215,7 +221,6 @@ namespace MESInfoCenter
             rtbDescription.AppendText("\n\n\n");
             //Titulo que debe aparecer justamente arriba de el campo de solución de problemas
             addCenterText(rtbDescription, "Solución de problemas", 21);
-
             rtbDescription.Height = getRichTextBoxHeight(rtbDescription);
 
             
@@ -223,35 +228,35 @@ namespace MESInfoCenter
             troubleShootingList = Service.getTroubleShootingList(app.appID);
             genTroubleShootingButtons(troubleShootingList);
 
-            btnAddSolution.Tag = app.appID;
 
             panelPictureBoxBorder.Controls.Add(pictureBox);
-            flowContentButtons.Controls.Add(btnOpenPathFolder);
-            //Validación de info opcional para saber si se va a mostrar o no
-            if (!string.IsNullOrEmpty(app.repoPath))
+            
+            
+            flowContainerControls.Controls.Add(panelPictureBoxBorder);
+            if (!string.IsNullOrEmpty(app.image2Path))
             {
-                flowContentButtons.Controls.Add(btnCopyRepoPath); 
+                Image image2 = Image.FromFile(app.image2Path);
+                imageBorder(imageWidth, imageHeight, marginLeft, panelPictureBoxBorder2);
+                pictureBox2.Image = image2;
+                pictureBox2.Size = new Size(imageWidth, imageHeight);
+                panelPictureBoxBorder2.Controls.Add(pictureBox2);
+
+                flowContainerControls.Controls.Add(panelPictureBoxBorder2);
+
+
             }
+            flowContentButtons.Controls.Add(btnOpenPathFolder);
             //Validación de info opcional para saber si se va a mostrar o no
             if (!string.IsNullOrEmpty(app.guidePath))
             {
-                flowContentButtons.Controls.Add(btnOpenGuideFolder); 
+                flowContentButtons.Controls.Add(btnOpenGuideFolder);
             }
-
+            //Validación de info opcional para saber si se va a mostrar o no
+            if (!string.IsNullOrEmpty(app.repoPath))
+            {
+                flowContentButtons.Controls.Add(btnCopyRepoPath);
+            }
             
-
-
-            panelTroubleShooting.Controls.Add(flowTroubleShooting);
-            panelTroubleShooting.Controls.Add(btnAddSolution);
-            flowTroubleShooting.Controls.Add(flowTroubleShootingButtons);
-            flowTroubleShooting.Controls.Add(rtbTSSolution);
-                                                                                                                                                                                                                                                                                                              
-            btnUpdateApp.Tag = app;
-            btnDeleteApp.Tag = app;
-            flowBottomButtonsContainer.Controls.Add(btnDeleteApp);
-            flowBottomButtonsContainer.Controls.Add(btnUpdateApp);
-
-            flowContainerControls.Controls.Add(panelPictureBoxBorder);
             flowContainerControls.Controls.Add(flowContentButtons);
             //Validación de info opcional para saber si se va a mostrar o no
             if (!string.IsNullOrEmpty(app.appAuthorName))
@@ -268,20 +273,27 @@ namespace MESInfoCenter
             }
             
             flowContainerControls.Controls.Add(rtbDescription);
-            
+
+            flowTroubleShooting.Controls.Add(flowTroubleShootingButtons);
+            flowTroubleShooting.Controls.Add(rtbTSSolution);
+            panelTroubleShooting.Controls.Add(flowTroubleShooting);
+            panelTroubleShooting.Controls.Add(btnAddSolution);
             flowContainerControls.Controls.Add(panelTroubleShooting);
+
+            flowBottomButtonsContainer.Controls.Add(btnDeleteApp);
+            flowBottomButtonsContainer.Controls.Add(btnUpdateApp);
             flowContainerControls.Controls.Add(flowBottomButtonsContainer);
 
 
 
         }
 
-        private void imageBorder(int imageWidth, int imageHeight, int marginLeft)
+        private void imageBorder(int imageWidth, int imageHeight, int marginLeft, Panel panel)
         {
-            panelPictureBoxBorder.Width = imageWidth + 10;
-            panelPictureBoxBorder.Height = imageHeight + 10;
-            panelPictureBoxBorder.Margin = new Padding(marginLeft, 0, 0, 0);
-            panelPictureBoxBorder.Padding = new Padding(5);
+            panel.Width = imageWidth + 10;
+            panel.Height = imageHeight + 10;
+            panel.Margin = new Padding(marginLeft, 0, 0, 0);
+            panel.Padding = new Padding(5);
 
 
         }
@@ -326,8 +338,10 @@ namespace MESInfoCenter
                     Button btnTroubleShooting = new Button
                     {
                         Text = troubleShooting.tsTitle,
-                        Width = 300,
+                        Width = 430,
                         Height = 80,
+                        Font = new Font("Arial", 12),
+                        AutoSize = false
 
                     };
                     btnTroubleShooting.Click += (e, s) => genTroubleShootingRTBContent(troubleShooting);
@@ -353,7 +367,7 @@ namespace MESInfoCenter
                 }
                 else
                 {
-                    Console.WriteLine("No se pudo obtener la carpeta. En caso de que se haya borrado, suba la guía de nuevo");
+                    MessageBox.Show("No se pudo obtener la carpeta. En caso de que se haya borrado, registre la ruta de nuevo");
                 }
             }
             //if (sender is Button btn && btn.Tag is string path)
@@ -389,7 +403,7 @@ namespace MESInfoCenter
                 }
                 else
                 {
-                    Console.WriteLine("No se pudo obtener la carpeta. En caso de que se haya borrado, suba la guía de nuevo");
+                    MessageBox.Show("No se pudo obtener la carpeta. En caso de que se haya borrado, suba la guía de nuevo");
                 } 
             }
         }
@@ -456,7 +470,7 @@ namespace MESInfoCenter
         {
             if (sender is Button btn && btn.Tag is Apps app)
             {
-                appBasicInfoForm infoForm = new appBasicInfoForm(app);
+                appBasicInfoForm infoForm = new appBasicInfoForm(app, this);
                 infoForm.StartPosition = FormStartPosition.Manual;
                 infoForm.Location = new System.Drawing.Point(this.Location.X + 400, this.Location.Y + 100);
                 infoForm.onSubmit += appBasicInfoForm_OnSubmit;
@@ -487,7 +501,7 @@ namespace MESInfoCenter
 
                 LoginForm loginForm = new LoginForm();
                 loginForm.StartPosition = FormStartPosition.Manual;
-                loginForm.Location = new System.Drawing.Point(this.Location.X + 700, this.Location.Y + 350);
+                loginForm.Location = new System.Drawing.Point(this.Location.X + 700, this.Location.Y + 200);
                 loginForm.onLogin += LoginForm_OnLogin;
                 loginForm.ShowDialog();
 
@@ -509,6 +523,8 @@ namespace MESInfoCenter
                         MessageBox.Show($"Se ha eliminado {app.appName}");
                         updateAppsList();
                         clearFlowPanels();
+                        lblTitleApp.Text = "";
+                        
                     }
                     else
                     {
@@ -574,18 +590,24 @@ namespace MESInfoCenter
             }
         }
 
+        
+        
+        //Lógica para buscar aplicaciones. En vez de buscar en la base de datos busca en los botones ya creados
         private void tbSearchApps_TextChanged(object sender, EventArgs e)
         {
             string filter = tbSearchApps.Text.ToLower();
+            int visibleCount = 0;
             foreach (Button btn in flowAppsList.Controls)
             {
                 if(filter == "")
                 {
                     btn.Visible = true;
+                    visibleCount++;
                 }
                 else if (btn.Text.ToLower().Contains(filter))
                 {
                     btn.Visible = true;
+                    visibleCount++;
                 }
                 else
                 {
@@ -593,8 +615,33 @@ namespace MESInfoCenter
                 }
                 
             }
+            int buttonWidth = visibleCount < 13 ? 283 : 255;
+
+            foreach (Button btn in flowAppsList.Controls)
+            {
+                btn.Width = buttonWidth;
+            }
 
             
+        }
+
+        public void releaseImage()
+        {
+            if (pictureBox.Image != null)
+            {
+                pictureBox.Image.Dispose();
+                pictureBox.Image = null;
+            }
+
+        }
+        public void releaseImage2()
+        {
+            if (pictureBox2.Image != null)
+            {
+                pictureBox2.Image.Dispose();
+                pictureBox2.Image = null;
+            }
+
         }
     }
 

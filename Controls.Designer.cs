@@ -8,10 +8,26 @@ namespace MESInfoCenter
     {
         Panel panelPictureBoxBorder = new Panel
         {
-            BackColor = Color.Black
+            BackColor = Color.Black,
+            Margin = new Padding(0, 0, 0, 15)
         };
 
         PictureBox pictureBox = new PictureBox
+        {
+
+            SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage,
+            Dock = DockStyle.Fill,
+            //Margin = new Padding(0, 0, 0, 0)
+
+        };
+
+        Panel panelPictureBoxBorder2 = new Panel
+        {
+            BackColor = Color.Black,
+            
+        };
+
+        PictureBox pictureBox2 = new PictureBox
         {
 
             SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage,
@@ -116,7 +132,7 @@ namespace MESInfoCenter
             ForeColor = Color.Black,
             Font = new Font("Arial", 11),
             Dock = DockStyle.Fill,
-            Margin = new Padding(200, 0, 0, 50)
+            Margin = new Padding(200, 0, 0, 0)
 ,
         };
 
@@ -125,7 +141,7 @@ namespace MESInfoCenter
             BackColor = ColorTranslator.FromHtml("#F2F2F2"),
             ForeColor = Color.Black,
             ScrollBars = RichTextBoxScrollBars.None,
-            Margin = new Padding(200, 0, 0, 0),
+            Margin = new Padding(200, 50, 0, 0),
             Width = 1000,
             BorderStyle = BorderStyle.None,
             Multiline = true,
@@ -157,7 +173,7 @@ namespace MESInfoCenter
             WrapContents = false,
             BackColor = Color.Cornsilk,
             Height = 550,
-            Width = 340,
+            Width = 450,
         };
             
         RichTextBox rtbTSSolution = new RichTextBox
@@ -166,7 +182,7 @@ namespace MESInfoCenter
             Dock = DockStyle.Fill,
             BackColor = Color.White,
             Font = new Font("Arial", 13),
-            Width = 600,
+            Width = 500,
         };
 
         Button btnAddSolution = new Button
@@ -179,7 +195,7 @@ namespace MESInfoCenter
             Height = 54,
             Dock = DockStyle.Bottom,
             FlatStyle = FlatStyle.Flat,
-            Margin = new Padding(0, 70, 0, 0),
+            Margin = new Padding(0, 30, 0, 0),
             Font = new Font("Arial", 13)
         };
 
@@ -187,7 +203,7 @@ namespace MESInfoCenter
         {
             FlowDirection = FlowDirection.LeftToRight,
             Dock = DockStyle.Fill,
-            Margin = new Padding(0, 50, 0, 0),
+            Margin = new Padding(0, 10, 0, 0),
 
         };
 

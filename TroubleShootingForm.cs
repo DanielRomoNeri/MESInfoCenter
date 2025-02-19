@@ -28,7 +28,7 @@ namespace MESInfoCenter
             string tsDescription = tbProblemDescription.Text.Trim();
             string tsSolution = tbProblemSolution.Text.Trim();
 
-            if (string.IsNullOrEmpty(tsTitle))
+            if (string.IsNullOrEmpty(tsTitle) || lblRequiredName.ForeColor == Color.Crimson)
             {
                 lblRequiredName.ForeColor = Color.Crimson;
                 isDataValid = false;
@@ -63,6 +63,24 @@ namespace MESInfoCenter
         private void btnCancelForm_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void tbProblemNameForm_TextChanged(object sender, EventArgs e)
+        {
+          
+        //    int maxLimit = 50 - tbProblemNameForm.Text.Length;
+
+
+        //    lblRequiredName.Text = $"* ({maxLimit})";
+        //    if (maxLimit < 0)
+        //    {
+        //        lblRequiredName.ForeColor = Color.Crimson;
+        //    }
+        //    else
+        //    {
+        //        lblRequiredName.ForeColor = Color.White;
+        //    }
+        
         }
     }
 }

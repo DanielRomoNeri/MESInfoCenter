@@ -287,7 +287,7 @@ namespace MESInfoCenter
             }
             string newPath = Path.Combine(folder, fileName);
             File.Copy(originPath, newPath, true);
-            MessageBox.Show("Guía guardada");
+            //MessageBox.Show("Guía guardada");
             return newPath;
         }
 
@@ -302,7 +302,7 @@ namespace MESInfoCenter
             }
             string newPath = Path.Combine(folder, fileName);
             File.Copy(originPath, newPath, true);
-            MessageBox.Show("Imagen guardada");
+            //MessageBox.Show("Imagen guardada");
             return newPath;
         }
 
@@ -317,7 +317,7 @@ namespace MESInfoCenter
             }
             string newPath = Path.Combine(folder, fileName);
             File.Copy(originPath, newPath, true);
-            MessageBox.Show("Imagen2 guardada");
+            //MessageBox.Show("Imagen2 guardada");
             return newPath;
         }
 
