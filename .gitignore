@@ -66,3 +66,4 @@ secrets.json
 .vscode/
 MESInfoCenter_TemporaryKey.pfx
 Properties/
+DBConnection.cs
