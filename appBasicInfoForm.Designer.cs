@@ -163,7 +163,7 @@
             this.lblIMGPath2.Location = new System.Drawing.Point(536, 426);
             this.lblIMGPath2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIMGPath2.Name = "lblIMGPath2";
-            this.lblIMGPath2.Size = new System.Drawing.Size(0, 21);
+            this.lblIMGPath2.Size = new System.Drawing.Size(0, 17);
             this.lblIMGPath2.TabIndex = 40;
             this.lblIMGPath2.Click += new System.EventHandler(this.lblIMGPath2_Click);
             // 
@@ -203,7 +203,7 @@
             this.lblGuidePath.Location = new System.Drawing.Point(536, 489);
             this.lblGuidePath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGuidePath.Name = "lblGuidePath";
-            this.lblGuidePath.Size = new System.Drawing.Size(0, 21);
+            this.lblGuidePath.Size = new System.Drawing.Size(0, 17);
             this.lblGuidePath.TabIndex = 37;
             this.lblGuidePath.Click += new System.EventHandler(this.lblGuidePath_Click);
             // 
@@ -241,9 +241,9 @@
             this.label6.Location = new System.Drawing.Point(21, 479);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(128, 29);
+            this.label6.Size = new System.Drawing.Size(173, 29);
             this.label6.TabIndex = 34;
-            this.label6.Text = "Subir guia:";
+            this.label6.Text = "Subir una guia:";
             // 
             // btnSubmitForm
             // 

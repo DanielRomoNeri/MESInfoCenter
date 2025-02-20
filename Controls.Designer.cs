@@ -48,7 +48,7 @@ namespace MESInfoCenter
 
         Button btnOpenPathFolder = new Button
         {
-            Text = "Abrir Carpeta\n de la Ruta",
+            Text = "Abrir Ruta\n del Instalador",
             ForeColor = Color.White,
             BackColor = Color.DodgerBlue,
             Width = 200,
@@ -60,7 +60,7 @@ namespace MESInfoCenter
 
         Button btnCopyRepoPath = new Button
         {
-            Text = "Copiar Repositorio",
+            Text = "Abrir Ruta\n del Repositorio",
             Visible = false,
             ForeColor = Color.White,
             BackColor = Color.DodgerBlue,
@@ -84,19 +84,16 @@ namespace MESInfoCenter
         };
 
 
-        FlowLayoutPanel flowContentPath1 = new FlowLayoutPanel
+        FlowLayoutPanel flowContentInfo = new FlowLayoutPanel
         {
-            FlowDirection = FlowDirection.LeftToRight,
+            FlowDirection = FlowDirection.TopDown,
+            BorderStyle = BorderStyle.Fixed3D,
+            WrapContents = false,
+            Height = 140,
             Dock = DockStyle.Fill,
             Margin = new Padding(200, 0, 0, 0),
         };
 
-        FlowLayoutPanel flowContentPath2 = new FlowLayoutPanel
-        {
-            FlowDirection = FlowDirection.LeftToRight,
-            Dock = DockStyle.Fill,
-            Margin = new Padding(200, 0, 0, 0),
-        };
 
         Label lblAuthorName = new Label
         {
@@ -104,7 +101,7 @@ namespace MESInfoCenter
             ForeColor = Color.Black,
             Font = new Font("Arial", 11),
             Dock = DockStyle.Fill,
-            Margin = new Padding(200, 0, 0, 0)
+            Margin = new Padding(0, 0, 0, 0)
 
         };
         Label lblLastVersion = new Label
@@ -113,7 +110,7 @@ namespace MESInfoCenter
             ForeColor = Color.Black,
             Font = new Font("Arial", 11),
             Dock = DockStyle.Fill,
-            Margin = new Padding(200, 0, 0, 30)
+            Margin = new Padding(0, 0, 0, 30)
 
         };
 
@@ -123,7 +120,7 @@ namespace MESInfoCenter
             ForeColor = Color.Black,
             Font = new Font("Arial", 11),
             Dock = DockStyle.Fill,
-            Margin = new Padding(200, 0, 0, 0)
+            Margin = new Padding(0, 0, 0, 0)
 
         };
 
@@ -134,7 +131,7 @@ namespace MESInfoCenter
             ForeColor = Color.Black,
             Font = new Font("Arial", 11),
             Dock = DockStyle.Fill,
-            Margin = new Padding(200, 0, 0, 0)
+            Margin = new Padding(0, 0, 0, 0)
 ,
         };
 
@@ -158,7 +155,7 @@ namespace MESInfoCenter
             Margin = new Padding(200, 0, 0, 100),
             Padding = new Padding(10, 10, 0, 0),
             Dock = DockStyle.Fill,
-            Height = 670,
+            Height = 700,
         };
 
         FlowLayoutPanel flowTroubleShooting = new FlowLayoutPanel
@@ -183,7 +180,8 @@ namespace MESInfoCenter
             Multiline = true,
             Dock = DockStyle.Fill,
             BackColor = Color.White,
-            Font = new Font("Arial", 13),
+            Padding = new Padding(10, 0, 10, 0),
+            Font = new Font("Arial", 12),
             Width = 500,
         };
 
@@ -234,6 +232,20 @@ namespace MESInfoCenter
             //Dock = DockStyle.Bottom,
             FlatStyle = FlatStyle.Flat,
             Margin = new Padding(250, 0, 0, 0),
+            Font = new Font("Arial", 13)
+        };
+        Button btnDeleteTS = new Button
+        {
+            Text = "Eliminar problema seleccionado",
+            Visible = false,
+            Enabled = false,
+            ForeColor = Color.White,
+            BackColor = Color.Crimson,
+            Width = 300,
+            Height = 54,
+            Dock = DockStyle.Bottom,
+            FlatStyle = FlatStyle.Flat,
+            Margin = new Padding(0, 0, 0, 0),
             Font = new Font("Arial", 13)
         };
     }

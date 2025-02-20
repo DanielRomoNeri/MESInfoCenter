@@ -169,9 +169,9 @@
             this.lblRequiredName.Location = new System.Drawing.Point(644, 48);
             this.lblRequiredName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRequiredName.Name = "lblRequiredName";
-            this.lblRequiredName.Size = new System.Drawing.Size(71, 29);
+            this.lblRequiredName.Size = new System.Drawing.Size(29, 29);
             this.lblRequiredName.TabIndex = 36;
-            this.lblRequiredName.Text = "* (50)";
+            this.lblRequiredName.Text = "* ";
             // 
             // lblRequiredDes
             // 

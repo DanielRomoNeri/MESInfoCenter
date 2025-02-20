@@ -132,6 +132,52 @@ namespace MESInfoCenter
                 lblPathRequired.ForeColor = Color.Crimson;
                 isDataValid = false;
             }
+            else
+            {
+                if (appPath.Contains("/"))
+                {
+                    if (!appPath.EndsWith("/"))
+                    {
+                        appPath += "/";
+                    }
+                }
+                else if (appPath.Contains(@"\"))
+                {
+                    if (!appPath.EndsWith(@"\"))
+                    {
+                        appPath += @"\";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Parece que ruta no tiene un formato correcto");
+                    lblPathRequired.ForeColor = Color.Crimson;
+                    isDataValid = false;
+                }
+            }
+            if (!string.IsNullOrEmpty(repoPath))
+            {
+                if (repoPath.Contains("/"))
+                {
+                    if (!repoPath.EndsWith("/"))
+                    {
+                        repoPath += "/";
+                    }
+                }
+                else if (repoPath.Contains(@"\"))
+                {
+                    if (!repoPath.EndsWith(@"\"))
+                    {
+                        repoPath += @"\";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Parece que ruta no tiene un formato correcto");
+                    lblPathRequired.ForeColor = Color.Crimson;
+                    isDataValid = false;
+                }
+            }
             if (string.IsNullOrEmpty(localImagePath))
             {
                 lblIMGRequired.ForeColor = Color.Crimson;
@@ -201,6 +247,9 @@ namespace MESInfoCenter
                             MessageBox.Show($"Ocurrió un error al tratar de guardar uno o más de los archivos\n {exc}");
                             return;
                         }
+
+
+                        
 
 
                         bool isProcessOK;

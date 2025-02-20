@@ -12,7 +12,7 @@ namespace MESInfoCenter
     public partial class Form1 : Form
     {
         List<Apps> appsList = new List<Apps>();
-        string version = "0.0.0.1";
+        string version = "1.0.0.1";
         int scrollPositionTEMP = 0;
         bool isValidUser = false;
 
@@ -47,13 +47,14 @@ namespace MESInfoCenter
         private void eventSubscriber()
         {
             btnOpenPathFolder.Click += openAppPathFolder;
-            btnCopyRepoPath.Click += copyRepoPath;
+            btnCopyRepoPath.Click += openRepoPath;
             btnOpenGuideFolder.Click += openGuideFolder;
             btnAddSolution.Click += btnTroubleShootingRegister_Click;
             rtbDescription.MouseWheel += RichTextBox_MouseWheel;
             rtbTSSolution.MouseWheel += RichTextBoxSolution_MouseWheel;
             btnUpdateApp.Click += openBasicInfoFormToModify;
             btnDeleteApp.Click += deleteAppFromDB;
+            btnDeleteTS.Click += deleteTSFromDB;
         }
 
         
@@ -67,7 +68,7 @@ namespace MESInfoCenter
 
         private void unHideContent()
         {
-
+            btnDeleteTS.Visible = true;
             btnAddSolution.Visible = true;
             btnAppRegister.Visible = true;
             btnCopyRepoPath.Visible = true;
@@ -82,6 +83,7 @@ namespace MESInfoCenter
         private void clearFlowPanels()
         {
             flowContainerControls.Controls.Clear();
+            flowContentInfo.Controls.Clear();
             flowContentButtons.Controls.Clear();
             flowTroubleShootingButtons.Controls.Clear();
             flowTroubleShooting.Controls.Clear();
@@ -175,6 +177,9 @@ namespace MESInfoCenter
             int marginLeft;
             //Se elimina todo el contenido antes de generar más
             clearFlowPanels();
+
+            btnDeleteTS.Enabled = false;
+            btnDeleteTS.Tag = null;
             
             app = appsList.FirstOrDefault(c => c.appID == ID);
 
@@ -212,19 +217,9 @@ namespace MESInfoCenter
             btnUpdateApp.Tag = app;
             btnDeleteApp.Tag = app;
 
-            
-            rtbDescription.Clear();
-            addCenterText(rtbDescription, "Descripción", 21);
-            //Se generan dos saltos de linea después del titulo Descripción
-            rtbDescription.AppendText("\n\n");
-            // Restablece alineación para siguientes textos
-            rtbDescription.SelectionAlignment = HorizontalAlignment.Left;
-            rtbDescription.AppendText(app.appDescription);
-            rtbDescription.AppendText("\n\n\n");
-            //Titulo que debe aparecer justamente arriba de el campo de solución de problemas
-            addCenterText(rtbDescription, "Solución de problemas", 21);
-            rtbDescription.Height = getRichTextBoxHeight(rtbDescription);
 
+
+            genRTBContent(app);
             
 
             troubleShootingList = Service.getTroubleShootingList(app.appID);
@@ -263,23 +258,25 @@ namespace MESInfoCenter
             //Validación de info opcional para saber si se va a mostrar o no
             if (!string.IsNullOrEmpty(app.appAuthorName))
             {
-                flowContainerControls.Controls.Add(lblAuthorName);
+                flowContentInfo.Controls.Add(lblAuthorName);
             }
 
-            flowContainerControls.Controls.Add(lblLastVersion);
-            flowContainerControls.Controls.Add(lblAppPath);
+            flowContentInfo.Controls.Add(lblLastVersion);
+            flowContentInfo.Controls.Add(lblAppPath);
             //Validación de info opcional para saber si se va a mostrar o no
             if (!string.IsNullOrEmpty(app.repoPath))
             {
-                flowContainerControls.Controls.Add(lblRepoPath); 
+                flowContentInfo.Controls.Add(lblRepoPath); 
             }
-            
+            flowContainerControls.Controls.Add(flowContentInfo);
             flowContainerControls.Controls.Add(rtbDescription);
 
             flowTroubleShooting.Controls.Add(flowTroubleShootingButtons);
             flowTroubleShooting.Controls.Add(rtbTSSolution);
             panelTroubleShooting.Controls.Add(flowTroubleShooting);
+            panelTroubleShooting.Controls.Add(btnDeleteTS);
             panelTroubleShooting.Controls.Add(btnAddSolution);
+
             flowContainerControls.Controls.Add(panelTroubleShooting);
 
             flowBottomButtonsContainer.Controls.Add(btnDeleteApp);
@@ -300,31 +297,51 @@ namespace MESInfoCenter
 
         }
 
+        public void genRTBContent(Apps app)
+        {
+            rtbDescription.Clear();
+            addCenterText(rtbDescription, "Descripción", 21);
+            //Se generan dos saltos de linea después del titulo Descripción
+            rtbDescription.AppendText("\n\n");
+            // Restablece alineación para siguientes textos
+            rtbDescription.SelectionAlignment = HorizontalAlignment.Left;
+            rtbDescription.AppendText(app.appDescription);
+            rtbDescription.AppendText("\n\n\n");
+            //Titulo que debe aparecer justamente arriba de el campo de solución de problemas
+            addCenterText(rtbDescription, "Solución de problemas", 21);
+            rtbDescription.Height = getRichTextBoxHeight(rtbDescription);
+        }
         //General el texto según el tema seleccionado en los botones
         public void genTroubleShootingRTBContent(TroubleShooting troubleShooting)
         {
-            rtbTSSolution.Clear();
+            btnDeleteTS.Enabled = true;
+            btnDeleteTS.Tag = troubleShooting;
+
+            
 
             addCenterText(rtbTSSolution, "Tema", 18);
-            rtbTSSolution.AppendText("\n\n");
+            rtbTSSolution.AppendText("\n");
+
             rtbTSSolution.AppendText(troubleShooting.tsTitle);
             rtbTSSolution.AppendText("\n\n\n");
 
             if (!string.IsNullOrEmpty(troubleShooting.tsErrorTag))
             {
                 addCenterText(rtbTSSolution, "Error mostrado", 18);
-                rtbTSSolution.AppendText("\n\n");
+                rtbTSSolution.AppendText("\n");
                 rtbTSSolution.AppendText(troubleShooting.tsErrorTag);
                 rtbTSSolution.AppendText("\n\n\n");
             }
 
 
             addCenterText(rtbTSSolution, "Problema", 18);
-            rtbTSSolution.AppendText("\n\n");
+            rtbTSSolution.AppendText("\n");
+            rtbTSSolution.SelectionAlignment = HorizontalAlignment.Left;
             rtbTSSolution.AppendText(troubleShooting.tsDescription);
             rtbTSSolution.AppendText("\n\n\n");
             addCenterText(rtbTSSolution, "Solución", 18);
-            rtbTSSolution.AppendText("\n\n");
+            rtbTSSolution.AppendText("\n");
+            rtbTSSolution.SelectionAlignment = HorizontalAlignment.Left;
             rtbTSSolution.AppendText(troubleShooting.tsSolution);
 
 
@@ -332,6 +349,7 @@ namespace MESInfoCenter
         //Genera los botones según la cantidad de temas de Solución de Problemas
         public void genTroubleShootingButtons(List<TroubleShooting> troubleShootingList)
         {
+            rtbTSSolution.Clear();
             flowTroubleShootingButtons.Controls.Clear();
             if (troubleShootingList.Count != 0)
             {
@@ -369,7 +387,8 @@ namespace MESInfoCenter
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo obtener la carpeta. En caso de que se haya borrado, registre la ruta de nuevo");
+                    MessageBox.Show("No se pudo abrir la dirección o la carpeta. En caso de que se haya borrado, registre la ruta de nuevo");
+
                 }
             }
             //if (sender is Button btn && btn.Tag is string path)
@@ -380,16 +399,29 @@ namespace MESInfoCenter
             //}
         }
 
-        private void copyRepoPath(object sender, EventArgs e)
+        private void openRepoPath(object sender, EventArgs e)
         {
-
-
-            if (sender is Button btn && btn.Tag is string path)
+            if (sender is Button btn && btn.Tag is string repoPath)
             {
-                Clipboard.SetText(path);
-                lblRepoPath.BackColor = Color.Cyan;
-                lblAppPath.BackColor = ColorTranslator.FromHtml("#F2F2F2");
+                string repoFolder = Path.GetDirectoryName(repoPath);
+                if (!string.IsNullOrEmpty(repoFolder))
+                {
+                    // Abrir repoFolder en el explorador de archivos
+                    Process.Start("explorer.exe", repoFolder);
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo abrir la dirección o la carpeta. En caso de que se haya borrado, registre la ruta de nuevo");
+                }
             }
+
+
+            //if (sender is Button btn && btn.Tag is string path)
+            //{
+            //    Clipboard.SetText(path);
+            //    lblRepoPath.BackColor = Color.Cyan;
+            //    lblAppPath.BackColor = ColorTranslator.FromHtml("#F2F2F2");
+            //}
 
         }
         private void openGuideFolder(object sender, EventArgs e)
@@ -516,7 +548,7 @@ namespace MESInfoCenter
             if (sender is Button btn && btn.Tag is Apps app)
             {
                 DialogResult dialogResult = MessageBox.Show(
-                $"¿Estás totalmente seguro de eliminar {app.appName}? Se eliminará de la base de datos el contenido " +
+                $"¿Estás totalmente seguro de eliminar: '{app.appName}'? Se eliminará de la base de datos el contenido " +
                 $"junto con sus problemas y soluciones", "", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes) 
                 {
@@ -527,6 +559,34 @@ namespace MESInfoCenter
                         clearFlowPanels();
                         lblTitleApp.Text = "";
                         
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrió un error al tratar de borrar la aplicación");
+                    }
+                }
+
+            }
+        }
+
+        private void deleteTSFromDB(object sender, EventArgs e)
+        {
+            if (sender is Button btn && btn.Tag is TroubleShooting ts)
+            {
+                DialogResult dialogResult = MessageBox.Show(
+                $"¿Estás totalmente seguro de eliminar: '{ts.tsTitle}'? Esto no podrá revertirse", "", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    if (Service.deleteTS(ts.tsID))
+                    {
+                        MessageBox.Show($"Se ha eliminado {ts.tsTitle}");
+                        List<TroubleShooting> troubleShootingList = Service.getTroubleShootingList(ts.appID);
+                        genTroubleShootingButtons(troubleShootingList);
+                        rtbTSSolution.Text = "";
+                        btnDeleteTS.Enabled = false;
+                        btnDeleteTS.Tag = null;
+                        
+
                     }
                     else
                     {

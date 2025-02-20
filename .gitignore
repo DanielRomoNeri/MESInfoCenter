@@ -64,3 +64,5 @@ secrets.json
 *.iws
 *.dotCover
 .vscode/
+MESInfoCenter_TemporaryKey.pfx
+Properties/

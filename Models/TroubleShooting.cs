@@ -8,6 +8,8 @@ namespace MESInfoCenter.Models
 {
     public class TroubleShooting
     {
+        public int tsID { get; set; }
+        public int appID { get; set; }
         public string tsTitle {  get; set; }
         public string tsErrorTag { get; set; }
         public string tsDescription { get; set; }

@@ -111,6 +111,30 @@ namespace MESInfoCenter
             }
         }
 
+        public static bool deleteTS(int tsID)
+        {
+            try
+            {
+                using (var conn = DBConnection.GetConnection())
+                {
+                    conn.Open();
+                    string query = "DELETE FROM mesinfocenter.troubleshooting WHERE tsID = @tsID";
+
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@tsID", tsID);
+
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return false;
+            }
+        }
+
         public static bool deleteApp(int appID) 
         {
             try
@@ -217,7 +241,7 @@ namespace MESInfoCenter
                 using (var conn = DBConnection.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT tsTitle, tsErrorTag, tsDescription, tsSolution FROM troubleshooting WHERE appID = @appID";
+                    string query = "SELECT tsID, appID, tsTitle, tsErrorTag, tsDescription, tsSolution FROM troubleshooting WHERE appID = @appID";
                     using (var cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@appID", appID);
@@ -226,6 +250,8 @@ namespace MESInfoCenter
                         {
                             troubleShootings.Add(new TroubleShooting
                             {
+                                tsID = reader.GetInt32("tsID"),
+                                appID = reader.GetInt32("appID"),
                                 tsTitle = reader.GetString("tsTitle"),
                                 tsErrorTag = reader.GetString("tsErrorTag"),
                                 tsDescription = reader.GetString("tsDescription"),
@@ -253,7 +279,7 @@ namespace MESInfoCenter
                 
                 conn.Open();
                 string passwordDB;
-                string query = "SELECT userID, userName, password, role FROM mesinfocenter.users WHERE userName = @username";
+                string query = "SELECT userID, fullName, userName, password, role FROM mesinfocenter.users WHERE userName = @username";
                 using (var cmd = new MySqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@username", userName);
@@ -261,6 +287,7 @@ namespace MESInfoCenter
                     if (reader.Read())
                     {
                         User.userID = reader.GetInt32("userID");
+                        User.fullName = reader.GetString("fullName");
                         User.userName = reader.GetString("userName");
                         User.role = reader.GetString("role");
                         passwordDB = reader.GetString("password");
