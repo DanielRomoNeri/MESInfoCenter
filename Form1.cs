@@ -12,7 +12,7 @@ namespace MESInfoCenter
     public partial class Form1 : Form
     {
         List<Apps> appsList = new List<Apps>();
-        string version = "1.0.0.1";
+        string version = "1.0.1.0";
         int scrollPositionTEMP = 0;
         bool isValidUser = false;
 
@@ -317,7 +317,7 @@ namespace MESInfoCenter
             btnDeleteTS.Enabled = true;
             btnDeleteTS.Tag = troubleShooting;
 
-            
+            rtbTSSolution.Clear();
 
             addCenterText(rtbTSSolution, "Tema", 18);
             rtbTSSolution.AppendText("\n");
