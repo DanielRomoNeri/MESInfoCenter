@@ -135,29 +135,30 @@ namespace MESInfoCenter
             //Se filtra la lista por orden alfabético
             appsList.Sort((a1, a2) => a1.appName.CompareTo(a2.appName));
 
-            buttonWidth = appsList.Count < 13 ? 283 : 250;
-            
+            buttonWidth = getButtonAppWidth(appsList.Count < 13);
+                
 
             foreach(Apps app in appsList) 
             {
-                
+
                 Button btn = new Button
                 {
                     Text = app.appName,
                     ForeColor = Color.White,
-                    BackColor = Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(90)))), ((int)(((byte)(149))))),
-                    //Dock = DockStyle.Fill,
+                    BackColor = Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(31)))), ((int)(((byte)(64))))),
+                    AutoSize = false,
                     Width = buttonWidth,
                     Height = 54,
                     FlatStyle = FlatStyle.Flat,
                     Margin = new Padding(0, 0, 0, 0),
-                    
+
+
 
                 };
                 btn.Tag = btn;
                 btn.Click += (s, e) => showContent(app.appID);
                 btn.FlatAppearance.BorderSize = 0;
-                btn.Font = new Font(btn.Font.FontFamily, 14, btn.Font.Style);
+                btn.Font = new Font(btn.Font.FontFamily, 13, btn.Font.Style);
   
                 flowAppsList.Controls.Add(btn);
            
@@ -169,6 +170,7 @@ namespace MESInfoCenter
 
         public void showContent(int ID)
         {
+            
             Apps app = new Apps();
             List<TroubleShooting> troubleShootingList = new List<TroubleShooting>();
 
@@ -451,7 +453,7 @@ namespace MESInfoCenter
         private int getMarginLeft(int width)
         {
             int marginLeft;
-            marginLeft = (1400 - width) / 2;
+            marginLeft = (1200 - width) / 2;
             return marginLeft;
         }
         //centra el texto de un richtextbox ingresado
@@ -677,7 +679,7 @@ namespace MESInfoCenter
                 }
                 
             }
-            int buttonWidth = visibleCount < 13 ? 283 : 255;
+            int buttonWidth = getButtonAppWidth(visibleCount < 13);
 
             foreach (Button btn in flowAppsList.Controls)
             {
@@ -687,6 +689,10 @@ namespace MESInfoCenter
             
         }
 
+        public int getButtonAppWidth(bool result)
+        {
+            return result ? 243 : 225;
+        }
         public void releaseImage()
         {
             if (pictureBox.Image != null)

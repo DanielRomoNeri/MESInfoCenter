@@ -51,10 +51,10 @@ namespace MESInfoCenter
             Text = "Abrir Ruta\n del Instalador",
             ForeColor = Color.White,
             BackColor = Color.DodgerBlue,
-            Width = 200,
+            Width = 150,
             Height = 60,
             FlatStyle = FlatStyle.Flat,
-            Margin = new Padding(250, 0, 0, 0),
+            Margin = new Padding(170, 0, 0, 0),
             Font = new Font("Arial",10)
         };
 
@@ -64,22 +64,22 @@ namespace MESInfoCenter
             Visible = false,
             ForeColor = Color.White,
             BackColor = Color.DodgerBlue,
-            Width = 200,
+            Width = 150,
             Height = 60,
             FlatStyle = FlatStyle.Flat,
-            Margin = new Padding(140, 0, 0, 0),
+            Margin = new Padding(160, 0, 0, 0),
             Font = new Font("Arial", 10)
         };
 
         Button btnOpenGuideFolder = new Button
         {
-            Text = "Abrir Carpeta\n de la Guía",
+            Text = "Abrir Guía",
             ForeColor = Color.White,
             BackColor = Color.DodgerBlue,
-            Width = 200,
+            Width = 150,
             Height = 60,
             FlatStyle = FlatStyle.Flat,
-            Margin = new Padding(140, 0, 0, 0),
+            Margin = new Padding(160, 0, 0, 0),
             Font = new Font("Arial", 10)
         };
 
@@ -91,7 +91,7 @@ namespace MESInfoCenter
             WrapContents = false,
             Height = 140,
             Dock = DockStyle.Fill,
-            Margin = new Padding(200, 0, 0, 0),
+            Margin = new Padding(150, 0, 0, 0),
         };
 
 
@@ -140,7 +140,7 @@ namespace MESInfoCenter
             BackColor = ColorTranslator.FromHtml("#F2F2F2"),
             ForeColor = Color.Black,
             ScrollBars = RichTextBoxScrollBars.None,
-            Margin = new Padding(200, 50, 0, 0),
+            Margin = new Padding(150, 50, 0, 0),
             Width = 1000,
             BorderStyle = BorderStyle.None,
             Multiline = true,
@@ -152,7 +152,7 @@ namespace MESInfoCenter
         Panel panelTroubleShooting = new Panel
         {
             BackColor = Color.BlanchedAlmond,
-            Margin = new Padding(200, 0, 0, 100),
+            Margin = new Padding(100, 0, 50, 100),
             Padding = new Padding(10, 10, 0, 0),
             Dock = DockStyle.Fill,
             Height = 700,
@@ -217,7 +217,7 @@ namespace MESInfoCenter
             Height = 54,
             //Dock = DockStyle.Bottom,
             FlatStyle = FlatStyle.Flat,
-            Margin = new Padding(250, 0, 0, 0),
+            Margin = new Padding(150, 0, 0, 0),
             Font = new Font("Arial", 13)
         };
 
@@ -231,7 +231,7 @@ namespace MESInfoCenter
             Height = 54,
             //Dock = DockStyle.Bottom,
             FlatStyle = FlatStyle.Flat,
-            Margin = new Padding(250, 0, 0, 0),
+            Margin = new Padding(150, 0, 0, 0),
             Font = new Font("Arial", 13)
         };
         Button btnDeleteTS = new Button

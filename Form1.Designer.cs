@@ -46,6 +46,7 @@
             this.containerHeaderPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblTitleApp = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.sidePanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.sideBarHeaderPanel.SuspendLayout();
@@ -56,6 +57,7 @@
             this.containerPanel.SuspendLayout();
             this.containerHeaderPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // sidePanel
@@ -68,17 +70,17 @@
             this.sidePanel.Location = new System.Drawing.Point(0, 0);
             this.sidePanel.Margin = new System.Windows.Forms.Padding(2);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(230, 705);
+            this.sidePanel.Size = new System.Drawing.Size(244, 705);
             this.sidePanel.TabIndex = 0;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.flowAppsList);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 125);
+            this.panel1.Location = new System.Drawing.Point(0, 120);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(230, 534);
+            this.panel1.Size = new System.Drawing.Size(244, 539);
             this.panel1.TabIndex = 3;
             // 
             // flowAppsList
@@ -90,7 +92,7 @@
             this.flowAppsList.Location = new System.Drawing.Point(0, 0);
             this.flowAppsList.Margin = new System.Windows.Forms.Padding(2);
             this.flowAppsList.Name = "flowAppsList";
-            this.flowAppsList.Size = new System.Drawing.Size(230, 534);
+            this.flowAppsList.Size = new System.Drawing.Size(244, 539);
             this.flowAppsList.TabIndex = 2;
             this.flowAppsList.WrapContents = false;
             // 
@@ -102,7 +104,7 @@
             this.btnAppRegister.ForeColor = System.Drawing.Color.White;
             this.btnAppRegister.Location = new System.Drawing.Point(0, 659);
             this.btnAppRegister.Name = "btnAppRegister";
-            this.btnAppRegister.Size = new System.Drawing.Size(230, 46);
+            this.btnAppRegister.Size = new System.Drawing.Size(244, 46);
             this.btnAppRegister.TabIndex = 1;
             this.btnAppRegister.Text = "Registrar Aplicación";
             this.btnAppRegister.UseVisualStyleBackColor = false;
@@ -117,7 +119,7 @@
             this.sideBarHeaderPanel.Location = new System.Drawing.Point(0, 0);
             this.sideBarHeaderPanel.Margin = new System.Windows.Forms.Padding(2);
             this.sideBarHeaderPanel.Name = "sideBarHeaderPanel";
-            this.sideBarHeaderPanel.Size = new System.Drawing.Size(230, 125);
+            this.sideBarHeaderPanel.Size = new System.Drawing.Size(244, 120);
             this.sideBarHeaderPanel.TabIndex = 3;
             // 
             // molexLogo
@@ -126,7 +128,7 @@
             this.molexLogo.Location = new System.Drawing.Point(10, 17);
             this.molexLogo.Margin = new System.Windows.Forms.Padding(2);
             this.molexLogo.Name = "molexLogo";
-            this.molexLogo.Size = new System.Drawing.Size(204, 36);
+            this.molexLogo.Size = new System.Drawing.Size(217, 36);
             this.molexLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.molexLogo.TabIndex = 1;
             this.molexLogo.TabStop = false;
@@ -137,27 +139,26 @@
             this.tbSearchApps.Location = new System.Drawing.Point(10, 72);
             this.tbSearchApps.Margin = new System.Windows.Forms.Padding(2);
             this.tbSearchApps.Name = "tbSearchApps";
-            this.tbSearchApps.Size = new System.Drawing.Size(205, 30);
+            this.tbSearchApps.Size = new System.Drawing.Size(217, 30);
             this.tbSearchApps.TabIndex = 1;
             this.tbSearchApps.TextChanged += new System.EventHandler(this.tbSearchApps_TextChanged);
             // 
             // headerSearchPanel
             // 
             this.headerSearchPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(31)))), ((int)(((byte)(64)))));
-            this.headerSearchPanel.Controls.Add(this.pbLoginIcon);
-            this.headerSearchPanel.Controls.Add(this.panel2);
+            this.headerSearchPanel.Controls.Add(this.panel3);
             this.headerSearchPanel.Controls.Add(this.lblTitleMESApp);
             this.headerSearchPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.headerSearchPanel.Location = new System.Drawing.Point(230, 0);
+            this.headerSearchPanel.Location = new System.Drawing.Point(244, 0);
             this.headerSearchPanel.Margin = new System.Windows.Forms.Padding(2);
             this.headerSearchPanel.Name = "headerSearchPanel";
-            this.headerSearchPanel.Size = new System.Drawing.Size(1198, 63);
+            this.headerSearchPanel.Size = new System.Drawing.Size(1184, 63);
             this.headerSearchPanel.TabIndex = 1;
             // 
             // pbLoginIcon
             // 
             this.pbLoginIcon.Image = global::MESInfoCenter.Properties.Resources.userIcon;
-            this.pbLoginIcon.Location = new System.Drawing.Point(1140, 12);
+            this.pbLoginIcon.Location = new System.Drawing.Point(365, 12);
             this.pbLoginIcon.Name = "pbLoginIcon";
             this.pbLoginIcon.Size = new System.Drawing.Size(46, 36);
             this.pbLoginIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -169,7 +170,7 @@
             // 
             this.panel2.Controls.Add(this.lblUserName);
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel2.Location = new System.Drawing.Point(874, 21);
+            this.panel2.Location = new System.Drawing.Point(99, 21);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(260, 27);
             this.panel2.TabIndex = 3;
@@ -208,9 +209,9 @@
             this.containerPanel.Controls.Add(this.containerHeaderPanel);
             this.containerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.containerPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.containerPanel.Location = new System.Drawing.Point(230, 63);
+            this.containerPanel.Location = new System.Drawing.Point(244, 63);
             this.containerPanel.Name = "containerPanel";
-            this.containerPanel.Size = new System.Drawing.Size(1198, 642);
+            this.containerPanel.Size = new System.Drawing.Size(1184, 642);
             this.containerPanel.TabIndex = 2;
             // 
             // flowContainerControls
@@ -222,7 +223,7 @@
             this.flowContainerControls.Location = new System.Drawing.Point(0, 57);
             this.flowContainerControls.Name = "flowContainerControls";
             this.flowContainerControls.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
-            this.flowContainerControls.Size = new System.Drawing.Size(1198, 585);
+            this.flowContainerControls.Size = new System.Drawing.Size(1184, 585);
             this.flowContainerControls.TabIndex = 2;
             this.flowContainerControls.WrapContents = false;
             // 
@@ -232,7 +233,7 @@
             this.containerHeaderPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.containerHeaderPanel.Location = new System.Drawing.Point(0, 0);
             this.containerHeaderPanel.Name = "containerHeaderPanel";
-            this.containerHeaderPanel.Size = new System.Drawing.Size(1198, 57);
+            this.containerHeaderPanel.Size = new System.Drawing.Size(1184, 57);
             this.containerHeaderPanel.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -246,7 +247,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1198, 57);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1184, 57);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lblTitleApp
@@ -258,14 +259,23 @@
             this.lblTitleApp.ForeColor = System.Drawing.Color.White;
             this.lblTitleApp.Location = new System.Drawing.Point(3, 0);
             this.lblTitleApp.Name = "lblTitleApp";
-            this.lblTitleApp.Size = new System.Drawing.Size(1192, 57);
+            this.lblTitleApp.Size = new System.Drawing.Size(1178, 57);
             this.lblTitleApp.TabIndex = 1;
             this.lblTitleApp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.panel2);
+            this.panel3.Controls.Add(this.pbLoginIcon);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(767, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(417, 63);
+            this.panel3.TabIndex = 4;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(1428, 705);
@@ -291,6 +301,7 @@
             this.containerHeaderPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -314,6 +325,7 @@
         private System.Windows.Forms.PictureBox pbLoginIcon;
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
     }
 }
 
