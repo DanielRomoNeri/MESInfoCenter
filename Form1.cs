@@ -108,7 +108,7 @@ namespace MESInfoCenter
             }
 
             //se genera el contenido en la aplicación
-            showContent(lastID);
+            showContent(ID: lastID);
             
 
         }
@@ -155,8 +155,8 @@ namespace MESInfoCenter
 
 
                 };
-                btn.Tag = btn;
-                btn.Click += (s, e) => showContent(app.appID);
+                //btn.Tag = btn;
+                btn.Click += (s, e) => showContent(app.appID, s);
                 btn.FlatAppearance.BorderSize = 0;
                 btn.Font = new Font(btn.Font.FontFamily, 13, btn.Font.Style);
   
@@ -168,9 +168,18 @@ namespace MESInfoCenter
         
         
 
-        public void showContent(int ID)
+        public void showContent(int ID, object s = null)
         {
-            
+            if (s != null)
+            {
+                foreach (Button btn in flowAppsList.Controls)
+                {
+                    btn.BackColor = Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(31)))), ((int)(((byte)(64)))));
+                }
+                Button btnClicked = (Button)s;
+                btnClicked.BackColor = Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(90)))), ((int)(((byte)(149))))); 
+            }
+
             Apps app = new Apps();
             List<TroubleShooting> troubleShootingList = new List<TroubleShooting>();
 

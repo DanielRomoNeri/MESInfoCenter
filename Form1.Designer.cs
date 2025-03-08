@@ -37,27 +37,27 @@
             this.molexLogo = new System.Windows.Forms.PictureBox();
             this.tbSearchApps = new System.Windows.Forms.TextBox();
             this.headerSearchPanel = new System.Windows.Forms.Panel();
-            this.pbLoginIcon = new System.Windows.Forms.PictureBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblUserName = new System.Windows.Forms.Label();
+            this.pbLoginIcon = new System.Windows.Forms.PictureBox();
             this.lblTitleMESApp = new System.Windows.Forms.Label();
             this.containerPanel = new System.Windows.Forms.Panel();
             this.flowContainerControls = new System.Windows.Forms.FlowLayoutPanel();
             this.containerHeaderPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblTitleApp = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.sidePanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.sideBarHeaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.molexLogo)).BeginInit();
             this.headerSearchPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLoginIcon)).BeginInit();
+            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoginIcon)).BeginInit();
             this.containerPanel.SuspendLayout();
             this.containerHeaderPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // sidePanel
@@ -155,16 +155,15 @@
             this.headerSearchPanel.Size = new System.Drawing.Size(1184, 63);
             this.headerSearchPanel.TabIndex = 1;
             // 
-            // pbLoginIcon
+            // panel3
             // 
-            this.pbLoginIcon.Image = global::MESInfoCenter.Properties.Resources.userIcon;
-            this.pbLoginIcon.Location = new System.Drawing.Point(365, 12);
-            this.pbLoginIcon.Name = "pbLoginIcon";
-            this.pbLoginIcon.Size = new System.Drawing.Size(46, 36);
-            this.pbLoginIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbLoginIcon.TabIndex = 1;
-            this.pbLoginIcon.TabStop = false;
-            this.pbLoginIcon.Click += new System.EventHandler(this.pbLoginIcon_Click);
+            this.panel3.Controls.Add(this.panel2);
+            this.panel3.Controls.Add(this.pbLoginIcon);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(767, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(417, 63);
+            this.panel3.TabIndex = 4;
             // 
             // panel2
             // 
@@ -189,6 +188,17 @@
             this.lblUserName.Text = "Iniciar Sesión";
             this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblUserName.Click += new System.EventHandler(this.pbLoginIcon_Click);
+            // 
+            // pbLoginIcon
+            // 
+            this.pbLoginIcon.Image = global::MESInfoCenter.Properties.Resources.userIcon;
+            this.pbLoginIcon.Location = new System.Drawing.Point(365, 12);
+            this.pbLoginIcon.Name = "pbLoginIcon";
+            this.pbLoginIcon.Size = new System.Drawing.Size(46, 36);
+            this.pbLoginIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLoginIcon.TabIndex = 1;
+            this.pbLoginIcon.TabStop = false;
+            this.pbLoginIcon.Click += new System.EventHandler(this.pbLoginIcon_Click);
             // 
             // lblTitleMESApp
             // 
@@ -263,16 +273,6 @@
             this.lblTitleApp.TabIndex = 1;
             this.lblTitleApp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.panel2);
-            this.panel3.Controls.Add(this.pbLoginIcon);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(767, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(417, 63);
-            this.panel3.TabIndex = 4;
-            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -294,14 +294,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.molexLogo)).EndInit();
             this.headerSearchPanel.ResumeLayout(false);
             this.headerSearchPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLoginIcon)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoginIcon)).EndInit();
             this.containerPanel.ResumeLayout(false);
             this.containerHeaderPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
