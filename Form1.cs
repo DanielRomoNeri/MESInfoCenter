@@ -25,7 +25,8 @@ namespace MESInfoCenter
         {
             setVersion();
             eventSubscriber();
-            updateAppsList();
+            updateAppsList(1);
+            showContent(1);
         }
 
         private void setVersion()
@@ -93,8 +94,7 @@ namespace MESInfoCenter
         {
             int lastID;
 
-            //se actualiza la lista de aplicaciones desde la DB
-            updateAppsList();
+
             //Valida si el método fue llamado después de actualizar o de agregar
             if (appID == -1)
             {
@@ -105,8 +105,10 @@ namespace MESInfoCenter
             {
                 //se asigna el ID de la aplicación actualizada en caso de modificación para que se muestren los cambios
                 lastID = appID;
-            }
+            } 
 
+            //se actualiza la lista de aplicaciones desde la DB
+            updateAppsList(lastID);
             //se genera el contenido en la aplicación
             showContent(ID: lastID);
             
@@ -118,7 +120,7 @@ namespace MESInfoCenter
         //
 
         //Se actualiza lista de aplicaciones para generar de nuevo los botones
-        public void updateAppsList()
+        public void updateAppsList(int optionalSelectedIDApp = -1)
         {
             int buttonWidth;
 
@@ -159,6 +161,13 @@ namespace MESInfoCenter
                 btn.Click += (s, e) => showContent(app.appID, s);
                 btn.FlatAppearance.BorderSize = 0;
                 btn.Font = new Font(btn.Font.FontFamily, 13, btn.Font.Style);
+                if(optionalSelectedIDApp != -1)
+                {
+                    if(app.appID == optionalSelectedIDApp)
+                    {
+                        setBackColorToClickedButton(btn);
+                    }
+                }
   
                 flowAppsList.Controls.Add(btn);
            
@@ -172,12 +181,9 @@ namespace MESInfoCenter
         {
             if (s != null)
             {
-                foreach (Button btn in flowAppsList.Controls)
-                {
-                    btn.BackColor = Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(31)))), ((int)(((byte)(64)))));
-                }
+                
                 Button btnClicked = (Button)s;
-                btnClicked.BackColor = Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(90)))), ((int)(((byte)(149))))); 
+                setBackColorToClickedButton(btnClicked);
             }
 
             Apps app = new Apps();
@@ -719,6 +725,15 @@ namespace MESInfoCenter
                 pictureBox2.Image = null;
             }
 
+        }
+
+        public void setBackColorToClickedButton(Button btnClicked)
+        {
+            foreach (Button btn in flowAppsList.Controls)
+            {
+                btn.BackColor = Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(31)))), ((int)(((byte)(64)))));
+            }
+            btnClicked.BackColor = Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(90)))), ((int)(((byte)(149)))));
         }
     }
 
