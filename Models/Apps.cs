@@ -20,6 +20,8 @@ namespace MESInfoCenter
         public string lastVersion { get; set; }
         public int createdBy { get; set; }
         public int updatedBy { get; set; }
+        public DateTime createdAt { get; set; }
+        public DateTime updatedAt { get; set; }
 
 
 

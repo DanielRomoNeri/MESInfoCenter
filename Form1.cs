@@ -156,6 +156,7 @@ namespace MESInfoCenter
                     Height = 54,
                     FlatStyle = FlatStyle.Flat,
                     Margin = new Padding(0, 0, 0, 0),
+                    UseCompatibleTextRendering = true
 
 
 
@@ -244,8 +245,8 @@ namespace MESInfoCenter
           
 
             
-            lblCreatedBy.Text = $"Entrada creada por: {createdBy}";
-            lblUpdatedBy.Text = $"Última actualización por: {updatedBy}";
+            lblCreatedBy.Text = $"Entrada creada por: {createdBy} el {app.createdAt.Day}/{app.createdAt.Month}/{app.createdAt.Year}";
+            lblUpdatedBy.Text = $"Última actualización por: {updatedBy} el {app.updatedAt.Day}/{app.updatedAt.Month}/{app.updatedAt.Year}";
             lblAuthorName.Text = $"Desarrollador: {app.appAuthorName}";
             lblLastVersion.Text = $"Última versión: {app.lastVersion}";
             lblAppPath.Text = $"Ruta: {app.appPath}";
@@ -739,7 +740,7 @@ namespace MESInfoCenter
 
         public int getButtonAppWidth(bool result)
         {
-            return result ? 243 : 225;
+            return result ? 243 : 223;
         }
         public void releaseImage()
         {

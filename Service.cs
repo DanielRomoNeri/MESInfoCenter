@@ -169,7 +169,8 @@ namespace MESInfoCenter
                     conn.Open();
                     string query = 
                         "SELECT appID, appName, appAuthorName, appPath, guidePath, imagePath," +
-                        " image2Path, repoPath, appDescription, lastVersion, createdBy, updatedBy FROM mesinfocenter.apps";
+                        " image2Path, repoPath, appDescription, lastVersion, createdBy, updatedBy, createdAt, updatedAt" +
+                        " FROM mesinfocenter.apps";
                     using (var cmd = new MySqlCommand(query, conn))
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -188,7 +189,9 @@ namespace MESInfoCenter
                                 appDescription = reader.GetString("appDescription"),
                                 lastVersion = reader.GetString("lastVersion"),
                                 createdBy = reader.GetInt32("createdBy"),
-                                updatedBy = reader.GetInt32("updatedBy")
+                                updatedBy = reader.GetInt32("updatedBy"),
+                                createdAt = reader.GetDateTime("createdAt"),
+                                updatedAt = reader.GetDateTime("updatedAt")
 
                             });
                         }
