@@ -6,10 +6,31 @@ namespace MESInfoCenter
     partial class Form1
 
     {
+        Label lblCreatedBy = new Label
+        {
+
+            ForeColor = Color.Black,
+            Font = new Font("Arial", 7),
+            Dock = DockStyle.Right,
+            Margin = new Padding(0, 0, 0, 0),
+            AutoSize = true
+        };
+
+        Label lblUpdatedBy = new Label
+        {
+            Text = "Última actualización por: ",
+            ForeColor = Color.Black,
+            Font = new Font("Arial", 7),
+            Dock = DockStyle.Right,
+            Margin = new Padding(0, 0, 0, 30),
+            AutoSize = true
+
+        };
+
         Panel panelPictureBoxBorder = new Panel
         {
             BackColor = Color.Black,
-            Margin = new Padding(0, 0, 0, 15)
+           
         };
 
         PictureBox pictureBox = new PictureBox

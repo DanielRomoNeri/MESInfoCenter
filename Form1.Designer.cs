@@ -232,7 +232,6 @@
             this.flowContainerControls.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flowContainerControls.Location = new System.Drawing.Point(0, 57);
             this.flowContainerControls.Name = "flowContainerControls";
-            this.flowContainerControls.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
             this.flowContainerControls.Size = new System.Drawing.Size(1184, 585);
             this.flowContainerControls.TabIndex = 2;
             this.flowContainerControls.WrapContents = false;

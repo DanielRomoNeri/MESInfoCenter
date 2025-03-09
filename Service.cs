@@ -11,7 +11,7 @@ namespace MESInfoCenter
     internal class Service
     {
 
-    
+
 
         public static bool addApp(
             string appName, string appAuthorName, string appPath, string guidePath,
@@ -65,9 +65,9 @@ namespace MESInfoCenter
                     var result = cmd.ExecuteScalar();
                     return result != null;
                 }
-           
-                
-                
+
+
+
             }
         }
 
@@ -98,7 +98,7 @@ namespace MESInfoCenter
                         cmd.Parameters.AddWithValue("@appDescription", appDescription);
                         cmd.Parameters.AddWithValue("@updatedBy", updatedBy);
                         cmd.Parameters.AddWithValue("@lastVersion", lastVersion);
-                        cmd.Parameters.AddWithValue("@appID", appID); 
+                        cmd.Parameters.AddWithValue("@appID", appID);
 
                         return cmd.ExecuteNonQuery() > 0;
                     }
@@ -135,18 +135,18 @@ namespace MESInfoCenter
             }
         }
 
-        public static bool deleteApp(int appID) 
+        public static bool deleteApp(int appID)
         {
             try
             {
                 using (var conn = DBConnection.GetConnection())
                 {
                     conn.Open();
-                    string query = "DELETE FROM mesinfocenter.apps WHERE appID = @appID"; 
+                    string query = "DELETE FROM mesinfocenter.apps WHERE appID = @appID";
 
                     using (var cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@appID", appID); 
+                        cmd.Parameters.AddWithValue("@appID", appID);
 
                         return cmd.ExecuteNonQuery() > 0;
                     }
@@ -167,7 +167,9 @@ namespace MESInfoCenter
                 using (var conn = DBConnection.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT appID, appName, appAuthorName, appPath, guidePath, imagePath, image2Path, repoPath, appDescription, lastVersion FROM mesinfocenter.apps";
+                    string query = 
+                        "SELECT appID, appName, appAuthorName, appPath, guidePath, imagePath," +
+                        " image2Path, repoPath, appDescription, lastVersion, createdBy, updatedBy FROM mesinfocenter.apps";
                     using (var cmd = new MySqlCommand(query, conn))
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -184,7 +186,9 @@ namespace MESInfoCenter
                                 image2Path = reader.GetString("image2Path"),
                                 repoPath = reader.GetString("repoPath"),
                                 appDescription = reader.GetString("appDescription"),
-                                lastVersion = reader.GetString("lastVersion")
+                                lastVersion = reader.GetString("lastVersion"),
+                                createdBy = reader.GetInt32("createdBy"),
+                                updatedBy = reader.GetInt32("updatedBy")
 
                             });
                         }
@@ -195,7 +199,7 @@ namespace MESInfoCenter
             catch (Exception e)
             {
 
-                MessageBox.Show($"Ocurrió un error al intentar acceder a la base de datos:\n {e}");            
+                MessageBox.Show($"Ocurrió un error al intentar acceder a la base de datos:\n {e}");
                 return null;
             }
         }
@@ -228,11 +232,11 @@ namespace MESInfoCenter
             }
             catch (Exception)
             {
-                
+
                 return false;
             }
         }
-        
+
         public static List<TroubleShooting> getTroubleShootingList(int appID)
         {
             try
@@ -276,7 +280,7 @@ namespace MESInfoCenter
         {
             using (var conn = DBConnection.GetConnection())
             {
-                
+
                 conn.Open();
                 string passwordDB;
                 string query = "SELECT userID, fullName, userName, password, role FROM mesinfocenter.users WHERE userName = @username";
@@ -348,7 +352,39 @@ namespace MESInfoCenter
             return newPath;
         }
 
+        public static List<Users> getUsers()
+        {
+            try
+            {
+                List<Users> users = new List<Users>();
+                using (var conn = DBConnection.GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT userID, fullName, userName, role FROM mesinfocenter.users";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            users.Add(new Users
+                            {
+                                userID = reader.GetInt32("userID"),
+                                fullName = reader.GetString("fullName"),
+                                userName = reader.GetString("userName"),
+                                role = reader.GetString("role")
+                            });
+                        }
+                    }
+                }
+                return users;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Ocurrió un error al intentar acceder a la base de datos:\n {e}");
+                return null;
+            }
+
+        }
+
     }
-
-
 }

@@ -18,7 +18,11 @@ namespace MESInfoCenter
         public string repoPath { get; set; }
         public string appDescription { get; set; }
         public string lastVersion { get; set; }
-        
+        public int createdBy { get; set; }
+        public int updatedBy { get; set; }
+
+
+
 
 
     }

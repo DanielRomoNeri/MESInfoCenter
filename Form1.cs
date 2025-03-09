@@ -12,6 +12,7 @@ namespace MESInfoCenter
     public partial class Form1 : Form
     {
         List<Apps> appsList = new List<Apps>();
+        List<Users> users = new List<Users>();
         string version = "1.0.1.0";
         int scrollPositionTEMP = 0;
         bool isValidUser = false;
@@ -23,6 +24,8 @@ namespace MESInfoCenter
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            this.users = Service.getUsers();
             setVersion();
             eventSubscriber();
             updateAppsList(1);
@@ -192,6 +195,9 @@ namespace MESInfoCenter
             int imageWidth; 
             int imageHeight;
             int marginLeft;
+            string createdBy; 
+            string updatedBy; 
+            
             //Se elimina todo el contenido antes de generar más
             clearFlowPanels();
 
@@ -199,6 +205,24 @@ namespace MESInfoCenter
             btnDeleteTS.Tag = null;
             
             app = appsList.FirstOrDefault(c => c.appID == ID);
+            try
+            {
+                createdBy = users.FirstOrDefault(c => c.userID == app.createdBy).fullName;
+            }
+            catch (Exception)
+            {
+
+                createdBy = "User not found";
+            }
+            try
+            {
+                updatedBy = users.FirstOrDefault(c => c.userID == app.updatedBy).fullName;
+            }
+            catch (Exception)
+            {
+
+                updatedBy = "User not found";
+            }
 
             lblTitleApp.Text = app.appName;
 
@@ -220,7 +244,8 @@ namespace MESInfoCenter
           
 
             
-
+            lblCreatedBy.Text = $"Entrada creada por: {createdBy}";
+            lblUpdatedBy.Text = $"Última actualización por: {updatedBy}";
             lblAuthorName.Text = $"Desarrollador: {app.appAuthorName}";
             lblLastVersion.Text = $"Última versión: {app.lastVersion}";
             lblAppPath.Text = $"Ruta: {app.appPath}";
@@ -244,8 +269,9 @@ namespace MESInfoCenter
 
 
             panelPictureBoxBorder.Controls.Add(pictureBox);
-            
-            
+
+            flowContainerControls.Controls.Add(lblCreatedBy);
+            flowContainerControls.Controls.Add(lblUpdatedBy);
             flowContainerControls.Controls.Add(panelPictureBoxBorder);
             if (!string.IsNullOrEmpty(app.image2Path))
             {
@@ -542,7 +568,7 @@ namespace MESInfoCenter
         }
         private void pbLoginIcon_Click(object sender, EventArgs e)
         {
-            //Si ya hay un usuario registrado ya no muestra la ventana de login
+            //Si ya accedió un usuario ya no muestra la ventana de login
             if (isValidUser)
             {
                 return;
@@ -564,23 +590,30 @@ namespace MESInfoCenter
         {
             if (sender is Button btn && btn.Tag is Apps app)
             {
-                DialogResult dialogResult = MessageBox.Show(
-                $"¿Estás totalmente seguro de eliminar: '{app.appName}'? Se eliminará de la base de datos el contenido " +
-                $"junto con sus problemas y soluciones", "", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes) 
+                if (app.appID != 1)
                 {
-                    if (Service.deleteApp(app.appID))
+                    DialogResult dialogResult = MessageBox.Show(
+                            $"¿Estás totalmente seguro de eliminar: '{app.appName}'? Se eliminará de la base de datos el contenido " +
+                            $"junto con sus problemas y soluciones", "", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        MessageBox.Show($"Se ha eliminado {app.appName}");
-                        updateAppsList();
-                        clearFlowPanels();
-                        lblTitleApp.Text = "";
-                        
+                        if (Service.deleteApp(app.appID))
+                        {
+                            MessageBox.Show($"Se ha eliminado {app.appName}");
+                            updateAppsList();
+                            clearFlowPanels();
+                            lblTitleApp.Text = "";
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ocurrió un error al tratar de borrar la aplicación");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Ocurrió un error al tratar de borrar la aplicación");
-                    }
+                }
+                else 
+                {
+                    MessageBox.Show("Esta aplicación no se puede eliminar.");
                 }
 
             }
