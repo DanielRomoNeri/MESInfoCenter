@@ -62,7 +62,7 @@ namespace MESInfoCenter
         {
             FlowDirection = FlowDirection.LeftToRight,
             Dock = DockStyle.Fill,
-            Margin = new Padding(0, 50, 0, 0),
+            Margin = new Padding(0, 20, 0, 0),
 
         };
 

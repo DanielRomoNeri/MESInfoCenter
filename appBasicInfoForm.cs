@@ -85,7 +85,7 @@ namespace MESInfoCenter
         private void btnGuideUploadForm_Click(object sender, EventArgs e)
         {
             OpenFileDialog fd = new OpenFileDialog();
-            fd.Filter = "Documento de Word (*.doc;*.docx)|*.doc;*.docx|Archivo de Excel (*.xls;*.xlsx)|*.xls;*.xlsx|Archivo de texto (*.txt)|*.txt";
+            fd.Filter = "Archivo PDF (*.pdf)|*.pdf|Documento de Word (*.doc;*.docx)|*.doc;*.docx|Archivo de Excel (*.xls;*.xlsx)|*.xls;*.xlsx|Archivo de texto (*.txt)|*.txt";
             fd.FilterIndex = 1;
 
             if (fd.ShowDialog() == DialogResult.OK)
@@ -318,6 +318,26 @@ namespace MESInfoCenter
         private void lblGuidePath_Click(object sender, EventArgs e)
         {
             lblGuidePath.Text = "";
+        }
+
+        private void tbAuthorName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbLastVersion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbAppPathForm_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbAppRepoForm_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

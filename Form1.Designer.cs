@@ -70,7 +70,7 @@
             this.sidePanel.Location = new System.Drawing.Point(0, 0);
             this.sidePanel.Margin = new System.Windows.Forms.Padding(2);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(244, 705);
+            this.sidePanel.Size = new System.Drawing.Size(244, 800);
             this.sidePanel.TabIndex = 0;
             // 
             // panel1
@@ -80,7 +80,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 120);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(244, 539);
+            this.panel1.Size = new System.Drawing.Size(244, 634);
             this.panel1.TabIndex = 3;
             // 
             // flowAppsList
@@ -92,7 +92,7 @@
             this.flowAppsList.Location = new System.Drawing.Point(0, 0);
             this.flowAppsList.Margin = new System.Windows.Forms.Padding(2);
             this.flowAppsList.Name = "flowAppsList";
-            this.flowAppsList.Size = new System.Drawing.Size(244, 539);
+            this.flowAppsList.Size = new System.Drawing.Size(244, 634);
             this.flowAppsList.TabIndex = 2;
             this.flowAppsList.WrapContents = false;
             // 
@@ -102,7 +102,7 @@
             this.btnAppRegister.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnAppRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAppRegister.ForeColor = System.Drawing.Color.White;
-            this.btnAppRegister.Location = new System.Drawing.Point(0, 659);
+            this.btnAppRegister.Location = new System.Drawing.Point(0, 754);
             this.btnAppRegister.Name = "btnAppRegister";
             this.btnAppRegister.Size = new System.Drawing.Size(244, 46);
             this.btnAppRegister.TabIndex = 1;
@@ -152,7 +152,7 @@
             this.headerSearchPanel.Location = new System.Drawing.Point(244, 0);
             this.headerSearchPanel.Margin = new System.Windows.Forms.Padding(2);
             this.headerSearchPanel.Name = "headerSearchPanel";
-            this.headerSearchPanel.Size = new System.Drawing.Size(1184, 63);
+            this.headerSearchPanel.Size = new System.Drawing.Size(1252, 63);
             this.headerSearchPanel.TabIndex = 1;
             // 
             // panel3
@@ -160,7 +160,7 @@
             this.panel3.Controls.Add(this.panel2);
             this.panel3.Controls.Add(this.pbLoginIcon);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(767, 0);
+            this.panel3.Location = new System.Drawing.Point(835, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(417, 63);
             this.panel3.TabIndex = 4;
@@ -221,7 +221,7 @@
             this.containerPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.containerPanel.Location = new System.Drawing.Point(244, 63);
             this.containerPanel.Name = "containerPanel";
-            this.containerPanel.Size = new System.Drawing.Size(1184, 642);
+            this.containerPanel.Size = new System.Drawing.Size(1252, 737);
             this.containerPanel.TabIndex = 2;
             // 
             // flowContainerControls
@@ -232,7 +232,7 @@
             this.flowContainerControls.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flowContainerControls.Location = new System.Drawing.Point(0, 57);
             this.flowContainerControls.Name = "flowContainerControls";
-            this.flowContainerControls.Size = new System.Drawing.Size(1184, 585);
+            this.flowContainerControls.Size = new System.Drawing.Size(1252, 680);
             this.flowContainerControls.TabIndex = 2;
             this.flowContainerControls.WrapContents = false;
             // 
@@ -242,7 +242,7 @@
             this.containerHeaderPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.containerHeaderPanel.Location = new System.Drawing.Point(0, 0);
             this.containerHeaderPanel.Name = "containerHeaderPanel";
-            this.containerHeaderPanel.Size = new System.Drawing.Size(1184, 57);
+            this.containerHeaderPanel.Size = new System.Drawing.Size(1252, 57);
             this.containerHeaderPanel.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -256,7 +256,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1184, 57);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1252, 57);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lblTitleApp
@@ -268,7 +268,7 @@
             this.lblTitleApp.ForeColor = System.Drawing.Color.White;
             this.lblTitleApp.Location = new System.Drawing.Point(3, 0);
             this.lblTitleApp.Name = "lblTitleApp";
-            this.lblTitleApp.Size = new System.Drawing.Size(1178, 57);
+            this.lblTitleApp.Size = new System.Drawing.Size(1246, 57);
             this.lblTitleApp.TabIndex = 1;
             this.lblTitleApp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -277,7 +277,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.ClientSize = new System.Drawing.Size(1428, 705);
+            this.ClientSize = new System.Drawing.Size(1496, 800);
             this.Controls.Add(this.containerPanel);
             this.Controls.Add(this.headerSearchPanel);
             this.Controls.Add(this.sidePanel);

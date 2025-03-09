@@ -13,7 +13,7 @@ namespace MESInfoCenter
     {
         List<Apps> appsList = new List<Apps>();
         List<Users> users = new List<Users>();
-        string version = "1.0.1.0";
+        string version = "1.4.0";
         int scrollPositionTEMP = 0;
         bool isValidUser = false;
 
@@ -334,7 +334,7 @@ namespace MESInfoCenter
         {
             panel.Width = imageWidth + 10;
             panel.Height = imageHeight + 10;
-            panel.Margin = new Padding(marginLeft, 0, 0, 0);
+            panel.Margin = new Padding(marginLeft, 0, 0, 10);
             panel.Padding = new Padding(5);
 
 
@@ -472,11 +472,11 @@ namespace MESInfoCenter
 
             if (sender is Button btn && btn.Tag is string guidePath)
             {
-                string guideFolder = Path.GetDirectoryName(guidePath);
-                if (!string.IsNullOrEmpty(guideFolder))
+                //string guideFolder = Path.GetDirectoryName(guidePath);
+                if (!string.IsNullOrEmpty(guidePath))
                 {
-                    // Abrir la guideFolder en el explorador de archivos
-                    Process.Start("explorer.exe", guideFolder);
+                    // Abrir la guia
+                    Process.Start(guidePath);
                 }
                 else
                 {
